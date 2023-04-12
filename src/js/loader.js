@@ -9,10 +9,7 @@ export default class Loader {
     instance = this;
 
     backdrop = document.querySelector('[data-backdrop]');
-
-    // добавляем разметку
-    const spinner = backdrop.querySelector('.lds-spinner');
-    spinner.insertAdjacentHTML('afterbegin', '<div></div>'.repeat(12));
+    makeSpinner(backdrop);
   }
 
   show() {
@@ -22,4 +19,18 @@ export default class Loader {
   hide() {
     backdrop.classList.add('js-backdrop--hidden');
   }
+}
+
+function makeSpinner(backdrop) {
+  const INITIAL_DELAY = -1.1;
+
+  const spinner = backdrop.querySelector('.lds-spinner');
+  spinner.insertAdjacentHTML('afterbegin', '<div></div>'.repeat(12));
+
+  Array.from(spinner.children).forEach(({ style }, idx) => {
+    style.cssText = `
+      transform: rotate(${idx * 30}deg);
+      animation-delay: ${INITIAL_DELAY + idx / 10}s
+    `;
+  });
 }
