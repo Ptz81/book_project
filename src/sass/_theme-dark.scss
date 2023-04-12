@@ -5,11 +5,11 @@
 */
 .theme-dark {
   --color-text-primary: var(--color-white);
-  --color-text-secondary: #b4afaf;
+  --color-text-secondary: var(--color-grey-lighter);
 
-  --color-categories: rgba(255, 255, 255, 0.6);
-  --color-categories-active: var(--color-yellow);
+  --color-category: rgba(255, 255, 255, 0.6);
+  --color-category-active: var(--color-yellow);
 
-  --color-background: var(--color-grey-darker);
   --color-header-background: var(--color-black);
+  --color-background: var(--color-grey-darker);
 }
