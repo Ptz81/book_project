@@ -1,0 +1,2 @@
+!function(){var e={};Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e,n){if(!(e instanceof n))throw new TypeError("Cannot call a class as a function")};var n={};function r(e,n){for(var r=0;r<n.length;r++){var t=n[r];t.enumerable=t.enumerable||!1,t.configurable=!0,"value"in t&&(t.writable=!0),Object.defineProperty(e,t.key,t)}}Object.defineProperty(n,"__esModule",{value:!0}),n.default=function(e,n,t){n&&r(e.prototype,n);t&&r(e,t);return e}}();
+//# sourceMappingURL=index.9c4a44e6.js.map
