@@ -7,6 +7,7 @@
   --color-yellow: #eac645;
   --color-grey-darker: #202024;
   --color-grey-lighter: #b4afaf;
+  --color-scroll: #e0e0e0;
 
   // Цвета для светлой темы (по умолчанию)
 
@@ -22,6 +23,8 @@
   --color-category: rgba(17, 17, 17, 0.6);
   // цвет активной категории
   --color-category-active: var(--color-blue);
+  // цвет скролла в блоке категории
+  --color-nav-scroll: var(--color-scroll);
 
   // Misc
 
