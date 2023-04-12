@@ -26,17 +26,3 @@
 
   --font-family-primary: 'DM Sans', sans-serif;
 }
-
-/* 
-  Цвета для темной темы
-  Чтобы применить, добавляем класс(из js) следующим образом:
-  document.documentElement.classList.add('theme-dark'); 
-*/
-.theme-dark {
-  --color-background: var(--color-grey-dark);
-  --color-header-background: var(--color-black);
-  --color-text-primary: var(--color-white);
-  --color-text-secondary: #b4afaf;
-  --color-categories: rgba(255, 255, 255, 0.6);
-  --color-categories-active: var(--color-yellow);
-}
