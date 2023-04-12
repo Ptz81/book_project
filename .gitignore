@@ -109,4 +109,5 @@ dist
 .tern-port
 
 #test
-test.js
+test*.js
+backup*

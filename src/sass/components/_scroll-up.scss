@@ -1,0 +1,19 @@
+.scroll-up {
+  position: fixed;
+  right: 5%;
+  bottom: 2.5%;
+  z-index: 2;
+
+  width: 54px;
+  height: 54px;
+
+  display: block;
+
+  background-color: #4f2ee8;
+  border-radius: 50%;
+
+  &:hover,
+  &:focus {
+    border: none;
+  }
+}

@@ -1,0 +1,76 @@
+.js-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--color-backdrop);
+
+  opacity: 1;
+  visibility: visible;
+  transition: visibility var(--transition-params),
+    opacity var(--transition-params);
+
+  overflow: auto;
+
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+//
+// Loader
+//
+
+.js-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+//
+// Spinner
+//
+
+.lds-spinner {
+  position: relative;
+  display: inline-block;
+
+  width: 80px;
+  height: 80px;
+
+  color: whitesmoke;
+}
+
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  animation: lds-spinner 1.2s linear infinite;
+}
+
+.lds-spinner div:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+
+  width: 6px;
+  height: 18px;
+
+  border-radius: 20%;
+  background: #fff;
+}
+
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

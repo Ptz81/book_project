@@ -1,4 +1,2 @@
-//Examples
-// import './scss/main.scss';
-// import './js/search';
+import _ from './js/loader';
 import './js/shopping-list';
