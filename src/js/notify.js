@@ -3,7 +3,7 @@ import { Notify } from 'notiflix';
 // опции Notify
 Notify.init({
   position: 'right-top',
-  timeout: 250,
+  timeout: 2500,
 });
 
 export function showError(msg, opts) {
