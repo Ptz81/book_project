@@ -1,5 +1,7 @@
 import axios from 'axios';
+import Loader from './loader';
 
+const loader = new Loader();
 let instance;
 
 export default class BookService {
@@ -17,9 +19,10 @@ export default class BookService {
         .join('&');
 
       const url = encodeURI(
-        `${BooksService.BASE_URL}/${res}${p ? `/?${p}` : ''}`
+        `${BookService.BASE_URL}/${res}${p ? `/?${p}` : ''}`
       );
 
+      loader.show();
       const resp = await axios.get(url);
 
       return resp.data;
@@ -36,6 +39,8 @@ export default class BookService {
       };
 
       throw error;
+    } finally {
+      loader.hide();
     }
   }
 
