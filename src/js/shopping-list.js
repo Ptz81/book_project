@@ -1,5 +1,13 @@
 const shoppingList = document.querySelector('.shopping-cart__list');
 
+
+const pathToAmazon = new URL('../images/shop-icons/amazon.jpg', import.meta.url);
+const pathAppleBooks = new URL('../images/shop-icons/applebooks.jpg', import.meta.url);
+const pathBookStore = new URL('../images/shop-icons/bookstore.jpg', import.meta.url);
+
+
+
+
 function renderShoppingListMarkUp(books) {
 books.map(
     ({
@@ -30,10 +38,26 @@ books.map(
                 target="_blank"
                 referrerpolicy="no-referrer"
             >
-            <svg class="shop-icon" width="100%" height="100%">
-              <use href=""></use>
-            </svg>
+            <img src="${pathToAmazon}" alt="amazon" class="store-icon">
             </a>
+            <a 
+                href=""
+                class="shopping-cart__book-shop"
+                target="_blank"
+                referrerpolicy="no-referrer"
+            >
+            <img src="${pathAppleBooks}" alt="AppleBooks" class="store-icon">
+            </a>
+            <a 
+                href=""
+                class="shopping-cart__book-shop"
+                target="_blank"
+                referrerpolicy="no-referrer"
+            >
+            <img src="${pathBookStore}" alt="BookStore" class="store-icon">
+            </a>
+            
+            
         </li>
         `
       );
