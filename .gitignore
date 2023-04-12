@@ -110,3 +110,4 @@ dist
 
 #test
 test*.js
+backup*
