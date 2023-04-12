@@ -1,6 +1,6 @@
-@import './common';
-@import './variables';
-@import './theme-dark';
-@import './vissually-hidden';
-@import './base';
-@import './reset';
+@import './base/common';
+@import './utils/variables';
+@import './layouts/theme-dark';
+@import './utils/vissually-hidden';
+@import './base/base';
+@import './base/reset';
