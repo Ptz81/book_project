@@ -9,7 +9,8 @@
 
   opacity: 1;
   visibility: visible;
-  transition: visibility ease 250ms, opacity ease 250ms;
+  transition: visibility var(--transition-params),
+    opacity var(--transition-params);
 
   overflow: auto;
 
