@@ -9,7 +9,7 @@ export default class Loader {
     instance = this;
 
     backdrop = document.querySelector('[data-backdrop]');
-    makeSpinner(backdrop);
+    makeSpinnerPetals(backdrop);
   }
 
   show() {
@@ -21,7 +21,7 @@ export default class Loader {
   }
 }
 
-function makeSpinner(backdrop) {
+function makeSpinnerPetals(backdrop) {
   const INITIAL_DELAY = -1.1;
 
   const spinner = backdrop.querySelector('.lds-spinner');
