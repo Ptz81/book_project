@@ -3,9 +3,10 @@
 
   --color-black: #111111;
   --color-white: #ffffff;
-  --color-grey-dark: #202024;
   --color-blue: #4f2ee8;
   --color-yellow: #eac645;
+  --color-grey-darker: #202024;
+  --color-grey-lighter: #b4afaf;
 
   // Цвета для светлой темы (по умолчанию)
 
@@ -16,7 +17,7 @@
   // основной цвет текста
   --color-text-primary: var(--color-black);
   // цвет светло-серых подзаголовков
-  --color-text-secondary: #b4afaf;
+  --color-text-secondary: var(--color-grey-lighter);
   // цвет текста в блоке категории
   --color-categories: rgba(17, 17, 17, 0.6);
   // цвет активной в данный момент категории
