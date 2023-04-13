@@ -1,0 +1,29 @@
+.page-header {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--color-white);
+    padding-bottom: 0;
+    padding-top: 0;
+    z-index: 997;
+    border: 1.5px solid var(--color-black);
+    border-radius: 0px 0px 8px 8px;
+}
+
+.page-header .theme-dark {
+    background-color: var(--color-black);
+    border: 1.5px solid var(--color-white);
+}
+
+.page-header__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 64px;
+}
+
+.logo {
+    
+}
+
