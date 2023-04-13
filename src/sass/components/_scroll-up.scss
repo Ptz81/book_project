@@ -1,7 +1,8 @@
 .wrapper__scroll-up {
-  display: flex;
+  // display: flex;
   align-items: center;
   justify-content: center;
+  display: none;
 
   position: fixed;
   right: 3%;
@@ -12,7 +13,7 @@
   height: 64px;
   border-radius: 50%;
 }
-.scroll-up {
+.scroll__up {
   position: absolute;
   z-index: 2;
 
@@ -23,8 +24,10 @@
   align-items: center;
   justify-content: center;
 
-  background-color: #4f2ee8;
+  background-color: var(--color-blue);
   border-radius: 50%;
+
+  cursor: pointer;
 
   &:hover,
   &:focus {
