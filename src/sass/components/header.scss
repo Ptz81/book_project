@@ -21,6 +21,10 @@
     display: flex;
     align-items: center;
     height: 64px;
+
+    @media screen and (min-width: 768px) {
+        height: 72px;
+    }
 }
 
 .logo {
