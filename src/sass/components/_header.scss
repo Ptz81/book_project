@@ -152,6 +152,11 @@
     width: 0;
     height: 0;
     visibility: hidden;
+
+    &:checked + .switch__label::after {
+        left: 39px;
+        transform: translateX(-100%);
+    }
 }
 
 .menu-toggle {
@@ -159,10 +164,12 @@
     top: 18px;
     right: 20px;
     bottom: 18px;
-    // margin-left: 14px;
     width: 28px;
     height: 28px;
     padding: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
 
     @media screen and (min-width: 768px) {
         display: none;
