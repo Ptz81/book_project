@@ -19,7 +19,8 @@ const book = [
     contributor: "by Barbara O'Connor",
     contributor_note: '',
     created_date: '2023-04-05 23:10:17',
-    description: '',
+    description:
+      'Non exercitation non irure et sit eu reprehenderit amet occaecat. Mollit nulla quis tempor elit sint labore veniam duis nulla pariatur dolore fugiat. Veniam excepteur tempor exercitation aliquip Lorem qui id occaecat.',
     first_chapter_link: '',
     price: '0.00',
     primary_isbn10: '1250144051',
@@ -218,8 +219,10 @@ function renderShoppingListMarkUp(books) {
         `
         <li class="shopping-cart__item">
             <img src="${book_image}" alt="${title}" class="shopping-cart__book-img">
+            <div class="shopping-cart__main-info">
             <h3 class="shopping-cart__book-title">${title}</h3>
             <p class="shopping-cart__book-category">${list_name}</p>
+            </div>
             <button class="shopping-cart__btn-delete">
                 <svg class="delete-icon" width="100%" height="100%">
                   <use href="${pathToDump}#icon-dump"></use>
@@ -227,6 +230,7 @@ function renderShoppingListMarkUp(books) {
             </button>
             <p class="shopping-cart__book-description">${description}</p>
             <p class="shopping-cart__book-author">${author}</p>
+            <div class="shopping-cart__links">
             <a 
                 href="${linkToAmazon}"
                 class="shopping-cart__book-shop amazon-link"
@@ -249,6 +253,7 @@ function renderShoppingListMarkUp(books) {
                 target="_blank"
                 referrerpolicy="no-referrer"
             >
+            </div>
             <img src="${pathBookShop}" alt="BookStore" class="store-icon">
             </a>
             
@@ -287,6 +292,8 @@ function clearMarkup() {
   shoppingList.innerHTML = '';
 }
 function handleDeleteSelectedItem() {
+  console.log('text');
+
   clearMarkup();
   book.splice(1, 1);
   renderShoppingListMarkUp(book);
