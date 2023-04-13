@@ -1,25 +1,30 @@
 <header class="page-header">
-    <div class="container">
-        <a href="../index.html" class="logo">
-            <svg class="logo__icon">
-                <use></use>
-            </svg>
-            <svg class="logo__icon">
-                <use></use>
-            </svg>
-        </a>
+    <div class="page-header__container">
+        <div class="logo">
+            <a href="./index.html" class="logo__link">
+                <svg class="logo__icon">
+                    <use></use>
+                </svg>
+                <svg class="logo__text">
+                    <use></use>
+                </svg>
+            </a>
+        </div>
         <button class="menu-toggle js-open-menu" 
         aria-expanded="false"
         aria-controls="mobile-menu"
         >
-            <svg width="28px" height="28px" aria-label="Перемикач мобільного меню">
+            <!-- <svg width="28px" height="28px" aria-label="Перемикач мобільного меню">
                 <use class="icon-menu" href=""></use>
-            </svg>
+            </svg> -->
         </button>
         <nav class="nav menu">
             <ul class="menu__list">
-                <li class="menu__item"><a href="../index.html" class="menu__link">Home</a></li>
-                <li class="menu__item"><a href="" class="menu__link">Shopping list</a></li>
+                <li class="menu__item"><a href="./index.html" class="menu__link">Home</a></li>
+                <li class="menu__item"><a href="./shopping-list.html" class="menu__link shopping-list">
+                    <svg class="menu__svg"><use href="./images/sprite.svg#icon-menu"></use></svg>
+                    Shopping list</a>
+                </li>
             </ul>
         </nav>
         <div class="switch">
