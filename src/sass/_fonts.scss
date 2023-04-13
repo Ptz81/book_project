@@ -1,53 +1,83 @@
-// @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
-
+/* dm-sans-regular - latin */
 @font-face {
-    font-family: 'DM Sans';
-    src: url('DMSans-Medium.eot');
-    src: url('DMSans-Medium.eot?#iefix') format('embedded-opentype'),
-        url('DMSans-Medium.woff2') format('woff2'),
-        url('DMSans-Medium.woff') format('woff'),
-        url('DMSans-Medium.ttf') format('truetype'),
-        url('DMSans-Medium.svg#DMSans-Medium') format('svg');
-    font-weight: 500;
-    font-style: normal;
     font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/dm-sans-v11-latin-regular.eot');
+    /* IE9 Compat Modes */
+    src: url('../fonts/dm-sans-v11-latin-regular.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('../fonts/dm-sans-v11-latin-regular.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('../fonts/dm-sans-v11-latin-regular.woff') format('woff'),
+        /* Modern Browsers */
+        url('../fonts/dm-sans-v11-latin-regular.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('../fonts/dm-sans-v11-latin-regular.svg#DMSans') format('svg');
+    /* Legacy iOS */
 }
 
+/* dm-sans-italic - latin */
 @font-face {
-    font-family: 'DM Sans';
-    src: url('DMSans-Regular.eot');
-    src: url('DMSans-Regular.eot?#iefix') format('embedded-opentype'),
-        url('DMSans-Regular.woff2') format('woff2'),
-        url('DMSans-Regular.woff') format('woff'),
-        url('DMSans-Regular.ttf') format('truetype'),
-        url('DMSans-Regular.svg#DMSans-Regular') format('svg');
-    font-weight: normal;
-    font-style: normal;
     font-display: swap;
-}
-
-@font-face {
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'DM Sans';
-    src: url('DMSans-Italic.eot');
-    src: url('DMSans-Italic.eot?#iefix') format('embedded-opentype'),
-        url('DMSans-Italic.woff2') format('woff2'),
-        url('DMSans-Italic.woff') format('woff'),
-        url('DMSans-Italic.ttf') format('truetype'),
-        url('DMSans-Italic.svg#DMSans-Italic') format('svg');
-    font-weight: normal;
     font-style: italic;
-    font-display: swap;
+    font-weight: 400;
+    src: url('../fonts/dm-sans-v11-latin-italic.eot');
+    /* IE9 Compat Modes */
+    src: url('../fonts/dm-sans-v11-latin-italic.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('../fonts/dm-sans-v11-latin-italic.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('../fonts/dm-sans-v11-latin-italic.woff') format('woff'),
+        /* Modern Browsers */
+        url('../fonts/dm-sans-v11-latin-italic.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('../fonts/dm-sans-v11-latin-italic.svg#DMSans') format('svg');
+    /* Legacy iOS */
 }
 
+/* dm-sans-500 - latin */
 @font-face {
-    font-family: 'DM Sans';
-    src: url('DMSans-Bold.eot');
-    src: url('DMSans-Bold.eot?#iefix') format('embedded-opentype'),
-        url('DMSans-Bold.woff2') format('woff2'),
-        url('DMSans-Bold.woff') format('woff'),
-        url('DMSans-Bold.ttf') format('truetype'),
-        url('DMSans-Bold.svg#DMSans-Bold') format('svg');
-    font-weight: bold;
-    font-style: normal;
     font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/dm-sans-v11-latin-500.eot');
+    /* IE9 Compat Modes */
+    src: url('../fonts/dm-sans-v11-latin-500.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('../fonts/dm-sans-v11-latin-500.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('../fonts/dm-sans-v11-latin-500.woff') format('woff'),
+        /* Modern Browsers */
+        url('../fonts/dm-sans-v11-latin-500.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('../fonts/dm-sans-v11-latin-500.svg#DMSans') format('svg');
+    /* Legacy iOS */
+}
+
+/* dm-sans-700 - latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/dm-sans-v11-latin-700.eot');
+    /* IE9 Compat Modes */
+    src: url('../fonts/dm-sans-v11-latin-700.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('../fonts/dm-sans-v11-latin-700.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('../fonts/dm-sans-v11-latin-700.woff') format('woff'),
+        /* Modern Browsers */
+        url('../fonts/dm-sans-v11-latin-700.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('../fonts/dm-sans-v11-latin-700.svg#DMSans') format('svg');
+    /* Legacy iOS */
 }
