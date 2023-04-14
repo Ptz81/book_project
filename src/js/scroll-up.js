@@ -12,9 +12,9 @@ document.addEventListener('scroll', () => {
   btnVisibility();
 });
 
-btnToTopPage.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-});
+// btnToTopPage.addEventListener('click', () => {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: 'smooth',
+//   });
+// });
