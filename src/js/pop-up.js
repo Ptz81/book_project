@@ -4,7 +4,9 @@ import { showError } from './notify.js';
 
 const modalPopEl = document.querySelector('[data-modal]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
-
+const modalEl = document.querySelector('.modal');
+const popEl = document.querySelector('.pop-info'); 
+const backdropEl = document.querySelector('.backdrop is-hidden');
 let arrayBookIs = [];
 
 export function handleShowPop(event) {
@@ -26,12 +28,12 @@ export function handleShowPop(event) {
               alt="${dataId.author}"
               loading="lazy"
             />
-            <div class="pop_info">
-              <p class="pop_name">${dataId.list_name}</p>
-              <p class="pop_author">${dataId.author}</p>
-              <p class="pop_description">${dataId.description}</p>
-              <ul class="pop_shop list"></ul>
-            </div>
+            
+         <p class="pop_name">${dataId.list_name}</p>
+         <p class="pop_author">${dataId.author}</p>
+         <p class="pop_description">${dataId.description}</p>
+         <ul class="pop_shop list"></ul>
+            
           `
       );
       const popListEl = document.querySelector('.pop_shop');
@@ -125,18 +127,18 @@ export function handleShowPop(event) {
       console.log(arrayBookIs);
     //   alert(`вийшов${arrayBookIs}`);
 
-      const handleDoBtn = () => {
-        alert('hello');
-        if (dataId.add === 'is') {
-          alert('hello2');
-          popBtn.innerHTML = 'remove from the shopping list';
-          //додавання
-          dataId.add = 'isAdded';
-          alert(dataId.add);
-          console.log(dataId.add);
-        }
-      };
-      popBtn.addEventListener('click', handleDoBtn);
+    //   const handleDoBtn = () => {
+    //     alert('hello');
+    //     if (dataId.add === 'is') {
+    //       alert('hello2');
+    //       popBtn.innerHTML = 'remove from the shopping list';
+    //       //додавання
+    //       dataId.add = 'isAdded';
+    //       alert(dataId.add);
+    //       console.log(dataId.add);
+    //     }
+    //   };
+    //   popBtn.addEventListener('click', handleDoBtn);
       //3
     })
     .catch(error => {
@@ -144,8 +146,6 @@ export function handleShowPop(event) {
       showError(error.message);
     });
 }
-
-
 closeModalBtn.addEventListener('click', closeModal);
 const handleUseKey = event => {
   if (event.key == 'Escape') {
@@ -159,4 +159,14 @@ function toggleModal() {
 }
 function closeModal() {
   modalPopEl.classList.add('is-hidden');
-}
+};
+const closeIfNoModal = (e) => {
+    console.log(e.target);
+    console.log(e.target.parentNode);
+    
+    if ((e.target) !== modalEl && (e.target.parentNode) !== popEl && (e.target.parentNode) !== backdropEl) {
+        closeModal();
+    }   
+};
+document.addEventListener('click', closeIfNoModal);
+
