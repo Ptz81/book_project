@@ -4,18 +4,19 @@ export function displayBookInfo(dataId) {
 
 
   const cardTemplate = `
+
     <img class="photo" src="${dataId.book_image}" alt="${dataId.author}" loading="lazy" />
-    <div class="pop_info">
-    <p class="pop_name">${dataId.list_name ? dataId.list_name : 'Назва книги відсутня'}</p>
+    <div class="pop_container>
+    <h2 class="pop_name">${dataId.list_name ? dataId.list_name : 'Назва книги відсутня'}</h2>
     <p class="pop_author">${dataId.author ? dataId.author : 'Автор невідомий'}</p>
     <p class="pop_description">${dataId.description ? dataId.description : 'Опис відсутній'}</p>
 
   <ul class="pop_shop list">
     ${dataId.links && dataId.links.length > 0 ?
       dataId.links.map(link => `
-        <li>
+        <li class="pop_shop-item">
           <a class="pop_shop__link link" href="${link.url}" target="_blank" rel="noopener noreferrer">
-            <img class="pop_shop__icon" src="${link.image}" alt="${link.name}" width="40" height="40"/>
+            <img class="pop_list-img" src="${link.image}" alt="${link.name}" width="40" height="40"/>
           </a>
         </li>
       `).join('')
@@ -24,8 +25,8 @@ export function displayBookInfo(dataId) {
     }
   </ul>
 
-      <button class="pop__btn pop__btn--remove" data-id="${dataId.book_id}">Remove from the shopping list</button>
     </div>
+    <button class="pop__btn pop__btn--remove" data-id="${dataId.book_id}">Remove from the shopping list</button>
   `;
 
 
