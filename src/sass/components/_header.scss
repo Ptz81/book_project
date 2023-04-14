@@ -34,7 +34,6 @@
     align-items: center;
     margin-top: 18px;
     margin-bottom: 18px;
-    margin-left: 20px;
     gap: 8px;
     width: 83px;
     height: 28px;
@@ -42,12 +41,6 @@
     @media screen and (min-width: 768px) {
         margin-top: 24px;
         margin-bottom: 20px;
-        margin-left: 32px;
-
-    }
-
-    @media screen and (min-width: 1200px) {
-        margin-left: 24px;
 
     }
 
