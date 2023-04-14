@@ -1,5 +1,4 @@
 const shoppingList = document.querySelector('.shopping-cart__list');
-
 const book = [
   {
     _id: '642fd89ac8cf5ee957f12361',
@@ -121,15 +120,15 @@ const book = [
 ];
 
 const pathToAmazon = new URL(
-  '../images/shop-icons/amazon.jpg',
+  '../images/shop-icons/amazon.png',
   import.meta.url
 );
 const pathAppleBooks = new URL(
-  '../images/shop-icons/applebooks.jpg',
+  '../images/shop-icons/applebooks.png',
   import.meta.url
 );
 const pathBookShop = new URL(
-  '../images/shop-icons/bookstore.jpg',
+  '../images/shop-icons/bookstore.png',
   import.meta.url
 );
 localStorage.setItem('savedBooks', JSON.stringify(book));
