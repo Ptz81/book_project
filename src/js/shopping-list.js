@@ -123,6 +123,7 @@ const pathToAmazon = new URL(
   '../images/shop-icons/amazon.png',
   import.meta.url
 );
+
 const pathAppleBooks = new URL(
   '../images/shop-icons/applebooks.png',
   import.meta.url
