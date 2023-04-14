@@ -1,16 +1,34 @@
-.scroll-up {
+.wrapper__scroll-up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  visibility: hidden;
+
   position: fixed;
-  right: 5%;
+  right: 3%;
   bottom: 2.5%;
+
+  background-color: rgba(79, 46, 232, 0.3);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+.scroll__up {
+  position: absolute;
   z-index: 2;
 
   width: 54px;
   height: 54px;
 
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  background-color: #4f2ee8;
+  background-color: var(--color-blue);
   border-radius: 50%;
+
+  cursor: pointer;
 
   &:hover,
   &:focus {

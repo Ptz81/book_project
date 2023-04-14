@@ -1,0 +1,39 @@
+<header class="page-header">
+    <div class="page-header__container container">
+        <div class="logo">
+            <a href="./index.html" class="logo__link">
+                <svg width="22px" height="22px" class="logo__icon">
+                    <use href="./images/apple-touch-icon.png"></use>
+                </svg>
+                <svg width="53px" height="17px" class="logo__text">
+                    <use></use>
+                </svg>
+            </a>
+        </div>
+
+        <nav class="nav menu">
+            <ul class="menu__list">
+                <li class="menu__item"><a href="./index.html" class="menu__link">Home</a></li>
+                <li class="menu__item"><a href="./shopping-list.html" class="menu__link shopping-list">
+                    <svg class="menu__svg"><use href="#"></use></svg>
+                    Shopping list</a>
+                </li>
+            </ul>
+        
+        </nav>
+        <div class="switch">
+            <input class="switch__input" type="checkbox" id="darkmode-toggle"/>
+            <label class="switch__label" for="darkmode-toggle">
+        </div>
+        <button class="menu-toggle js-open-menu" 
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        >
+            <svg class="menu-toggle__svg" width="28px" height="28px" aria-label="Перемикач мобільного меню">
+                <use class="icon-menu" href="./images/sprite.svg#icon-menu"></use>
+            </svg>
+        </button>
+        
+        <button class="header__btn" type="button">User</button>
+    </div>
+</header>

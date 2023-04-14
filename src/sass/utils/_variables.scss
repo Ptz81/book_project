@@ -8,17 +8,21 @@
   --color-grey-darker: #202024;
   --color-grey-lighter: #b4afaf;
   --color-scroll: #e0e0e0;
+  --color-grey-light: #b4afaf;
+  --color-grey-lighter: #f6f6f6;
 
   // Цвета для светлой темы (по умолчанию)
 
   // основной цвет фона
-  --color-background: var(--color-white);
+  --color-background: var(--color-grey-lighter);
   // цвет фона хедера
   --color-header-background: var(--color-white);
+  // цвет рамки хедера
+  --color-header-border: var(--color-black);
   // основной цвет текста
   --color-text-primary: var(--color-black);
   // цвет светло-серых подзаголовков
-  --color-text-secondary: var(--color-grey-lighter);
+  --color-text-secondary: var(--color-grey-light);
   // цвет текста в блоке категории
   --color-category: rgba(17, 17, 17, 0.6);
   // цвет активной категории
@@ -27,6 +31,14 @@
   --color-nav-scroll: var(--color-scroll);
   // цвет бекдропа для модалок и лоадера
   --color-backdrop: rgba(17, 17, 17, 0.4); //rgba(79, 46, 232, 0.7);
+
+
+  --color-header-border: var(--color-black);
+  --menu-icon-color: var(--color-black);
+
+  --color-auth-form-background: var(--color-grey-lighter);
+  --color-auth-form-border: var(--color-black);
+
 
   // Misc
 
