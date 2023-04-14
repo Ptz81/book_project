@@ -1,16 +1,17 @@
 @import './fonts';
 @import './base/common';
 @import './utils/variables';
+@import './utils/mixins';
 @import './themes/theme-dark';
 @import './utils/vissually-hidden';
 @import './base/base';
 @import './base/reset';
 
 // components
-
 @import './components/header';
 @import './components/mobile-menu';
 @import './components/scroll-up';
+@import './components/nav';
 @import './components/support';
 @import './components/bestsellers';
 @import './components/shopping-list';
