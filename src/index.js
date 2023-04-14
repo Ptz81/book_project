@@ -3,3 +3,4 @@ import _ from './js/loader';
 import _ from './js/best-sellers';
 import './js/support-slider';
 import _ from './js/auth/auth-form-base';
+import _ from './js/scroll-up'
