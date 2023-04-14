@@ -6,7 +6,7 @@
                     <use href="./images/apple-touch-icon.png"></use>
                 </svg>
                 <svg width="53px" height="17px" class="logo__text">
-                    <use></use>
+                    <use href="./images/apple-touch-icon.png"></use>
                 </svg>
             </a>
         </div>
@@ -23,7 +23,7 @@
         </nav>
         <div class="switch">
             <input class="switch__input" type="checkbox" id="darkmode-toggle"/>
-            <label class="switch__label" for="darkmode-toggle">
+            <label class="switch__label" for="darkmode-toggle"></label>
         </div>
         <button class="menu-toggle js-open-menu" 
         aria-expanded="false"
@@ -35,5 +35,43 @@
         </button>
         
         <button class="header__btn" type="button">User</button>
+    </div>
+
+    <!-- mobile menu -->
+
+    <div class="menu-container js-menu-container" id="mobile-menu">
+        <div class="mobile-header">
+            <div class="logo">
+                <a href="./index.html" class="logo__link">
+                    <svg width="22px" height="22px" class="logo__icon">
+                        <use href="./images/apple-touch-icon.png"></use>
+                    </svg>
+                    <svg class="logo__text">
+                        <use href="./images/apple-touch-icon.png"></use>
+                    </svg>
+                </a>
+            </div>
+    
+            <div class="switch">
+                <input class="switch__input" type="checkbox" id="darkmode-toggle"/>
+                <label class="switch__label" for="darkmode-toggle"></label>
+            </div>
+            <button class="menu-toggle js-close-menu">
+                <svg width="28px" height="28px" aria-label="Перемикач мобільного меню">
+                    <use class="icon-cross" href="./images/apple-touch-icon.png"></use>
+                </svg>
+            </button>
+        </div>
+        <div>
+            <button class="user" type="button">User</button>
+            <nav class="nav mobile-menu">
+                <ul class="mobile-menu__list">
+                    <li class="mobile-menu__item"><a href="./index.html" class="mobile-menu__link">Home</a></li>
+                    <li class="mobile-menu__item"><a href="./shopping-list.html" class="mobile-menu__link">Shopping list</a></li>
+                </ul>
+            </nav>
+            <button class="logout-btn" type="button">Log out</button>
+    
+        </div>
     </div>
 </header>
