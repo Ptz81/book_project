@@ -5,15 +5,16 @@ import { showError } from './notify.js';
 const modalPopEl = document.querySelector('[data-modal]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
 const modalEl = document.querySelector('.modal');
-const popEl = document.querySelector('.pop-info'); 
+const popEl = document.querySelector('.pop-info');
 const backdropEl = document.querySelector('.backdrop is-hidden');
+const popBtn = document.querySelector('.pop__btn');
+
+const backdropBtn = document.querySelector('.backdrop');
 let arrayBookIs = [];
 
 export function handleShowPop(event) {
   const infoPopEl = document.querySelector('.pop-info');
-  const popId = event.target.id;  
-  console.log(event.target);
-
+  const popId = event.target.id;
   const bookID = new BookService();
   bookID
     .getBooksById(popId)
@@ -27,9 +28,10 @@ export function handleShowPop(event) {
               src="${dataId.book_image}"
               alt="${dataId.author}"
               loading="lazy"
+              id="${dataId._id}"
             />
             
-         <p class="pop_name">${dataId.list_name}</p>
+         <h2 class="pop_name">${dataId.list_name}</h2>
          <p class="pop_author">${dataId.author}</p>
          <p class="pop_description">${dataId.description}</p>
          <ul class="pop_shop list"></ul>
@@ -41,18 +43,16 @@ export function handleShowPop(event) {
         if (el.name === 'Amazon') {
           popListEl.insertAdjacentHTML(
             'beforeend',
-            `<li>
+            `<li class="pop_shop-item">
                   <a
                     class="pop_shop__link link"
                     href="${el.url}"
                     target="_blank"
                     rel="noopener noreferrer"
                     ><img
-                      class="pop_shop__icon"
-                      src="${dataId.book_image}"
-                      alt="Amazon"
-                      width="40"
-                      height="40"
+                      class="pop_list-img"
+                      src="/amazon.a8e6cc93.jpg" 
+                      alt="amazon_shop_icon"
                     />
                   </a>
                 </li>           
@@ -62,18 +62,16 @@ export function handleShowPop(event) {
         if (el.name === 'Apple Books') {
           popListEl.insertAdjacentHTML(
             'beforeend',
-            `<li>
+            `<li class="pop_shop-item">
                   <a
                     class="pop_shop__link link"
                     href="${el.url}"
                     target="_blank"
                     rel="noopener noreferrer"
                     ><img
-                      class="pop_shop__icon"
-                      src="${dataId.book_image}"
-                      alt="Apple Books"
-                      width="40"
-                      height="40"
+                      class="pop_list-img"
+                      src="/applebooks.a6bc5a52.jpg" 
+                      alt="apple_shop_icon"
                     />
                   </a>
                 </li>`
@@ -82,18 +80,16 @@ export function handleShowPop(event) {
         if (el.name === 'Bookshop') {
           popListEl.insertAdjacentHTML(
             'beforeend',
-            `<li>
+            `<li class="pop_shop-item">
                   <a
                     class="pop_shop__link link"
                     href="${el.url}"
                     target="_blank"
                     rel="noopener noreferrer"
                     ><img
-                      class="pop_shop__icon"
-                      src="${dataId.book_image}"
-                      alt="Bookshop"
-                      width="40"
-                      height="40"
+                      class="pop_list-img"
+                      src="/bookstore.4d75fc3d.jpg" 
+                      alt="bookstore_shop_icon"
                     />
                   </a>
                   </li>
@@ -102,7 +98,7 @@ export function handleShowPop(event) {
         }
       });
       toggleModal();
-      //3
+
       if (!dataId.add) {
         dataId.add = 'is';
       }
@@ -113,33 +109,13 @@ export function handleShowPop(event) {
       if (dataId.add === 'is') {
         popBtn.innerHTML = 'Add to shopping list';
       }
-      //записую карточку
-    //   alert(`зайшов${arrayBookIs}`);
+
       arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
-    //   alert(`подивилася ЛОК${arrayBookIs}`);
+
       if (!arrayBookIs.includes(dataId)) {
         arrayBookIs.push(dataId);
         localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
       }
-
-      console.log(dataId.add);
-      console.log(dataId._id);
-      console.log(arrayBookIs);
-    //   alert(`вийшов${arrayBookIs}`);
-
-    //   const handleDoBtn = () => {
-    //     alert('hello');
-    //     if (dataId.add === 'is') {
-    //       alert('hello2');
-    //       popBtn.innerHTML = 'remove from the shopping list';
-    //       //додавання
-    //       dataId.add = 'isAdded';
-    //       alert(dataId.add);
-    //       console.log(dataId.add);
-    //     }
-    //   };
-    //   popBtn.addEventListener('click', handleDoBtn);
-      //3
     })
     .catch(error => {
       console.log(error);
@@ -159,14 +135,66 @@ function toggleModal() {
 }
 function closeModal() {
   modalPopEl.classList.add('is-hidden');
+}
+const closeIfNoModal = e => {
+  if (
+    e.target !== modalEl &&
+    e.target.parentNode !== popEl &&
+    e.target.parentNode !== backdropEl &&
+    e.target.parentNode !== modalEl
+  ) {
+    closeModal();
+  }
 };
-const closeIfNoModal = (e) => {
-    console.log(e.target);
-    console.log(e.target.parentNode);
-    
-    if ((e.target) !== modalEl && (e.target.parentNode) !== popEl && (e.target.parentNode) !== backdropEl) {
-        closeModal();
-    }   
-};
-document.addEventListener('click', closeIfNoModal);
+backdropBtn.addEventListener('click', closeIfNoModal);
 
+// КНОПКА
+
+const handleDoBtn = e => {
+  const sourceID = e.target.previousElementSibling.firstChild.id;
+  let bookLocalSt;
+
+  let arrayBookAdd = JSON.parse(localStorage.getItem('book-add')) || [];
+
+  arrayBookAdd.map(el => {
+    if (el._id === sourceID) {
+      bookLocalSt = el;
+    }
+  });
+
+  if (!bookLocalSt) {
+    arrayBookIs.map(el => {
+      if (el._id === sourceID) {
+        bookLocalSt = el;
+        bookLocalSt.add = 'is';
+      }
+    });
+  }
+
+  if (bookLocalSt.add === 'is') {
+    popBtn.innerHTML = 'remove from the shopping list';
+
+    if (!arrayBookAdd.includes(bookLocalSt) && bookLocalSt.add === 'is') {
+      bookLocalSt.add = 'isAdded';
+      arrayBookAdd.push(bookLocalSt);
+      localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
+    }
+
+    return;
+  }
+  if (arrayBookAdd.includes(bookLocalSt)) {
+    popBtn.innerHTML = 'Add to shopping list';
+
+    const index = arrayBookAdd.indexOf(bookLocalSt);
+    if (index !== -1) {
+      arrayBookAdd.splice(index, 1);
+    }
+    bookLocalSt.add = 'is';
+    localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
+
+    bookLocalSt.add = 'is';
+
+    return;
+  }
+};
+popBtn.addEventListener('click', handleDoBtn);

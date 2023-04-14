@@ -91,7 +91,7 @@ function createCards(colection) {
         return `
         <li class="book__item">
             <a href="#" class="book__link">
-              <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
+              <img src="${book_image}"  alt="image" class="book__img" id="${_id}"/>
               <h3 class="book__name">${title}</h3>
               <p class="book__author">${author}</p>
             </a>
@@ -113,7 +113,7 @@ function createAllCards(colection) {
         return `
         <li class="book__item">
             <a href="#" class="book__link">
-              <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
+              <img src="${book_image}" alt="image" class="book__img" id="${_id}"/>
               <h3 class="book__name">${title}</h3>
               <p class="book__author">${author}</p>
             </a>
