@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: center;
 
+  visibility: hidden;
+
   position: fixed;
   right: 3%;
   bottom: 2.5%;
@@ -12,7 +14,7 @@
   height: 64px;
   border-radius: 50%;
 }
-.scroll-up {
+.scroll__up {
   position: absolute;
   z-index: 2;
 
@@ -23,8 +25,10 @@
   align-items: center;
   justify-content: center;
 
-  background-color: #4f2ee8;
+  background-color: var(--color-blue);
   border-radius: 50%;
+
+  cursor: pointer;
 
   &:hover,
   &:focus {

@@ -1,0 +1,129 @@
+/* Модальне вікно */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.2);
+
+
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+
+  padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+}
+
+.modal-icon {
+  fill: rgba(0, 0, 0, 1);
+}
+
+
+.modal {
+  position: absolute;
+
+  width: 335px;
+  height: 762px;
+
+  background: #FFFFFF;
+  border: 2px solid #111111;
+  border-radius: 18px;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translateX(-50%) translateY(-50%);
+
+
+}
+
+.backdrop.is-hidden .modal {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-70%);
+}
+
+.modal-form-title {
+  color: black;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.photo {
+  width: 287px;
+  height: 408px;
+
+}
+
+/* .description {
+
+} */
+.pop-info {
+  margin: 40px 24px;
+}
+
+.pop_name {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+
+
+  letter-spacing: -0.04em;
+
+  color: #111111;
+}
+
+.pop_author {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+
+  letter-spacing: -0.04em;
+
+  color: #B4AFAF;
+}
+
+.pop_description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+
+  letter-spacing: -0.04em;
+
+  color: #111111;
+}
+
+.pop_shop {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  padding-inline-start: 0px;
+  /* align-items: center; */
+  gap: 20px;
+}
