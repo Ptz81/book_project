@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Loader from './loader';
+import Loader from './loader/loader';
 
 const loader = new Loader();
 let instance;
