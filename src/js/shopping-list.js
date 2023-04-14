@@ -228,34 +228,35 @@ function renderShoppingListMarkUp(books) {
                   <use href="${pathToDump}#icon-dump"></use>
                 </svg>
             </button>
-            <p class="shopping-cart__book-description">${description}</p>
-            <p class="shopping-cart__book-author">${author}</p>
+              <p class="shopping-cart__book-description">${description}</p>
+              <p class="shopping-cart__book-author">${author}</p>
             <div class="shopping-cart__links">
-            <a 
-                href="${linkToAmazon}"
-                class="shopping-cart__book-shop amazon-link"
-                target="_blank"
-                referrerpolicy="no-referrer"
-            >
-            <img src="${pathToAmazon}" alt="amazon" class="store-icon">
-            </a>
-            <a 
-                href="${linkToAppleBooks}"
-                class="shopping-cart__book-shop"
-                target="_blank"
-                referrerpolicy="no-referrer"
-            >
-            <img src="${pathAppleBooks}" alt="AppleBooks" class="store-icon">
-            </a>
-            <a 
-                href="${linkToBookShop}"
-                class="shopping-cart__book-shop"
-                target="_blank"
-                referrerpolicy="no-referrer"
-            >
-            </div>
+              <a 
+                  href="${linkToAmazon}"
+                  class="shopping-cart__book-shop amazon-link"
+                  target="_blank"
+                  referrerpolicy="no-referrer"
+              >
+              <img src="${pathToAmazon}" alt="amazon" class="store-icon">
+              </a>
+              <a 
+                  href="${linkToAppleBooks}"
+                  class="shopping-cart__book-shop"
+                  target="_blank"
+                  referrerpolicy="no-referrer"
+              >
+              <img src="${pathAppleBooks}" alt="AppleBooks" class="store-icon">
+              </a>
+              <a 
+                  href="${linkToBookShop}"
+                  class="shopping-cart__book-shop"
+                  target="_blank"
+                  referrerpolicy="no-referrer"
+              >
+            
             <img src="${pathBookShop}" alt="BookStore" class="store-icon">
             </a>
+            </div>
             
             
         </li>

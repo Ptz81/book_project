@@ -1,5 +1,8 @@
 .shopping-cart__title {
-  //   font-family: var(--font-family-primary);
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
   color: var(--color-black);
 }
 .shopping-cart__title--color-text {
@@ -11,25 +14,58 @@
 
 .shopping-cart__item {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: 98px 1fr;
+  grid-auto-rows: minmax(0, auto);
+  grid-auto-columns: minmax(0, auto);
+  align-items: start;
   margin-right: auto;
   margin-left: auto;
   max-width: 335px;
   padding: 30px 24px;
-  background: #ffffff;
+  background: var(--color-white);
   border: 2px solid rgba(79, 46, 232, 0.4);
   border-radius: 16px;
 }
 .shopping-cart__book-img {
+  grid-row: 1/3;
+  grid-column: 1/2;
   width: 98px;
   height: 139px;
   border-radius: 8px;
+  margin-bottom: 4px;
 }
 .shopping-cart__main-info {
-  margin-left: 20px;
+  // margin-left: 20px;
+  // grid-column: 2/2;
+  // grid-row: 1/1;
+  align-self: start;
   //   width: 14px;
+  margin-bottom: 24px;
 }
+
+.shopping-cart__book-title{
+  font-weight: 700;
+    font-size: 16px;
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.shopping-cart__book-category {
+  font-size: 12px;
+  line-height: 1.17;
+  max-width: 150px;
+  letter-spacing: 0.03em;
+
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.03em;
+    color: var(--color-grey-light);
+}
+
 .shopping-cart__btn-delete {
   position: absolute;
   top: 28px;
@@ -53,14 +89,40 @@
 }
 
 .shopping-cart__book-description {
-  width: 100%;
+  grid-column: 1/3;
+  grid-row: 5/5;
+  // width: 100%;
   //   position: absolute;
   //   bottom: 0;
+
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.04em;
+    color: var(--color-black);
 }
 
-.shopping-cart__book-category {
+.shopping-cart__book-author{
+grid-row: 4/4;
   font-size: 12px;
   line-height: 1.17;
-  max-width: 150px;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.04em;
+  color: var(--color-grey-light);
+  margin-bottom: 20px;
+}
+
+.shopping-cart__links{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  grid-row: 2/2;
+  grid-column: 2/2;
+  margin-top: -45px;
+}
+
+.shopping-cart__book-shop{
+
+}
+
+.store-icon{
+
 }
