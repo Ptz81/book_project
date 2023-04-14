@@ -1,4 +1,6 @@
 .support__wrapper {
+    margin: 0 auto;
+    position: relative;
     width: 335px;
     height: 352px; 
     padding: 24px 40px;
@@ -18,7 +20,8 @@
       }
 }
 .support__title {
-    text-align: center;
+    display: flex;
+    gap: 12px;
     margin-bottom: 40px;
     font-style: normal;
     font-weight: 700;
@@ -26,6 +29,10 @@
     line-height: 32px;
     letter-spacing: -0.04em;
     color: var(--color-white);
+}
+.support__icon {
+    width: 20px;
+    height: 32px;
 }
 .support__list {
     height: 188px;
@@ -69,11 +76,12 @@
 .slider-pagination {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 8px;
+
 }
 .support__btn {
-    display: block;
+    position: absolute;
+    display: flex;
+    align-items: center;
     border-radius: 50%;
     width: 32px;
     height: 32px;
