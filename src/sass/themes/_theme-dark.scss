@@ -10,6 +10,12 @@
   --color-category: rgba(255, 255, 255, 0.6);
   --color-category-active: var(--color-yellow);
 
-  --color-header-background: var(--color-black);
   --color-background: var(--color-grey-darker);
+
+  --color-header-background: var(--color-black);
+  --color-header-border: var(--color-white);
+
+  // форма авторизации
+  --color-auth-form-background: #202024;
+  --color-auth-form-border: var(--color-grey-lighter);
 }
