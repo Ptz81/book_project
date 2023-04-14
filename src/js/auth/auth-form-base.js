@@ -1,4 +1,4 @@
-import '../../sass/components/_auth-form.scss';
+import './_auth-form.scss';
 
 const authForm = document.querySelector('.auth-form');
 const formType = document.querySelector('.auth-form__type');
