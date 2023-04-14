@@ -1,4 +1,4 @@
-import '../sass/components/_loader.scss';
+import './_loader.scss';
 
 let backdrop;
 let instance;
