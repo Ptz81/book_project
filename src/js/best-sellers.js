@@ -123,3 +123,8 @@ function createAllCards(colection) {
     .join('');
 }
 
+// Ola
+import { handleShowPop } from './pop-up.js';
+function handleShowPop(event) {};
+bestListEl.addEventListener('click', handleShowPop);
+// Ola
