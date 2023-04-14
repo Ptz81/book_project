@@ -207,6 +207,22 @@
 .menu-container.is-open {
     transform: translateX(0);
 }
+
+.mobile-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 9px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.32;
+    letter-spacing: -0.02em;
+}
   
 
 
