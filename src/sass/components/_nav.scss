@@ -1,23 +1,22 @@
 .categories {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding: 40px 20px;
 
   @media screen and (min-width: 768px) {
     padding-bottom: 100px;
     margin-right: 32px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1440px) {
     padding-top: 40px;
     padding-bottom: 86px;
   }
 }
 
 .categories__container {
-  max-height: 268px;
+  max-height: 228px;
   overflow-y: scroll;
-  padding-left: 20px;
   padding-right: 20px;
-  margin-right: 20px;
   scrollbar-width: 8px;
   scrollbar-color: var(--color-nav-scroll);
   @include alignment(stretch, flex-start, column);
@@ -48,6 +47,7 @@
 }
 
 .categories__item {
+  // margin-right: 20px;
   font-family: var(--font-family-primary);
   font-weight: 400;
   font-size: 16px;
