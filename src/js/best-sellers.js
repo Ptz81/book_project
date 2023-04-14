@@ -2,72 +2,124 @@ import BookService from "./book-service";
 
 const bs = new BookService();
 
-const cPandEB_Fictions = bs.getBooksByCategory("Combined Print and E-Book Fiction");
-const cPandEB_NonFictions = bs.getBooksByCategory("Combined Print and E-Book Nonfiction");
-const hardcover_Fiction = bs.getBooksByCategory("Hardcover Fiction");
-const hardcover_NonFiction = bs.getBooksByCategory("Hardcover Nonfiction");
-const paperbackTrade_Fiction = bs.getBooksByCategory("Trade Fiction Paperback");
-const paperbackTrade_NonFiction = bs.getBooksByCategory("Paperback Nonfiction");
-const adviceHowTo = bs.getBooksByCategory("Advice How-To and Miscellaneous");
-const childrens = bs.getBooksByCategory("Childrens Middle Grade Hardcover");
-const pictureBooks = bs.getBooksByCategory("Picture Books");
-const seriesBooks = bs.getBooksByCategory("Series Books");
-const youngAdultHardcover = bs.getBooksByCategory("Young Adult Hardcover");
+const categoryList = bs.getCategoryList();
 
-const categoriesFeatch = [
-  cPandEB_Fictions, cPandEB_NonFictions, hardcover_Fiction, hardcover_NonFiction, paperbackTrade_Fiction, paperbackTrade_NonFiction,
-  adviceHowTo, childrens, pictureBooks, seriesBooks, youngAdultHardcover
-];
+const bestListEl = document.querySelector('.bestsellers__list');
+const categoriesContainer = document.querySelector('.container')
 
-const bestEl = document.querySelector('.best');
+categoriesContainer.addEventListener('click', onSeeMoreBtnClick)
 
-createAllCategoriesCard();
+getCategoryItem(categoryList);
+
+function onSeeMoreBtnClick(event) {
+  if (event.target.nodeName !== "BUTTON") {
+    return;
+  };
+
+  const selectedBtn = event.target.dataset.name;
+  
+
+  const categoryItem = document.getElementById(`${selectedBtn}`)
+  console.log(categoryItem);
+
+  let promise = bs.getBooksByCategory(`${selectedBtn}`);
+        promise.then(data => {
+          if (data !== []) {
+            console.log(data);
+            categoryItem.innerHTML = createAllCards(data);
+    } else if (data === []) {
+      const messageNotFind = 'Sorry, no books found in this category :(';
+      bestListEl.innerHTML = `<p> ${messageNotFind} </p>`;
+    }
+    
+  }).catch(console.warn);
+}
+
+function getCategoryItem(promise) {
+  promise.then(categories => {
+    if (categories !== []) {
+      categories.forEach(category => {
+
+        const listItem = document.createElement("li");
+        const title = document.createElement("h2");
+        const cardsBox = document.createElement("div");
+
+        listItem.classList.add("bestsellers__item");
+        
+        title.classList.add("bestsellers__category-type");
+        title.innerText = category.list_name;
+        
+        cardsBox.classList.add("bestsellers__card-box");
+        cardsBox.setAttribute('id', `${category.list_name}`)
+        const btn = document.createElement("button");
+        btn.innerText = 'see more';
+        btn.classList.add("btn");
+        btn.classList.add("bestsellers__btn");
+        btn.setAttribute('data-name', `${category.list_name}`)
+        listItem.prepend(title);
+        title.after(cardsBox);
+
+        let promise = bs.getBooksByCategory(category.list_name);
+        promise.then(data => {
+    if (data !== []) {
+      cardsBox.insertAdjacentHTML('afterbegin', createCards(data));
+    } else if (data === []) {
+      const messageNotFind = 'Sorry, no books found in this category :(';
+      bestListEl.innerHTML = `<p> ${messageNotFind} </p>`;
+    }
+    
+  }).catch(console.warn);
+        listItem.appendChild(btn);
+        bestListEl.appendChild(listItem);
+      });
+    } else if (data === []) {
+      const messageNotFind = 'Sorry, no books found in this category :(';
+      bestListEl.innerHTML = `<p> ${messageNotFind} </p>`;
+    } 
+  }).catch(console.warn);
+}
 
 function createCards(colection) {
   return colection.slice(0,5)
     .map(
       ({
-        list_name,
         book_image,
         title,
         author,
+        _id
       }) => {
         return `
-        <div class="book-card">
-         <p class="info-item">
-     ${list_name}
-    </p>
-  <img class="gallery__image" src="${book_image}" alt="book image" loading="lazy" />
-    <p class="info-item">
-      ${title}
-    </p>
-    <p class="info-item">
-     ${author}
-    </p>
-  </div>`;
+        <li class="book__item">
+            <a href="#" class="book__link">
+              <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
+              <h3 class="book__name">${title}</h3>
+              <p class="book__author">${author}</p>
+            </a>
+          </li>`;
       }
     )
     .join('');
 };
 
-function createAllCategoriesCard() {
-  for (let categoryFeatch of categoriesFeatch) {
-
-    getDataFromPromise(categoryFeatch);
-  }
+function createAllCards(colection) {
+  return colection
+    .map(
+      ({
+        book_image,
+        title,
+        author,
+        _id
+      }) => {
+        return `
+        <li class="book__item">
+            <a href="#" class="book__link">
+              <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
+              <h3 class="book__name">${title}</h3>
+              <p class="book__author">${author}</p>
+            </a>
+          </li>`;
+      }
+    )
+    .join('');
 }
-
-
-function getDataFromPromise(promise) {
-  promise.then(data => {
-  if (data !== []) {
-    bestEl.insertAdjacentHTML("beforeend", createCards(data));
-  } else if (data === []) {
-    const messageNotFind = 'Sorry, no books found in this category :(';
-    bestEl.innerHTML = `<p> ${messageNotFind} </p>`;
-  }
-    
-  }).catch(console.warn)
-};
-// console.log(cPandEB_NonFictions.then(console.log));
 
