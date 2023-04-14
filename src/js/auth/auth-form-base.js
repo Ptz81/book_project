@@ -1,13 +1,16 @@
-import '../../sass/components/_auth-form.scss';
+import './_auth-form.scss';
+import utils from '../utils';
 
-const authForm = document.querySelector('.auth-form');
-const formType = document.querySelector('.auth-form__type');
-const submitBtn = document.querySelector('.auth-form__submit');
-const nameField = document.querySelector('.auth-form__field[data-name]');
-const passInput = document.querySelector('.auth-form__field[data-pass] input');
-const signInRadio = document.querySelector('.auth-form__radio[data-signin]');
-const showPass = document.querySelector('.auth-form__show-pass input');
-const closeBtn = document.querySelector('.auth-form__close');
+const { getRef } = utils;
+
+const authForm = getRef('.auth-form');
+const formType = getRef('.auth-form__type');
+const submitBtn = getRef('.auth-form__submit');
+const nameField = getRef('.auth-form__field[data-name]');
+const passInput = getRef('.auth-form__field[data-pass] input');
+const signInRadio = getRef('.auth-form__radio[data-signin]');
+const showPass = getRef('.auth-form__show-pass input');
+const closeBtn = getRef('.auth-form__close');
 
 formType.addEventListener('change', ({ target }) => {
   if (target.nodeName !== 'INPUT') return;
