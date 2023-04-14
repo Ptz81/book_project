@@ -11,6 +11,8 @@ function cap(str) {
     : '';
 }
 
+const getRef = document.querySelector.bind(document);
+
 export default {
   isInt,
   isStr,
@@ -18,5 +20,6 @@ export default {
   isInt,
   isNum,
   isObj,
+  getRef,
   cap,
 };
