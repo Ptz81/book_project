@@ -6,18 +6,22 @@ Notify.init({
   timeout: 2500,
 });
 
-export function showError(msg, opts) {
-  return Notify.failure(msg, opts);
+export function showError(v, opts) {
+  const { message } = v || '';
+  return Notify.failure(message || v, opts);
 }
 
-export function showInfo(msg, opts) {
-  return Notify.info(msg, opts);
+export function showInfo(v, opts) {
+  const { message } = v || '';
+  return Notify.info(message || v, opts);
 }
 
-export function showSuccess(msg, opts) {
-  return Notify.success(msg, opts);
+export function showSuccess(v, opts) {
+  const { message } = v || '';
+  return Notify.success(message || v, opts);
 }
 
-export function showWarn(msg, opts) {
-  return Notify.warning(msg, opts);
+export function showWarn(v, opts) {
+  const { message } = v || '';
+  return Notify.warning(message || v, opts);
 }
