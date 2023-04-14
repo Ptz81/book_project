@@ -57,6 +57,13 @@
     text-decoration: none;
 }
 
+.logo__icon {
+    @media screen and (min-width: 768px) {
+        width: 25px;
+        height: 25px;
+    }
+}
+
 .menu {
     display: none;
 
