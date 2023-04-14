@@ -1,17 +1,20 @@
 const btnToTopPage = document.querySelector('.scroll__up');
 
-function scrollToTopPage() {
-  window.onscroll = function () {
-    scrollFunction();
-  };
-}
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    btnToTopPage.style.display = 'flex';
+const btnVisibility = () => {
+  if (window.scrollY > 100) {
+    btnToTopPage.style.visibility = 'visible';
   } else {
-    btnToTopPage.style.display = 'none';
+    btnToTopPage.style.visibility = 'hidden';
   }
-}
+};
 
-scrollToTopPage();
+document.addEventListener('scroll', () => {
+  btnVisibility();
+});
+
+btnToTopPage.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+});
