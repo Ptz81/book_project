@@ -49,6 +49,7 @@
     cursor: pointer;
     transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
     margin: 4px;
+
 }
 
 .modal-icon:hover,
@@ -66,7 +67,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-
+      background-color: var(--color-white);
       z-index: 30;
       border-radius: 18px;
       border: 2px solid #111111;
