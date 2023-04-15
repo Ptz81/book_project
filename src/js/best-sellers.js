@@ -138,6 +138,6 @@ export function createCards(colection) {
 
 // Ola
 import { handleShowPop } from './pop-up.js';
-function handleShowPop(event) {}
+// function handleShowPop(event) {}
 categoriesContainer.addEventListener('click', handleShowPop);
 // Ola
