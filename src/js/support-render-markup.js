@@ -3,7 +3,7 @@ import { supportItems } from "./support-fonds-array";
 const supportListEl = document.querySelector('.support__list');
 
 
-const renderSupportList = items => {
+export const renderSupportList = items => {
   const listItems = items
     .map((item, index) => {
       const { title, url, img1x, img2x } = item;
