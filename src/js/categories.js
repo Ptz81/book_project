@@ -1,5 +1,11 @@
 import BookService from './book-service';
 import { renderCategoriesList } from './render-categories';
+
+// SerhiiS
+import { getCategoryItem } from './best-sellers';
+import { createCardsByCategory } from './best-sellers';
+// SerhiiS
+
 const categoriesList = document.querySelector('.categories__container');
 const CATEGORY_KEY = 'category-name';
 const ALL_CATEGORIES = 'all';
@@ -19,8 +25,14 @@ const onLoad = async () => {
 
   if (selectedCategory === ALL_CATEGORIES || !selectedCategory) {
     books = await bookService.getTopBooks();
+    // SerhiiS
+    getCategoryItem(books);
+    // SerhiiS
   } else {
     books = await bookService.getBooksByCategory(selectedCategory);
+    // SerhiiS
+    createCardsByCategory(books);
+    // SerhiiS
   }
   //......Call here function which will render all books
 };
