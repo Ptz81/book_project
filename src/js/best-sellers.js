@@ -1,13 +1,17 @@
 import BookService from './book-service';
 
 const bs = new BookService();
-const bestListEl = document.querySelector('.bestsellers__list');
+// const bestListEl = document.querySelector('.bestsellers__list');
 const categoriesContainer = document.querySelector('[data-name=category]');
 
 let currentRenderWidth = window.innerWidth;
 console.log(currentRenderWidth);
 
+
+
 categoriesContainer.addEventListener('click', onSeeMoreBtnClick);
+
+
 
 function onSeeMoreBtnClick(event) {
   if (event.target.nodeName !== 'BUTTON') {
@@ -31,37 +35,47 @@ function onSeeMoreBtnClick(event) {
 }
 
 export function getCategoryItem(categories) {
+  categoriesContainer.innerHTML = '';
 
+  const titleH1 = document.createElement('h1');
+  const cardList = document.createElement('ul');
+
+  titleH1.classList.add('bestsellers__category');
+  cardList.classList.add("bestsellers__list");
+
+  titleH1.innerText = "Best Sellers Books"
+
+  categoriesContainer.prepend(titleH1, cardList);
       if (categories.length > 0) {
         categories.forEach(category => {
 
-          const titleH1 = document.createElement('h1');
-          const cardList = document.createElement('ul');
+          
+          
           const listItem = document.createElement('li');
           const titleH2 = document.createElement('h2');
           const cardsBox = document.createElement('div');
           const btn = document.createElement('button');
 
-          titleH1.classList.add('bestsellers__category');
-          cardList.classList.add("bestsellers__list");
+          
+          
           listItem.classList.add('bestsellers__item');
           titleH2.classList.add('bestsellers__category-type');
           cardsBox.classList.add('bestsellers__card-box');
           btn.classList.add('btn');
           btn.classList.add('bestsellers__btn');
 
-          titleH1.innerText = "Best Sellers Books"
+          
           titleH2.innerText = category.list_name;
           btn.innerText = 'see more';
 
           cardsBox.setAttribute('id', `${category.list_name}`);         
           btn.setAttribute('data-name', `${category.list_name}`);
 
-          // categoriesContainer.prepend(titleH1, cardList);
+          
           listItem.prepend(titleH2);
           titleH2.after(cardsBox);
           listItem.appendChild(btn);
-          bestListEl.appendChild(listItem);
+          cardList.appendChild(listItem);
 
           let data = category.books;
           
@@ -125,5 +139,5 @@ export function createCards(colection) {
 // Ola
 import { handleShowPop } from './pop-up.js';
 function handleShowPop(event) {}
-bestListEl.addEventListener('click', handleShowPop);
+categoriesContainer.addEventListener('click', handleShowPop);
 // Ola

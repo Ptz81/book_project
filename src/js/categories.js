@@ -34,7 +34,6 @@ const onLoad = async () => {
     createCardsByCategory(books);
     // SerhiiS
   }
-  //......Call here function which will render all books
 };
 document.addEventListener('DOMContentLoaded', onLoad);
 
@@ -51,8 +50,9 @@ const onClick = async child => {
   let books;
   if (category === ALL_CATEGORIES) {
     books = await bookService.getTopBooks();
+    getCategoryItem(books);
   } else {
     books = await bookService.getBooksByCategory(category);
+    createCardsByCategory(books);
   }
-  //......Call here function which will render books by category
 };
