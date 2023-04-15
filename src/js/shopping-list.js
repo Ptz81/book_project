@@ -1,5 +1,8 @@
 const shoppingList = document.querySelector('.shopping-cart__list');
 
+const shoppingCart = document.querySelector('.shopping-cart');
+const pathToBook = new URL('../images/shop-icons/books.png', import.meta.url);
+
 let arrayBookAdd = JSON.parse(localStorage.getItem('book-add')) || [];
 
 const pathToAmazon = new URL(
@@ -98,8 +101,6 @@ function isAddedBooks(array) {
 }
 
 function createEmptyCart() {
-  const shoppingCart = document.querySelector('.shopping-cart');
-  const pathToBook = new URL('../images/shop-icons/books.png', import.meta.url);
   shoppingCart.insertAdjacentHTML(
     'beforeend',
     `
