@@ -39,15 +39,17 @@ export function handleShowPop(event) {
         loading="lazy"
         id="${dataId._id}"
       />
-      
-      <h2 class="pop_name">
-        ${dataId.list_name || 'There is no book title'}        
+<div class='pop_wrapper'>
+<h2 class="pop_name">
+        ${dataId.list_name || 'There is no book title'}
       </h2>
       <p class="pop_author">${dataId.author || 'The author is unknown'}</p>
       <p class="pop_description">
         ${dataId.description || 'There is no description <br />Слава Україні!'}
       </p>
-      <ul class="pop_shop list"></ul>      
+      <ul class="pop_shop list"></ul>
+</div>
+
           `
       );
       const popListEl = document.querySelector('.pop_shop');
@@ -63,11 +65,11 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="${amazonPic}" 
+                      src="${amazonPic}"
                       alt="amazon_shop_icon"
                     />
                   </a>
-                </li>           
+                </li>
                   `
           );
         }
@@ -82,7 +84,7 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="${applebooksPic}" 
+                      src="${applebooksPic}"
                       alt="applebooks_shop_icon"
                     />
                   </a>
@@ -100,7 +102,7 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="${bookstore_shopPic}" 
+                      src="${bookstore_shopPic}"
                       alt="bookstore_shop_icon"
                     />
                   </a>
@@ -124,18 +126,18 @@ export function handleShowPop(event) {
       //   dataId.add = 'isAdded';
       // };
 
-      // if (!arrayBookShop.includes(dataId)) {        
+      // if (!arrayBookShop.includes(dataId)) {
       //   dataId.add = 'is';
       // };
       // // 22
 
-     
+
       // const popBtn = document.querySelector('.pop__btn');
       // if (dataId.add === 'isAdded' || arrayBookShop.includes(dataId) ) {
 
       //   popBtn.innerHTML = 'remove from the shopping list';
       //   popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
-        
+
       // }
       // if (dataId.add === 'isAdded' || arrayBookShop.includes(dataId) ) {
       //   popBtn.innerHTML = 'Add to shopping list';
@@ -145,7 +147,7 @@ export function handleShowPop(event) {
       // if (dataId.add === 'isAdded' && arrayBookShop.includes(dataId) ) {
       //   popBtn.innerHTML = 'remove from the shopping list';
       //   popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
-        
+
       // }
       // if (dataId.add === 'isAdded' && !arrayBookShop.includes(dataId)) {
       //   popBtn.innerHTML = 'Add to shopping list';
@@ -163,9 +165,9 @@ export function handleShowPop(event) {
       if (dataId.add === 'is') {
         popBtn.innerHTML = 'Add to shopping list';
       }
-      
+
       // До
-      
+
     })
     .catch(error => {
       console.log(error);
