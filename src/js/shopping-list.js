@@ -108,10 +108,10 @@ function createEmptyCart() {
         `
   );
 }
-try {
-  const deleteBtn = document.querySelector('.shopping-cart__btn-delete');
-  console.log(deleteBtn);
-} catch {}
+// try {
+//   const deleteBtn = document.querySelector('.shopping-cart__btn-delete');
+//   console.log(deleteBtn);
+// } catch {}
 function clearMarkup() {
   shoppingList.innerHTML = '';
 }
