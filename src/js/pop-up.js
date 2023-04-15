@@ -4,9 +4,11 @@ import { showError } from './notify.js';
 
 
 const amazonPic = new URL('../images/shop-icons/amazon.jpg', import.meta.url);
+const applebooksPic = new URL('../images/shop-icons/applebooks.jpg', import.meta.url);
+const bookstore_shopPic = new URL('../images/shop-icons/bookstore.jpg', import.meta.url);
 
-import applebooksPic from '../images/shop-icons/applebooks.jpg';
-import bookstore_shopPic from '../images/shop-icons/bookstore.jpg';
+// import applebooksPic from '../images/shop-icons/applebooks.jpg';
+// import applebooksPic from '../images/shop-icons/bookstore.jpg';
 
 const modalPopEl = document.querySelector('[data-modal]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
@@ -109,25 +111,61 @@ export function handleShowPop(event) {
       });
       toggleModal();
 
+      arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
+
+      if (!arrayBookIs.includes(dataId)) {
+        arrayBookIs.push(dataId);
+        localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
+      };
+
+      // // 22
+      // let arrayBookShop = JSON.parse(localStorage.getItem('book-add')) || [];
+      // if (!dataId.add) {
+      //   dataId.add = 'isAdded';
+      // };
+
+      // if (!arrayBookShop.includes(dataId)) {        
+      //   dataId.add = 'is';
+      // };
+      // // 22
+
+     
+      // const popBtn = document.querySelector('.pop__btn');
+      // if (dataId.add === 'isAdded' || arrayBookShop.includes(dataId) ) {
+
+      //   popBtn.innerHTML = 'remove from the shopping list';
+      //   popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+        
+      // }
+      // if (dataId.add === 'isAdded' || arrayBookShop.includes(dataId) ) {
+      //   popBtn.innerHTML = 'Add to shopping list';
+      //   popTextEl.innerHTML = '';
+      //   dataId.add = 'is';
+      // };
+      // if (dataId.add === 'isAdded' && arrayBookShop.includes(dataId) ) {
+      //   popBtn.innerHTML = 'remove from the shopping list';
+      //   popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+        
+      // }
+      // if (dataId.add === 'isAdded' && !arrayBookShop.includes(dataId)) {
+      //   popBtn.innerHTML = 'Add to shopping list';
+      //   popTextEl.innerHTML = '';
+      //   dataId.add = 'is';
+      // }
+      // До
       if (!dataId.add) {
         dataId.add = 'is';
       }
       const popBtn = document.querySelector('.pop__btn');
       if (dataId.add === 'isAdded') {
         popBtn.innerHTML = 'remove from the shopping list';
-        popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
       }
       if (dataId.add === 'is') {
         popBtn.innerHTML = 'Add to shopping list';
-        popTextEl.innerHTML = '';
       }
-
-      arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
-
-      if (!arrayBookIs.includes(dataId)) {
-        arrayBookIs.push(dataId);
-        localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
-      }
+      
+      // До
+      
     })
     .catch(error => {
       console.log(error);
