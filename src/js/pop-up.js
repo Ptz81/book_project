@@ -82,8 +82,8 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="/applebooks.a6bc5a52.jpg" 
-                      alt="${applebooksPic}"
+                      src="${applebooksPic}" 
+                      alt="applebooks_shop_icon"
                     />
                   </a>
                 </li>`
