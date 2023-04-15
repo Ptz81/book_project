@@ -39,7 +39,7 @@ export function handleShowPop(event) {
         loading="lazy"
         id="${dataId._id}"
       />
-<div class='pop_container'>
+<div class='pop_wrapper'>
 <h2 class="pop_name">
         ${dataId.list_name || 'There is no book title'}
       </h2>
