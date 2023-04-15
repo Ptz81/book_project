@@ -2,6 +2,12 @@ import BookService from './book-service';
 const bookTopAPI = new BookService();
 import { showError } from './notify.js';
 
+
+const amazonPic = new URL('../images/shop-icons/amazon.jpg', import.meta.url);
+
+import applebooksPic from '../images/shop-icons/applebooks.jpg';
+import bookstore_shopPic from '../images/shop-icons/bookstore.jpg';
+
 const modalPopEl = document.querySelector('[data-modal]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
 const modalEl = document.querySelector('.modal');
@@ -10,6 +16,7 @@ const backdropEl = document.querySelector('.backdrop is-hidden');
 const popBtn = document.querySelector('.pop__btn');
 const popTextEl = document.querySelector('.pop-text');
 const backdropBtn = document.querySelector('.backdrop');
+
 let arrayBookIs = [];
 
 export function handleShowPop(event) {
@@ -24,18 +31,21 @@ export function handleShowPop(event) {
       infoPopEl.insertAdjacentHTML(
         'beforeend',
         `<img
-              class="photo"
-              src="${dataId.book_image}"
-              alt="${dataId.author}"
-              loading="lazy"
-              id="${dataId._id}"
-            />
-            
-         <h2 class="pop_name">${dataId.list_name}</h2>
-         <p class="pop_author">${dataId.author}</p>
-         <p class="pop_description">${dataId.description}</p>
-         <ul class="pop_shop list"></ul>
-            
+        class="photo"
+        src="${dataId.book_image || '/src/images/sprite.svg#icon-ukraine'}"
+        alt="${dataId.list_name || 'There is no book title'}"
+        loading="lazy"
+        id="${dataId._id}"
+      />
+      
+      <h2 class="pop_name">
+        ${dataId.list_name || 'There is no book title'}        
+      </h2>
+      <p class="pop_author">${dataId.author || 'The author is unknown'}</p>
+      <p class="pop_description">
+        ${dataId.description || 'There is no description <br />Слава Україні!'}
+      </p>
+      <ul class="pop_shop list"></ul>      
           `
       );
       const popListEl = document.querySelector('.pop_shop');
@@ -51,7 +61,7 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="/amazon.a8e6cc93.jpg" 
+                      src="${amazonPic}" 
                       alt="amazon_shop_icon"
                     />
                   </a>
@@ -71,7 +81,7 @@ export function handleShowPop(event) {
                     ><img
                       class="pop_list-img"
                       src="/applebooks.a6bc5a52.jpg" 
-                      alt="apple_shop_icon"
+                      alt="${applebooksPic}"
                     />
                   </a>
                 </li>`
@@ -88,7 +98,7 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="/bookstore.4d75fc3d.jpg" 
+                      src="${bookstore_shopPic}" 
                       alt="bookstore_shop_icon"
                     />
                   </a>
