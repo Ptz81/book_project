@@ -42,8 +42,8 @@
   width: 24px;
     height: 24px;
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: -3px;
+    right: -3px;
     fill: var(--color-black);
     stroke: var(--color-white);
     cursor: pointer;
@@ -59,8 +59,8 @@
 
 .modal {
     width: 95%;
-      height: 100%;
-      overflow: auto;
+      // height: 100%;
+      overflow: hidden;
       /* width: 100%;
         height: auto; */
       position: fixed;
