@@ -8,7 +8,7 @@ const modalEl = document.querySelector('.modal');
 const popEl = document.querySelector('.pop-info');
 const backdropEl = document.querySelector('.backdrop is-hidden');
 const popBtn = document.querySelector('.pop__btn');
-
+const popTextEl = document.querySelector('.pop-text');
 const backdropBtn = document.querySelector('.backdrop');
 let arrayBookIs = [];
 
@@ -105,9 +105,11 @@ export function handleShowPop(event) {
       const popBtn = document.querySelector('.pop__btn');
       if (dataId.add === 'isAdded') {
         popBtn.innerHTML = 'remove from the shopping list';
+        popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
       }
       if (dataId.add === 'is') {
         popBtn.innerHTML = 'Add to shopping list';
+        popTextEl.innerHTML = '';
       }
 
       arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
@@ -173,6 +175,7 @@ const handleDoBtn = e => {
 
   if (bookLocalSt.add === 'is') {
     popBtn.innerHTML = 'remove from the shopping list';
+    popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
 
     if (!arrayBookAdd.includes(bookLocalSt) && bookLocalSt.add === 'is') {
       bookLocalSt.add = 'isAdded';
@@ -184,7 +187,7 @@ const handleDoBtn = e => {
   }
   if (arrayBookAdd.includes(bookLocalSt)) {
     popBtn.innerHTML = 'Add to shopping list';
-
+    popTextEl.innerHTML = '';
     const index = arrayBookAdd.indexOf(bookLocalSt);
     if (index !== -1) {
       arrayBookAdd.splice(index, 1);
