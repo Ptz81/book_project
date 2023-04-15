@@ -156,6 +156,9 @@
   // background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
   // mix-blend-mode: luminosity;
 }
+.theme-dark .amazon-link {
+  filter: invert(1);
+}
 
 .shopping-cart__warning {
   margin-top: 120px;
