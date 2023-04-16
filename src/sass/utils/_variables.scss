@@ -6,7 +6,6 @@
   --color-blue: #4f2ee8; // 79, 46, 232
   --color-yellow: #eac645;
   --color-grey-darker: #202024;
-  --color-grey-lighter: #b4afaf;
   --color-scroll: #e0e0e0;
   --color-grey-light: #b4afaf;
   --color-grey-lighter: #f6f6f6;
@@ -32,16 +31,23 @@
   // цвет бекдропа для модалок и лоадера
   --color-backdrop: rgba(17, 17, 17, 0.4); //rgba(79, 46, 232, 0.7);
 
-
   --color-header-border: var(--color-black);
   --menu-icon-color: var(--color-black);
 
   --color-auth-form-background: var(--color-grey-lighter);
   --color-auth-form-border: var(--color-black);
 
-
   // Misc
 
   --font-family-primary: 'DM Sans', sans-serif;
-  --transition-params: ease 250ms;
+
+  --transition-timing-func: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-delay: 250ms;
+  --transition-params: var(--transition-timing-func) var(--transition-delay);
 }
+
+// breakpoints
+
+$mobile: 320px;
+$tablet: 768px;
+$desktop: 1280px;

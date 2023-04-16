@@ -1,8 +1,6 @@
 import firebaseConfig from './config';
 import { initializeApp } from 'firebase/app';
-import utils from '../utils';
-
-const { isFunc, cap } = utils;
+import { isFunc, cap } from '../../utils';
 
 import {
   getAuth,
@@ -14,45 +12,53 @@ import {
 
 let auth;
 let instance;
+let firebaseApp;
 let handleSignIn;
 let handleSignOut;
 
+const ERR_INIT_FAILED = 'FirebaseApp initialization failed';
+
 export default class FirebaseAuth {
-  constructor({ onSignedIn, onSignedOut } = {}) {
+  constructor({ app } = {}) {
     if (instance) return instance;
-    instance = this;
 
-    // инициализация
-    initializeApp(firebaseConfig);
-    auth = getAuth();
-
-    // обработчики состояния
-    this.onSignedIn = onSignedIn;
-    this.onSignedOut = onSignedOut;
+    try {
+      firebaseApp = app || initializeApp(firebaseConfig);
+      auth = getAuth(firebaseApp);
+    } catch {
+      console.error(ERR_INIT_FAILED);
+      return null;
+    }
 
     // note: похоже, срабатывает даже при отсутствии текущего пользователя
     onAuthStateChanged(auth, user => {
       if (user) return handleSignIn && handleSignIn(user);
       handleSignOut && handleSignOut();
     });
+
+    instance = this;
+  }
+
+  get app() {
+    return firebaseApp;
   }
 
   get currentUser() {
     return auth.currentUser;
   }
 
-  set onSignedIn(handler) {
+  onSignedIn(handler) {
     handleSignIn = isFunc(handler) ? handler : null;
   }
 
-  set onSignedOut(handler) {
+  onSignedOut(handler) {
     handleSignOut = isFunc(handler) ? handler : null;
   }
 
   /**
    * Добавляет пользователя в Users текущего firebase приложения
    */
-  async signUp(email, password) {
+  async signUp({ email, password } = {}) {
     try {
       return await createUserWithEmailAndPassword(auth, email, password);
     } catch (err) {
@@ -64,7 +70,7 @@ export default class FirebaseAuth {
    * Если пользователь существует в Users текущего приложения
    * устанавливает его текущим для приложения
    */
-  async signIn(email, password) {
+  async signIn({ email, password } = {}) {
     try {
       return await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
