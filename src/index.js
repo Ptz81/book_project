@@ -1,3 +1,4 @@
+//
 import './js/categories';
 import './js/toggle-switch';
 import './js/active-page';
