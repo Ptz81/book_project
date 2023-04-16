@@ -23,6 +23,8 @@ const backdropEl = document.querySelector('.backdrop is-hidden');
 const popBtn = document.querySelector('.pop__btn');
 const popTextEl = document.querySelector('.pop-text');
 const backdropBtn = document.querySelector('.backdrop');
+const btnWrapperEl = document.querySelector('.btn_wrapper');
+const popWrapperEl = document.querySelector('.pop_wrapper');
 
 let arrayBookIs = [];
 
@@ -195,7 +197,9 @@ const closeIfNoModal = e => {
     e.target !== modalEl &&
     e.target.parentNode !== popEl &&
     e.target.parentNode !== backdropEl &&
-    e.target.parentNode !== modalEl
+    e.target.parentNode !== modalEl &&
+    e.target.popWrapperEl !== modalEl &&
+    e.target.btnWrapperEl !== modalEl 
   ) {
     closeModal();
   }
@@ -205,8 +209,6 @@ backdropBtn.addEventListener('click', closeIfNoModal);
 // КНОПКА
 
 const handleDoBtn = e => {
-  console.log(e.target.parentNode.previousElementSibling.firstChild.id);
-  //  const sourceID = e.target.previousElementSibling.firstChild.id;
   const sourceID = e.target.parentNode.previousElementSibling.firstChild.id;
   let bookLocalSt;
 
