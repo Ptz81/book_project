@@ -17,7 +17,13 @@ const backdropEl = document.querySelector('.backdrop is-hidden');
 const popBtn = document.querySelector('.pop__btn');
 const popTextEl = document.querySelector('.pop-text');
 const backdropBtn = document.querySelector('.backdrop');
-const blocBtnEl = document.querySelector('.pop-bloc-btn');
+const blocBtnEl = document.querySelector('.btn_wrapper');
+const popWrapperEl = document.querySelector('.pop_wrapper');
+
+const pop_nameEl = document.querySelector('.pop_name');
+const pop_authorEl = document.querySelector('.pop_author');
+const pop_descriptionEl = document.querySelector('.pop_description');
+const pop_listEl = document.querySelector('.pop_shop list');
 
 let arrayBookIs = [];
 
@@ -40,14 +46,16 @@ export function handleShowPop(event) {
         id="${dataId._id}"
       />
       
+      <div class='pop_wrapper'>
       <h2 class="pop_name">
-        ${dataId.list_name || 'There is no book title'}        
+        ${dataId.list_name || 'There is no book title'}
       </h2>
       <p class="pop_author">${dataId.author || 'The author is unknown'}</p>
       <p class="pop_description">
-        ${dataId.description || 'There is no description <br/>Слава Україні! <br/>Смерть ворогам!'}
+        ${dataId.description || 'There is no description <br />Слава Україні!'}
       </p>
-      <ul class="pop_shop list"></ul>      
+      <ul class="pop_shop list"></ul>
+      </div>     
           `
       );
       const popListEl = document.querySelector('.pop_shop');
@@ -194,12 +202,19 @@ function closeModal() {
   modalPopEl.classList.add('is-hidden');
 }
 const closeIfNoModal = e => {
+  console.log(e.target);
+  console.log(e.target.parentNode);
   if (
     e.target !== modalEl &&
     e.target.parentNode !== popEl &&
     e.target.parentNode !== backdropEl &&
     e.target.parentNode !== modalEl &&
-    e.target.parentNode !==blocBtnEl    
+    e.target.parentNode !== blocBtnEl &&
+    e.target.parentNode !== popWrapperEl
+    // e.target !== pop_nameEl &&
+    // e.target !== pop_authorEl &&
+    // e.target !== pop_descriptionEl &&
+    // e.target !== pop_listEl
   ) {
     closeModal();
   }
@@ -209,8 +224,8 @@ backdropBtn.addEventListener('click', closeIfNoModal);
 // КНОПКА
 
 const handleDoBtn = e => {
-  console.log(e.target.previousElementSibling.firstChild.id);
-  const sourceID = e.target.previousElementSibling.firstChild.id;
+  
+  const sourceID = e.target.parentNode.previousElementSibling.firstChild.id;
   let bookLocalSt;
 
   let arrayBookAdd = JSON.parse(localStorage.getItem('book-add')) || [];
