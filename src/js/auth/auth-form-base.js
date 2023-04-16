@@ -26,14 +26,12 @@ formType.addEventListener('change', ({ target }) => {
   submitBtn.textContent = signInRadio.checked ? 'sign in' : 'sign up';
 });
 
+// показываем/скрываем текст пароля
 showPass.addEventListener('change', ({ currentTarget }) => {
   passInput.type = currentTarget.checked ? 'text' : 'password';
 });
 
 authForm.addEventListener('submit', e => {
   e.preventDefault();
+  // ...
 });
-
-// document.body.addEventListener('click', () =>
-//   document.documentElement.classList.toggle('theme-dark')
-// );

@@ -32,13 +32,16 @@
   // цвет бекдропа для модалок и лоадера
   --color-backdrop: rgba(17, 17, 17, 0.4); //rgba(79, 46, 232, 0.7);
 
+  //цвет фона карточки шопинг листа
+  --color-shop-card-background: var(--color-white);
+  //цвет текста шопинг листа
+  --color-shop-list-text: var(--color-black);
 
   --color-header-border: var(--color-black);
   --menu-icon-color: var(--color-black);
 
   --color-auth-form-background: var(--color-grey-lighter);
   --color-auth-form-border: var(--color-black);
-
 
   // Misc
 

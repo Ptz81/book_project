@@ -6,24 +6,24 @@
                     <use href="./images/apple-touch-icon.png"></use>
                 </svg>
                 <svg width="53px" height="17px" class="logo__text">
-                    <use></use>
+                    <use href="./images/apple-touch-icon.png"></use>
                 </svg>
             </a>
         </div>
 
         <nav class="nav menu">
             <ul class="menu__list">
-                <li class="menu__item"><a href="./index.html" class="menu__link">Home</a></li>
-                <li class="menu__item"><a href="./shopping-list.html" class="menu__link shopping-list">
-                    <svg class="menu__svg"><use href="#"></use></svg>
-                    Shopping list</a>
+                <li class="menu__item"><a href="./index.html" class="menu__link nav-link">Home</a></li>
+                <li class="menu__item"><a href="./shopping-list.html" class="menu__link shop-link nav-link">
+                    Shopping list
+                    <svg width="20px" height="20px" class="menu__svg"><use href="#"></use></svg></a>
                 </li>
             </ul>
         
         </nav>
         <div class="switch">
             <input class="switch__input" type="checkbox" id="darkmode-toggle"/>
-            <label class="switch__label" for="darkmode-toggle">
+            <label class="switch__label" for="darkmode-toggle"></label>
         </div>
         <button class="menu-toggle js-open-menu" 
         aria-expanded="false"
@@ -34,6 +34,48 @@
             </svg>
         </button>
         
-        <button class="header__btn" type="button">User</button>
+        <button class="header-btn" type="button">
+            <svg width="37px" height="37px" class="header-btn__img"><use href="#"></use></svg>
+            Stephen
+            <svg width="23px" height="26px" class="header-btn__svg"><use href="#"></use></svg>
+        </button>
+    </div>
+
+    <!-- mobile menu -->
+
+    <div class="menu-container js-menu-container" id="mobile-menu">
+    
+        <button class="menu-toggle js-close-menu">
+            <svg class="menu-toggle__svg" width="28px" height="28px" aria-label="Перемикач мобільного меню">
+                <use class="icon-cross" href="./images/apple-touch-icon.png"></use>
+            </svg>
+        </button>
+        
+        <div class="mobile-container">
+            <button class="mobile-user" type="button">
+                <svg class="mobile-user__svg" width="37px" height="37px">
+                    <use href="./images/apple-touch-icon.png"></use>
+                </svg>
+                Stephen
+            </button>
+            <nav class="nav mobile-menu">
+                <ul class="mobile-menu__list">
+                    <li class="mobile-menu__item"><a href="./index.html" class="mobile-menu__link nav-link">Home</a></li>
+                    <li class="mobile-menu__item"><a href="./shopping-list.html" class="mobile-menu__link shop-link nav-link">
+                        Shopping list
+                        <svg class="mobile-menu__svg" width="20px" height="20px">
+                            <use href="./images/apple-touch-icon.png"></use>
+                        </svg>
+                    </a></li>
+                </ul>
+            </nav>
+            <button class="logout-btn" type="button">
+                Log out
+                <svg class="logout-btn__svg" width="20px" height="20px">
+                    <use href="./images/apple-touch-icon.png"></use>
+                </svg>
+            </button>
+    
+        </div>
     </div>
 </header>

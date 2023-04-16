@@ -1,4 +1,4 @@
-const sliderWrapper = document.querySelector('.slider');
+import { renderSupportList } from './support-render-markup';
 const imgSlides = document.querySelectorAll('.support__item');
 const sliderBtn = document.querySelector('.support__btn');
 
@@ -27,5 +27,5 @@ sliderBtn.addEventListener('click', function () {
       sliderBtn.querySelector('.support__icon').style.transform = 'rotate(180deg)';
     }
   }
-  verticalSlider();
+  verticalSlider(renderSupportList);
 });
