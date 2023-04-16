@@ -152,13 +152,13 @@
       />
     </symbol>
     <symbol id="icon-mobile-menu" viewBox="0 0 32 32">
-<path d="M19.8333 11.6666H3.5" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M24.5 7H3.5" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M24.5 16.3334H3.5" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.8333 21H3.5" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.8333 11.6666H3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.5 7H3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.5 16.3334H3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.8333 21H3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 <symbol id="icon-mobile-close" viewBox="0 0 32 32">
-<path d="M21 7L7 21M7 7L21 21" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21 7L7 21M7 7L21 21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
   </defs>
 </svg>
