@@ -19,8 +19,10 @@ const onLoad = async () => {
 
   if (selectedCategory === ALL_CATEGORIES || !selectedCategory) {
     books = await bookService.getTopBooks();
+    console.log(books);
   } else {
     books = await bookService.getBooksByCategory(selectedCategory);
+    console.log(books);
   }
   //......Call here function which will render all books
 };
