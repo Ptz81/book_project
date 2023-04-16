@@ -60,7 +60,7 @@
 .modal {
     width: 95%;
       // height: 100%;
-      overflow: hidden;
+      // overflow: hidden;
       /* width: 100%;
         height: auto; */
       position: fixed;
@@ -71,7 +71,7 @@
       z-index: 30;
       border-radius: 18px;
       border: 2px solid #111111;
-
+      overflow-y: auto;
       touch-action: pan-y pinch-zoom;
 
 
@@ -95,8 +95,19 @@
       width: 100%;
         height: auto;
         margin-bottom: 14px;
-        margin-left: auto;
-        margin-right: auto;
+        // margin-left: auto;
+        // margin-right: auto;
+}
+.btn_wrapper > p{
+  margin-bottom: 8px;
+}
+.pop-text{
+  margin-left: 46px;
+  margin-right: 46px;
+  font-size: 10px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: var(--color-backdrop);
 }
 
 /* .description {
