@@ -53,7 +53,10 @@ export function handleShowPop(event) {
       </h2>
       <p class="pop_author">${dataId.author || 'The author is unknown'}</p>
       <p class="pop_description">
-        ${dataId.description || 'There is no description <br/><br/>Слава Україні!<br/>Смерть ворогам!'}
+        ${
+          dataId.description ||
+          'There is no description <br/><br/>Слава Україні!<br/>Смерть ворогам!'
+        }
       </p>
       <ul class="pop_shop list"></ul>
       </div>     
@@ -124,8 +127,6 @@ export function handleShowPop(event) {
       const bookIsID = dataId._id;
       let bookLocalIs;
 
-      console.log(bookIsID);
-
       arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
       arrayBookShopIs = JSON.parse(localStorage.getItem('book-add')) || [];
 
@@ -134,32 +135,22 @@ export function handleShowPop(event) {
           bookLocalIs = el;
         }
       });
-      console.log('data 0');
-      console.log(bookLocalIs);      
-      //
       if (!bookLocalIs) {
         arrayBookIs.map(el => {
           if (el._id === bookIsID) {
             bookLocalIs = el;
-           
           }
         });
-      };
-      console.log('btn 2');
-      console.log(bookLocalIs);
+      }
 
-      if (!bookLocalIs) {        
+      if (!bookLocalIs) {
         bookLocalIs = dataId;
-            bookLocalIs.add = 'is';
-            console.log('No Is');
-            arrayBookIs.push(bookLocalIs);
-            localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
-          };
-          console.log('data 2');
-      console.log(arrayBookIs);
-      console.log(arrayBookShopIs);
-      console.log(bookLocalIs.add);
-      bookLocalIs = bookLocalIs;      
+        bookLocalIs.add = 'is';
+
+        arrayBookIs.push(bookLocalIs);
+        localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
+      }
+      bookLocalIs = bookLocalIs;
 
       const popBtn = document.querySelector('.pop__btn');
       if (bookLocalIs.add === 'isAdded') {
@@ -171,8 +162,7 @@ export function handleShowPop(event) {
         popBtn.innerHTML = 'Add to shopping list';
         popTextEl.innerHTML = '';
       }
-      console.log('book 7');
-      console.log(bookLocalIs.add);
+
       return;
     })
 
@@ -211,16 +201,8 @@ backdropBtn.addEventListener('click', closeIfNoModal);
 
 // КНОПКА
 const handleDoBtn = e => {
-  //
-
-  console.log('btn 1');
-  console.log(arrayBookIs);
-  //
-
   const sourceID = e.target.parentNode.previousElementSibling.firstChild.id;
   let bookLocalSt;
-
-  console.log(e.target.parentNode.previousElementSibling.firstChild);
 
   arrayBookAdd = JSON.parse(localStorage.getItem('book-add')) || [];
 
@@ -229,11 +211,6 @@ const handleDoBtn = e => {
       bookLocalSt = el;
     }
   });
-
-  //
-  console.log('btn 2');
-  console.log(bookLocalSt);
-  //
   if (!bookLocalSt) {
     arrayBookIs.map(el => {
       if (el._id === sourceID) {
@@ -242,10 +219,6 @@ const handleDoBtn = e => {
       }
     });
   }
-  //
-  console.log('btn 2');
-  console.log(bookLocalSt);
-  //
   if (bookLocalSt.add === 'is') {
     popBtn.innerHTML = 'remove from the shopping list';
     popTextEl.innerHTML =

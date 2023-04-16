@@ -43,6 +43,18 @@
 
   --close-icon-color: var(--color-black);
 
+  // Модалка
+
+  --color-modal-background: var(--color-white);
+  --color-modal-border: var(--color-black);
+  --color-modal-cross: var(--color-black);
+  --color-modal-title: var(--color-black);
+  --color-modal-author: var(--color-grey-light);
+  --color-modal-description: var(--color-black);
+  --color-modal-shop: var(--color-black);
+  --color-modal-btn: var(--color-black);
+  --color-modal-info: rgba(17, 17, 17, 0.6);
+
   // Misc
 
   --font-family-primary: 'DM Sans', sans-serif;
