@@ -46,7 +46,7 @@ export function handleShowPop(event) {
         loading="lazy"
         id="${dataId._id}"
       />
-      
+
       <div class='pop_wrapper'>
       <h2 class="pop_name">
         ${dataId.list_name || 'There is no book title'}
@@ -59,7 +59,7 @@ export function handleShowPop(event) {
         }
       </p>
       <ul class="pop_shop list"></ul>
-      </div>     
+      </div>
           `
       );
 
@@ -76,11 +76,11 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="${amazonPic}" 
+                      src="${amazonPic}"
                       alt="amazon_shop_icon"
                     />
                   </a>
-                </li>           
+                </li>
                   `
           );
         }
@@ -95,7 +95,7 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="${applebooksPic}" 
+                      src="${applebooksPic}"
                       alt="applebooks_shop_icon"
                     />
                   </a>
@@ -113,7 +113,7 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="${bookstore_shopPic}" 
+                      src="${bookstore_shopPic}"
                       alt="bookstore_shop_icon"
                     />
                   </a>
@@ -157,6 +157,7 @@ export function handleShowPop(event) {
         popBtn.innerHTML = 'remove from the shopping list';
         popTextEl.innerHTML =
           'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+        blocBtnEl.style.marginBottom = '6px';
       }
       if (bookLocalIs.add === 'is') {
         popBtn.innerHTML = 'Add to shopping list';
