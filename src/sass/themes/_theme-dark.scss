@@ -1,7 +1,7 @@
-/* 
+/*
   Цвета для темной темы
   Чтобы применить, добавляем класс(из js) следующим образом:
-  document.documentElement.classList.add('theme-dark'); 
+  document.documentElement.classList.add('theme-dark');
 */
 .theme-dark {
   --color-text-primary: var(--color-white);
@@ -23,4 +23,16 @@
   --color-auth-form-border: var(--color-grey-lighter);
 
   --close-icon-color: var(--color-white);
+
+// Модалка
+  --color-modal-border: var(--color-white);
+  --color-modal-background: var(--color-grey-darker);
+  --color-modal-cross: var(--color-white);
+  --color-modal-title: var(--color-white);
+  --color-modal-author: var(--color-grey-light);
+  --color-modal-description: var(--color-white);
+  --color-modal-shop: var(--color-white);
+  --color-modal-btn: var(--color-white);
+  --color-modal-info: rgba(255, 255, 255, 0.6);
+
 }
