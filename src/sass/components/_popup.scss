@@ -39,24 +39,40 @@
 }
 
 .modal-icon {
-  fill: rgba(0, 0, 0, 1);
+  width: 24px;
+    height: 24px;
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    fill: var(--color-black);
+    stroke: var(--color-white);
+    cursor: pointer;
+    transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 4px;
+
 }
 
+.modal-icon:hover,
+.modal-icon:focus {
+  fill: var(--color-blue);
+}
 
 .modal {
-  position: absolute;
+    width: 95%;
+      // height: 100%;
+      overflow: hidden;
+      /* width: 100%;
+        height: auto; */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--color-white);
+      z-index: 30;
+      border-radius: 18px;
+      border: 2px solid #111111;
 
-  width: 335px;
-  height: 762px;
-
-  background: #FFFFFF;
-  border: 2px solid #111111;
-  border-radius: 18px;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translateX(-50%) translateY(-50%);
+      touch-action: pan-y pinch-zoom;
 
 
 }
@@ -76,9 +92,11 @@
 }
 
 .photo {
-  width: 287px;
-  height: 408px;
-
+      width: 100%;
+        height: auto;
+        margin-bottom: 14px;
+        margin-left: auto;
+        margin-right: auto;
 }
 
 /* .description {
@@ -89,41 +107,197 @@
 }
 
 .pop_name {
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 18px;
-
-
-  letter-spacing: -0.04em;
-
-  color: #111111;
+    font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      color: var(--color-black);
 }
 
 .pop_author {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-
-  letter-spacing: -0.04em;
-
-  color: #B4AFAF;
+    font-style: italic;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+      font-style: italic;
+      letter-spacing: -0.04em;
+      color: var(--color-grey-light);
+      margin-bottom: 18px;
 }
 
 .pop_description {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-
-  letter-spacing: -0.04em;
-
-  color: #111111;
+    font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: -0.04em;
+      color: var(--color-black);
+      margin-bottom: 14px;
 }
 
 .pop_shop {
-  list-style: none;
   display: flex;
   justify-content: flex-start;
-  padding-inline-start: 0px;
-  /* align-items: center; */
+  align-items: center;
   gap: 20px;
+}
+
+
+.pop_shop-item {
+  margin-right: 20px;
+
+}
+
+.pop_shop-item:hover,
+.pop_shop-item:focus {
+  mix-blend-mode: luminosity;
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15));
+}
+
+.btn_wrapper{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.pop__btn {
+  // margin-left: auto;
+  // margin-right: auto;
+  border: var(--color-blue) 2px solid;
+  border-radius: 40px;
+  padding: 14px 28px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28;
+  text-transform: uppercase;
+
+  text-align: center;
+  display: flex;
+  /* flex-direction: row;
+    align-items: flex-start; */
+  // width: 82%;
+  background-color: transparent;
+  letter-spacing: -0.01em;
+}
+
+.pop__btn--remove {
+  padding: 14px 23px;
+  margin-bottom: 8px;
+}
+
+.pop__btn:hover {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  /* border: none; */
+  transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pop_btn-info {
+  /* display: flex;
+    flex-wrap: nowrap; */
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.2px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: rgba(17, 17, 17, 0.5);
+  margin-left: 46px;
+  margin-right: 46px;
+  word-wrap: break-word;
+
+
+}
+
+.pop_container {
+  margin-bottom: 40px;
+}
+
+/* .pop_notification{
+    text-align: center;
+} */
+
+
+@media screen and (max-width: 767px) {
+  .modal {
+    max-width: 335px;
+  }
+}
+
+
+
+
+@media screen and (min-width: 768px) {
+
+  .modal {
+
+    width: 579px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .modal-icon {
+    width: 28px;
+    height: 28px;
+    top: 24px;
+    right: 24px;
+  }
+
+
+  .pop-info {
+    display: flex;
+    margin: 40px 44px 40px 40px;
+  }
+
+  .photo {
+    width: 192px;
+    height: auto;
+    margin-bottom: 0;
+    margin-right: 24px;
+  }
+
+  .pop_name {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 8px;
+  }
+
+  .pop_container {
+    margin-left: 24px;
+
+
+  }
+
+  .pop_author {
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 20px;
+
+  }
+
+  .pop_description {
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .pop__btn {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 100px;
+    gap: 10px;
+
+  }
+.btn_wrapper{
+  margin: 0 40px 40px 40px;
+}
+
+}
+
+.pop_list-img {
+  color: #111111;
 }
