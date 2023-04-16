@@ -3,8 +3,14 @@ const bookTopAPI = new BookService();
 import { showError } from './notify.js';
 
 const amazonPic = new URL('../images/shop-icons/amazon.jpg', import.meta.url);
-const applebooksPic = new URL('../images/shop-icons/applebooks.jpg', import.meta.url);
-const bookstore_shopPic = new URL('../images/shop-icons/bookstore.jpg', import.meta.url);
+const applebooksPic = new URL(
+  '../images/shop-icons/applebooks.jpg',
+  import.meta.url
+);
+const bookstore_shopPic = new URL(
+  '../images/shop-icons/bookstore.jpg',
+  import.meta.url
+);
 
 // import applebooksPic from '../images/shop-icons/applebooks.jpg';
 // import applebooksPic from '../images/shop-icons/bookstore.jpg';
@@ -19,8 +25,8 @@ const popTextEl = document.querySelector('.pop-text');
 const backdropBtn = document.querySelector('.backdrop');
 const blocBtnEl = document.querySelector('.btn_wrapper');
 
-
 let arrayBookIs = [];
+let arrayBookShopIs = [];
 
 export function handleShowPop(event) {
   const infoPopEl = document.querySelector('.pop-info');
@@ -47,13 +53,13 @@ export function handleShowPop(event) {
       </h2>
       <p class="pop_author">${dataId.author || 'The author is unknown'}</p>
       <p class="pop_description">
-        ${dataId.description || 'There is no description <br />Слава Україні!'}
+        ${dataId.description || 'There is no description <br/><br/>Слава Україні!<br/>Смерть ворогам!'}
       </p>
       <ul class="pop_shop list"></ul>
       </div>     
           `
       );
-      
+
       const popListEl = document.querySelector('.pop_shop');
       dataId.buy_links.map(el => {
         if (el.name === 'Amazon') {
@@ -114,58 +120,62 @@ export function handleShowPop(event) {
         }
       });
       toggleModal();
-      let bookLocalIs;
-      
-      if (!dataId.add) {
-        dataId.add = 'is';
-      };
-      // 
-      console.log('1');
-      console.log(dataId.add);
-        // 
-      let arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
-      let arrayBookShopIs = JSON.parse(localStorage.getItem('book-add')) || []; 
-      if (!arrayBookIs.includes(dataId)) {
-        console.log('No Is');
-        arrayBookIs.push(dataId);
-        localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
-      };
-      console.log('2');
-      console.log(dataId.add);
-      bookLocalIs = dataId;
-      console.log('3');
-      console.log(bookLocalIs.add);
-      bookLocalIs.add = 'isAdded';
-      console.log('4');
-      console.log(bookLocalIs.add);
 
-      if (!arrayBookShopIs.includes(bookLocalIs)) {        
-          bookLocalIs.add = 'is';
-          console.log('No Shop');
-          console.log('5');
-        console.log(bookLocalIs.add);
-        }; 
-        console.log('6');
-        console.log(bookLocalIs.add);
+      const bookIsID = dataId._id;
+      let bookLocalIs;
+
+      console.log(bookIsID);
+
+      arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
+      arrayBookShopIs = JSON.parse(localStorage.getItem('book-add')) || [];
+
+      arrayBookShopIs.map(el => {
+        if (el._id === bookIsID) {
+          bookLocalIs = el;
+        }
+      });
+      console.log('data 0');
+      console.log(bookLocalIs);      
+      //
+      if (!bookLocalIs) {
+        arrayBookIs.map(el => {
+          if (el._id === bookIsID) {
+            bookLocalIs = el;
+           
+          }
+        });
+      };
+      console.log('btn 2');
+      console.log(bookLocalIs);
+
+      if (!bookLocalIs) {        
+        bookLocalIs = dataId;
+            bookLocalIs.add = 'is';
+            console.log('No Is');
+            arrayBookIs.push(bookLocalIs);
+            localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
+          };
+          console.log('data 2');
+      console.log(arrayBookIs);
+      console.log(arrayBookShopIs);
+      console.log(bookLocalIs.add);
+      bookLocalIs = bookLocalIs;      
 
       const popBtn = document.querySelector('.pop__btn');
       if (bookLocalIs.add === 'isAdded') {
         popBtn.innerHTML = 'remove from the shopping list';
-        popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+        popTextEl.innerHTML =
+          'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
       }
       if (bookLocalIs.add === 'is') {
         popBtn.innerHTML = 'Add to shopping list';
         popTextEl.innerHTML = '';
-      };
-      console.log('7');
-        console.log(bookLocalIs.add);
- 
-      
-
-      
+      }
+      console.log('book 7');
+      console.log(bookLocalIs.add);
+      return;
     })
-     
-    
+
     .catch(error => {
       console.log(error);
       showError(error.message);
@@ -191,8 +201,8 @@ const closeIfNoModal = e => {
     e.target.parentNode !== popEl &&
     e.target.parentNode !== backdropEl &&
     e.target.parentNode !== modalEl &&
-    e.target.parentNode !== blocBtnEl &&   
-    e.target.parentNode.parentNode !== popEl 
+    e.target.parentNode !== blocBtnEl &&
+    e.target.parentNode.parentNode !== popEl
   ) {
     closeModal();
   }
@@ -200,13 +210,19 @@ const closeIfNoModal = e => {
 backdropBtn.addEventListener('click', closeIfNoModal);
 
 // КНОПКА
-
 const handleDoBtn = e => {
-  
+  //
+
+  console.log('btn 1');
+  console.log(arrayBookIs);
+  //
+
   const sourceID = e.target.parentNode.previousElementSibling.firstChild.id;
   let bookLocalSt;
 
-  let arrayBookAdd = JSON.parse(localStorage.getItem('book-add')) || [];
+  console.log(e.target.parentNode.previousElementSibling.firstChild);
+
+  arrayBookAdd = JSON.parse(localStorage.getItem('book-add')) || [];
 
   arrayBookAdd.map(el => {
     if (el._id === sourceID) {
@@ -214,6 +230,10 @@ const handleDoBtn = e => {
     }
   });
 
+  //
+  console.log('btn 2');
+  console.log(bookLocalSt);
+  //
   if (!bookLocalSt) {
     arrayBookIs.map(el => {
       if (el._id === sourceID) {
@@ -222,10 +242,14 @@ const handleDoBtn = e => {
       }
     });
   }
-
+  //
+  console.log('btn 2');
+  console.log(bookLocalSt);
+  //
   if (bookLocalSt.add === 'is') {
     popBtn.innerHTML = 'remove from the shopping list';
-    popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+    popTextEl.innerHTML =
+      'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
 
     if (!arrayBookAdd.includes(bookLocalSt) && bookLocalSt.add === 'is') {
       bookLocalSt.add = 'isAdded';
@@ -251,4 +275,3 @@ const handleDoBtn = e => {
   }
 };
 popBtn.addEventListener('click', handleDoBtn);
-
