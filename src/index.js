@@ -1,5 +1,6 @@
 import './js/categories';
 import './js/toggle-switch';
+import './js/active-page';
 import './js/mobile-menu';
 import './js/best-sellers';
 import './js/support-slider';
