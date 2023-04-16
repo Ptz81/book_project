@@ -32,13 +32,6 @@
 
 .logo {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 18px;
-    margin-bottom: 18px;
-    gap: 8px;
-    width: 83px;
-    height: 28px;
 
     @media screen and (min-width: 768px) {
         margin-right: 32px; 
@@ -52,6 +45,9 @@
 
 .logo__link {
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .logo__icon {
@@ -59,6 +55,10 @@
         width: 25px;
         height: 25px;
     }
+}
+
+.logo__text {
+    fill: var(--menu-icon-color);
 }
 
 .menu {
@@ -69,9 +69,6 @@
         
     }
     
-    // @media screen and (min-width: 1200px) {
-    //     width: 214px;
-    // }
 }
 
 .menu__list {
@@ -105,6 +102,15 @@
     }
 }
 
+.menu__svg {
+    fill: var(--menu-icon-color);
+
+}
+
+.shop-link:hover .menu__svg {
+    fill: var(--color-black);
+}
+
 .current {
     background-color: var(--color-yellow);
     color: var(--color-black);
@@ -112,11 +118,13 @@
 
 .shop-link {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
     padding: 7px 16px;
     gap: 4px;
+
+    @media screen and (max-width:767px) {
+        margin-top: 16px;
+    }
 }
 
 .header-btn {
@@ -138,17 +146,30 @@
     }
 }
 
-.header-btn__img {
+.header-btn__circle {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background-color: #F6F6F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 9px;
+}
+
+.header-btn__img {
+    fill: var(--color-blue);
 }
 
 .header-btn__svg {
     margin-left: 4px;
+    transform: rotate(180deg);
+    fill: var(--color-white);
 }
 
 .switch {
     margin-left: auto;
-    margin-right: 14px;
+    margin-right: 34px;
 
     @media screen and (min-width: 768px) {
         margin-right: 24px;
@@ -203,7 +224,6 @@
     padding: 0;
     background-color: transparent;
     border: none;
-    outline: none;
 
     @media screen and (min-width: 768px) {
         display: none;
@@ -212,7 +232,7 @@
 
 }
 
-.menu-toggle__svg {
+.menu-toggle__svg, .icon-menu {
     fill: var(--menu-icon-color);
     &:hover {
         fill: var(--color-blue);
@@ -256,6 +276,21 @@
     letter-spacing: -0.02em;
 }
 
+.mobile-user__circle {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background-color: #F6F6F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.mobile-user__svg {
+    fill: var(--color-blue);
+}
+
 .mobile-menu {
     margin-top: 126px;
     display: flex;
@@ -264,9 +299,9 @@
     
 }
 
+
 .mobile-menu__link {
     text-decoration: none;
-    display: block;
     padding: 8px 16px;
     color: var(--color-white);
     font-family: var(--font-family-primary);
@@ -295,6 +330,10 @@
 .mobile-menu__link .current {
     background-color: var(--color-yellow);
     color: var(--color-black);
+}
+
+.mobile-menu__svg {
+    fill: var(--color-white);
 }
 
 
