@@ -1,81 +1,83 @@
-<form class="auth-form">
-  <button class="auth-form__close" type="button">
-    <svg>
-      <use href="./images/sprite.svg#icon-close-new"></use>
-    </svg>
-  </button>
+<!-- Auth form -->
+<div data-backdrop hidden>
+  <form class="auth-form">
+    <button class="auth-form__close" type="button">
+      <svg>
+        <use href="./images/sprite.svg#icon-close-new"></use>
+      </svg>
+    </button>
 
-  <!-- name -->
-  <label class="auth-form__field" data-name>
-    <input
-      class="auth-form__input"
-      type="text"
-      name="name"
-      placeholder="name"
-    />
-  </label>
-
-  <!-- email -->
-  <label class="auth-form__field">
-    <input
-      class="auth-form__input"
-      type="email"
-      name="email"
-      placeholder="email"
-      required
-    />
-    <svg class="auth-form__icon">
-      <use href="./images/sprite.svg#icon-mail-new"></use>
-    </svg>
-  </label>
-
-  <!-- password -->
-  <div class="auth-form__password">
-    <label class="auth-form__field" data-pass>
+    <!-- name -->
+    <label class="auth-form__field" data-name>
       <input
         class="auth-form__input"
-        type="password"
-        name="password"
-        placeholder="password"
+        type="text"
+        name="name"
+        placeholder="name"
+      />
+    </label>
+
+    <!-- email -->
+    <label class="auth-form__field">
+      <input
+        class="auth-form__input"
+        type="email"
+        name="email"
+        placeholder="email"
         required
       />
       <svg class="auth-form__icon">
-        <use href="./images/sprite.svg#icon-lock-new"></use>
+        <use href="./images/sprite.svg#icon-mail-new"></use>
       </svg>
     </label>
 
-    <!-- show password -->
-    <label class="auth-form__show-pass">
-      <input type="checkbox" />
-      <span>Show password</span>
-    </label>
-  </div>
+    <!-- password -->
+    <div class="auth-form__password">
+      <label class="auth-form__field" data-pass>
+        <input
+          class="auth-form__input"
+          type="password"
+          name="password"
+          placeholder="password"
+          required
+        />
+        <svg class="auth-form__icon">
+          <use href="./images/sprite.svg#icon-lock-new"></use>
+        </svg>
+      </label>
 
-  <!-- submit -->
-  <button class="auth-form__submit" type="submit">
-    <span>sign in</span>
-  </button>
+      <!-- show password -->
+      <label class="auth-form__show-pass">
+        <input type="checkbox" />
+        <span>Show password</span>
+      </label>
+    </div>
 
-  <!-- form type -->
-  <fieldset class="auth-form__type">
-    <label>
-      <input
-        class="auth-form__radio"
-        type="radio"
-        name="formType"
-        data-signup
-      />
-      <span>sign up</span>
-    </label>
-    <label>
-      <input
-        class="auth-form__radio"
-        type="radio"
-        name="formType"
-        checked
-        data-signin
-      />
+    <!-- submit -->
+    <button class="auth-form__submit" type="submit">
       <span>sign in</span>
-    </label>
-  </fieldset>
-</form>
+    </button>
+
+    <!-- form type -->
+    <fieldset class="auth-form__mode">
+      <label>
+        <input
+          class="auth-form__radio"
+          type="radio"
+          name="formMode"
+          value="signup"
+        />
+        <span>sign up</span>
+      </label>
+      <label>
+        <input
+          class="auth-form__radio"
+          type="radio"
+          name="formMode"
+          value="signin"
+        />
+        <span>sign in</span>
+      </label>
+    </fieldset>
+  </form>
+</div>

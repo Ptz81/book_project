@@ -5,4 +5,6 @@ export default firebaseConfig = {
   storageBucket: 'books-auth-6c80b.appspot.com',
   messagingSenderId: '546342914146',
   appId: '1:546342914146:web:ec4e762f69e1bd0d1be93b',
+  databaseURL:
+    'https://books-auth-6c80b-default-rtdb.europe-west1.firebasedatabase.app/',
 };
