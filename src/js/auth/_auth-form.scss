@@ -145,7 +145,7 @@ $bgiCheckMark: "data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 16
 
   &:hover,
   &:focus-visible {
-    color: var(--color-gray-lighter);
+    color: var(--color-grey-lighter);
     background-color: var(--color-blue);
   }
 }
@@ -191,10 +191,10 @@ $bgiCheckMark: "data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 16
 }
 
 //
-// type option
+// mode option
 //
 
-.auth-form__type {
+.auth-form__mode {
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -208,7 +208,7 @@ $bgiCheckMark: "data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 16
   border: unset;
 }
 
-.auth-form__type label {
+.auth-form__mode label {
   cursor: pointer;
   user-select: none;
 }

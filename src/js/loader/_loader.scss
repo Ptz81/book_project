@@ -1,30 +1,3 @@
-.js-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  background-color: var(--color-backdrop);
-
-  opacity: 1;
-  visibility: visible;
-  transition: visibility var(--transition-params),
-    opacity var(--transition-params);
-
-  overflow: auto;
-
-  &--hidden {
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-  }
-}
-
-//
-// Loader
-//
-
 .js-loader {
   position: absolute;
   top: 50%;
