@@ -18,12 +18,7 @@ const popBtn = document.querySelector('.pop__btn');
 const popTextEl = document.querySelector('.pop-text');
 const backdropBtn = document.querySelector('.backdrop');
 const blocBtnEl = document.querySelector('.btn_wrapper');
-const popWrapperEl = document.querySelector('.pop_wrapper');
 
-const pop_nameEl = document.querySelector('.pop_name');
-const pop_authorEl = document.querySelector('.pop_author');
-const pop_descriptionEl = document.querySelector('.pop_description');
-const pop_listEl = document.querySelector('.pop_shop list');
 
 let arrayBookIs = [];
 
@@ -58,6 +53,7 @@ export function handleShowPop(event) {
       </div>     
           `
       );
+      
       const popListEl = document.querySelector('.pop_shop');
       dataId.buy_links.map(el => {
         if (el.name === 'Amazon') {
@@ -202,19 +198,13 @@ function closeModal() {
   modalPopEl.classList.add('is-hidden');
 }
 const closeIfNoModal = e => {
-  console.log(e.target);
-  console.log(e.target.parentNode);
   if (
     e.target !== modalEl &&
     e.target.parentNode !== popEl &&
     e.target.parentNode !== backdropEl &&
     e.target.parentNode !== modalEl &&
-    e.target.parentNode !== blocBtnEl &&
-    e.target.parentNode !== popWrapperEl
-    // e.target !== pop_nameEl &&
-    // e.target !== pop_authorEl &&
-    // e.target !== pop_descriptionEl &&
-    // e.target !== pop_listEl
+    e.target.parentNode !== blocBtnEl &&   
+    e.target.parentNode.parentNode !== popEl 
   ) {
     closeModal();
   }
