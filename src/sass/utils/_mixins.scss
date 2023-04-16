@@ -1,12 +1,16 @@
-@mixin alignment($positionAI: stretch, $positionJC: flex-start, $direction: row) {
-    display: flex;
-    align-items: $positionAI;
-    justify-content: $positionJC;
-    flex-direction: $direction;
-  }
+@mixin alignment(
+  $positionAI: stretch,
+  $positionJC: flex-start,
+  $direction: row
+) {
+  display: flex;
+  align-items: $positionAI;
+  justify-content: $positionJC;
+  flex-direction: $direction;
+}
 
-  @mixin transition($property...) {
-    transition-property: $property;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
+@mixin transition($property...) {
+  transition-property: $property;
+  transition-duration: var(--transition-delay);
+  transition-timing-function: var(--transition-timing-func);
+}

@@ -25,3 +25,10 @@ export function showWarn(v, opts) {
   const { message } = v || '';
   return Notify.warning(message || v, opts);
 }
+
+export default {
+  showError,
+  showInfo,
+  showSuccess,
+  showWarn,
+};

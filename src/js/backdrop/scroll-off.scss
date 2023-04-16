@@ -1,0 +1,6 @@
+.scroll-off {
+  position: fixed;
+  top: calc(var(--scroll-top) * -1px);
+  overflow-y: scroll;
+  width: 100%;
+}
