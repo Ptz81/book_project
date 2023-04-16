@@ -114,69 +114,57 @@ export function handleShowPop(event) {
         }
       });
       toggleModal();
+      let bookLocalIs;
+      
       if (!dataId.add) {
         dataId.add = 'is';
-      }
+      };
+      // 
+      console.log('1');
+      console.log(dataId.add);
+        // 
+      let arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
+      let arrayBookShopIs = JSON.parse(localStorage.getItem('book-add')) || []; 
+      if (!arrayBookIs.includes(dataId)) {
+        console.log('No Is');
+        arrayBookIs.push(dataId);
+        localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
+      };
+      console.log('2');
+      console.log(dataId.add);
+      bookLocalIs = dataId;
+      console.log('3');
+      console.log(bookLocalIs.add);
+      bookLocalIs.add = 'isAdded';
+      console.log('4');
+      console.log(bookLocalIs.add);
+
+      if (!arrayBookShopIs.includes(bookLocalIs)) {        
+          bookLocalIs.add = 'is';
+          console.log('No Shop');
+          console.log('5');
+        console.log(bookLocalIs.add);
+        }; 
+        console.log('6');
+        console.log(bookLocalIs.add);
+
       const popBtn = document.querySelector('.pop__btn');
-      if (dataId.add === 'isAdded') {
+      if (bookLocalIs.add === 'isAdded') {
         popBtn.innerHTML = 'remove from the shopping list';
         popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
       }
-      if (dataId.add === 'is') {
+      if (bookLocalIs.add === 'is') {
         popBtn.innerHTML = 'Add to shopping list';
         popTextEl.innerHTML = '';
-      }
+      };
+      console.log('7');
+        console.log(bookLocalIs.add);
+ 
+      
 
-      arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
-
-      if (!arrayBookIs.includes(dataId)) {
-        arrayBookIs.push(dataId);
-        localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
-      }
+      
     })
-      // console.log('1');
-      // console.log(dataId);
-
-      // let arrayBookShop = JSON.parse(localStorage.getItem('book-add')) || []; 
-      // arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
-      // // is
-      // if (!dataId.add) {
-      //   dataId.add = 'is';
-      // };
-      // console.log('2');
-      // console.log(dataId);
-      
-      // if (!arrayBookIs.includes(dataId)) {
-      //   arrayBookIs.push(dataId);
-      //   localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
-        
-      //   console.log('3');
-      // console.log(dataId);
-      // }
-        
      
-      // if (arrayBookShop.includes(dataId) && dataId.add === 'is') {        
-      //   dataId.add = 'isAdded';
-      //   console.log('4');
-      // console.log(dataId);
-      // }; 
-      
-      // console.log('5');
-      // console.log(dataId);    
-
-      // console.log(dataId.add);
-      
-      // if (dataId.add === 'isAdded' ) {
-      //   popBtn.innerHTML = 'remove from the shopping list';
-      //   popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
-        
-      // }
-      // if (dataId.add === 'is') {
-      //   popBtn.innerHTML = 'Add to shopping list';
-      //   popTextEl.innerHTML = '';
-        
-      // };
-   
     
     .catch(error => {
       console.log(error);
