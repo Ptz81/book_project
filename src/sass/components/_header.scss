@@ -107,13 +107,17 @@
 
 }
 
-.shop-link:hover .menu__svg {
+.shop-link:hover .menu__svg, .shop-link:hover .mobile-menu__svg {
     fill: var(--color-black);
 }
 
 .current {
     background-color: var(--color-yellow);
     color: var(--color-black);
+}
+
+.current .menu__svg {
+    fill: var(--color-black);
 }
 
 .shop-link {
@@ -232,7 +236,7 @@
 
 }
 
-.menu-toggle__svg, .icon-menu {
+.menu-toggle__svg {
     fill: var(--menu-icon-color);
     &:hover {
         fill: var(--color-blue);
@@ -254,10 +258,19 @@
   
     transform: translateX(100%);
     transition: transform 250ms ease-in-out;
+
 }
   
 .menu-container.is-open {
     transform: translateX(0);
+}
+
+.menu-container__image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
 }
 
 .mobile-user {
