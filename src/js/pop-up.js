@@ -2,18 +2,34 @@ import BookService from './book-service';
 const bookTopAPI = new BookService();
 import { showError } from './notify.js';
 
+const amazonPic = new URL('../images/shop-icons/amazon.jpg', import.meta.url);
+const applebooksPic = new URL('../images/shop-icons/applebooks.jpg', import.meta.url);
+const bookstore_shopPic = new URL('../images/shop-icons/bookstore.jpg', import.meta.url);
+
+// import applebooksPic from '../images/shop-icons/applebooks.jpg';
+// import applebooksPic from '../images/shop-icons/bookstore.jpg';
+
 const modalPopEl = document.querySelector('[data-modal]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
 const modalEl = document.querySelector('.modal');
-const popEl = document.querySelector('.pop-info'); 
+const popEl = document.querySelector('.pop-info');
 const backdropEl = document.querySelector('.backdrop is-hidden');
+const popBtn = document.querySelector('.pop__btn');
+const popTextEl = document.querySelector('.pop-text');
+const backdropBtn = document.querySelector('.backdrop');
+const blocBtnEl = document.querySelector('.btn_wrapper');
+const popWrapperEl = document.querySelector('.pop_wrapper');
+
+const pop_nameEl = document.querySelector('.pop_name');
+const pop_authorEl = document.querySelector('.pop_author');
+const pop_descriptionEl = document.querySelector('.pop_description');
+const pop_listEl = document.querySelector('.pop_shop list');
+
 let arrayBookIs = [];
 
 export function handleShowPop(event) {
   const infoPopEl = document.querySelector('.pop-info');
-  const popId = event.target.id;  
-  console.log(event.target);
-
+  const popId = event.target.id;
   const bookID = new BookService();
   bookID
     .getBooksById(popId)
@@ -23,17 +39,23 @@ export function handleShowPop(event) {
       infoPopEl.insertAdjacentHTML(
         'beforeend',
         `<img
-              class="photo"
-              src="${dataId.book_image}"
-              alt="${dataId.author}"
-              loading="lazy"
-            />
-            
-         <p class="pop_name">${dataId.list_name}</p>
-         <p class="pop_author">${dataId.author}</p>
-         <p class="pop_description">${dataId.description}</p>
-         <ul class="pop_shop list"></ul>
-            
+        class="photo"
+        src="${dataId.book_image || '/src/images/sprite.svg#icon-ukraine'}"
+        alt="${dataId.list_name || 'There is no book title'}"
+        loading="lazy"
+        id="${dataId._id}"
+      />
+      
+      <div class='pop_wrapper'>
+      <h2 class="pop_name">
+        ${dataId.list_name || 'There is no book title'}
+      </h2>
+      <p class="pop_author">${dataId.author || 'The author is unknown'}</p>
+      <p class="pop_description">
+        ${dataId.description || 'There is no description <br />Слава Україні!'}
+      </p>
+      <ul class="pop_shop list"></ul>
+      </div>     
           `
       );
       const popListEl = document.querySelector('.pop_shop');
@@ -41,18 +63,16 @@ export function handleShowPop(event) {
         if (el.name === 'Amazon') {
           popListEl.insertAdjacentHTML(
             'beforeend',
-            `<li>
+            `<li class="pop_shop-item">
                   <a
                     class="pop_shop__link link"
                     href="${el.url}"
                     target="_blank"
                     rel="noopener noreferrer"
                     ><img
-                      class="pop_shop__icon"
-                      src="${dataId.book_image}"
-                      alt="Amazon"
-                      width="40"
-                      height="40"
+                      class="pop_list-img"
+                      src="${amazonPic}" 
+                      alt="amazon_shop_icon"
                     />
                   </a>
                 </li>           
@@ -62,18 +82,16 @@ export function handleShowPop(event) {
         if (el.name === 'Apple Books') {
           popListEl.insertAdjacentHTML(
             'beforeend',
-            `<li>
+            `<li class="pop_shop-item">
                   <a
                     class="pop_shop__link link"
                     href="${el.url}"
                     target="_blank"
                     rel="noopener noreferrer"
                     ><img
-                      class="pop_shop__icon"
-                      src="${dataId.book_image}"
-                      alt="Apple Books"
-                      width="40"
-                      height="40"
+                      class="pop_list-img"
+                      src="${applebooksPic}" 
+                      alt="applebooks_shop_icon"
                     />
                   </a>
                 </li>`
@@ -82,18 +100,16 @@ export function handleShowPop(event) {
         if (el.name === 'Bookshop') {
           popListEl.insertAdjacentHTML(
             'beforeend',
-            `<li>
+            `<li class="pop_shop-item">
                   <a
                     class="pop_shop__link link"
                     href="${el.url}"
                     target="_blank"
                     rel="noopener noreferrer"
                     ><img
-                      class="pop_shop__icon"
-                      src="${dataId.book_image}"
-                      alt="Bookshop"
-                      width="40"
-                      height="40"
+                      class="pop_list-img"
+                      src="${bookstore_shopPic}" 
+                      alt="bookstore_shop_icon"
                     />
                   </a>
                   </li>
@@ -102,45 +118,70 @@ export function handleShowPop(event) {
         }
       });
       toggleModal();
-      //3
       if (!dataId.add) {
         dataId.add = 'is';
       }
       const popBtn = document.querySelector('.pop__btn');
       if (dataId.add === 'isAdded') {
         popBtn.innerHTML = 'remove from the shopping list';
+        popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
       }
       if (dataId.add === 'is') {
         popBtn.innerHTML = 'Add to shopping list';
+        popTextEl.innerHTML = '';
       }
-      //записую карточку
-    //   alert(`зайшов${arrayBookIs}`);
+
       arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
-    //   alert(`подивилася ЛОК${arrayBookIs}`);
+
       if (!arrayBookIs.includes(dataId)) {
         arrayBookIs.push(dataId);
         localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
       }
-
-      console.log(dataId.add);
-      console.log(dataId._id);
-      console.log(arrayBookIs);
-    //   alert(`вийшов${arrayBookIs}`);
-
-    //   const handleDoBtn = () => {
-    //     alert('hello');
-    //     if (dataId.add === 'is') {
-    //       alert('hello2');
-    //       popBtn.innerHTML = 'remove from the shopping list';
-    //       //додавання
-    //       dataId.add = 'isAdded';
-    //       alert(dataId.add);
-    //       console.log(dataId.add);
-    //     }
-    //   };
-    //   popBtn.addEventListener('click', handleDoBtn);
-      //3
     })
+      // console.log('1');
+      // console.log(dataId);
+
+      // let arrayBookShop = JSON.parse(localStorage.getItem('book-add')) || []; 
+      // arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
+      // // is
+      // if (!dataId.add) {
+      //   dataId.add = 'is';
+      // };
+      // console.log('2');
+      // console.log(dataId);
+      
+      // if (!arrayBookIs.includes(dataId)) {
+      //   arrayBookIs.push(dataId);
+      //   localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
+        
+      //   console.log('3');
+      // console.log(dataId);
+      // }
+        
+     
+      // if (arrayBookShop.includes(dataId) && dataId.add === 'is') {        
+      //   dataId.add = 'isAdded';
+      //   console.log('4');
+      // console.log(dataId);
+      // }; 
+      
+      // console.log('5');
+      // console.log(dataId);    
+
+      // console.log(dataId.add);
+      
+      // if (dataId.add === 'isAdded' ) {
+      //   popBtn.innerHTML = 'remove from the shopping list';
+      //   popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+        
+      // }
+      // if (dataId.add === 'is') {
+      //   popBtn.innerHTML = 'Add to shopping list';
+      //   popTextEl.innerHTML = '';
+        
+      // };
+   
+    
     .catch(error => {
       console.log(error);
       showError(error.message);
@@ -159,14 +200,77 @@ function toggleModal() {
 }
 function closeModal() {
   modalPopEl.classList.add('is-hidden');
+}
+const closeIfNoModal = e => {
+  console.log(e.target);
+  console.log(e.target.parentNode);
+  if (
+    e.target !== modalEl &&
+    e.target.parentNode !== popEl &&
+    e.target.parentNode !== backdropEl &&
+    e.target.parentNode !== modalEl &&
+    e.target.parentNode !== blocBtnEl &&
+    e.target.parentNode !== popWrapperEl
+    // e.target !== pop_nameEl &&
+    // e.target !== pop_authorEl &&
+    // e.target !== pop_descriptionEl &&
+    // e.target !== pop_listEl
+  ) {
+    closeModal();
+  }
 };
-const closeIfNoModal = (e) => {
-    console.log(e.target);
-    console.log(e.target.parentNode);
-    
-    if ((e.target) !== modalEl && (e.target.parentNode) !== popEl && (e.target.parentNode) !== backdropEl) {
-        closeModal();
-    }   
+backdropBtn.addEventListener('click', closeIfNoModal);
+
+// КНОПКА
+
+const handleDoBtn = e => {
+  
+  const sourceID = e.target.parentNode.previousElementSibling.firstChild.id;
+  let bookLocalSt;
+
+  let arrayBookAdd = JSON.parse(localStorage.getItem('book-add')) || [];
+
+  arrayBookAdd.map(el => {
+    if (el._id === sourceID) {
+      bookLocalSt = el;
+    }
+  });
+
+  if (!bookLocalSt) {
+    arrayBookIs.map(el => {
+      if (el._id === sourceID) {
+        bookLocalSt = el;
+        bookLocalSt.add = 'is';
+      }
+    });
+  }
+
+  if (bookLocalSt.add === 'is') {
+    popBtn.innerHTML = 'remove from the shopping list';
+    popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+
+    if (!arrayBookAdd.includes(bookLocalSt) && bookLocalSt.add === 'is') {
+      bookLocalSt.add = 'isAdded';
+      arrayBookAdd.push(bookLocalSt);
+      localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
+    }
+
+    return;
+  }
+  if (arrayBookAdd.includes(bookLocalSt)) {
+    popBtn.innerHTML = 'Add to shopping list';
+    popTextEl.innerHTML = '';
+    const index = arrayBookAdd.indexOf(bookLocalSt);
+    if (index !== -1) {
+      arrayBookAdd.splice(index, 1);
+    }
+    bookLocalSt.add = 'is';
+    localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
+
+    bookLocalSt.add = 'is';
+
+    return;
+  }
 };
-document.addEventListener('click', closeIfNoModal);
+popBtn.addEventListener('click', handleDoBtn);
 
