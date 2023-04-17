@@ -1,13 +1,4 @@
-import { pathToBook, pathToAmazon, pathAppleBooks, pathBookShop, pathToDump } from './shopping-list/paths';
-
-// import renderShoppingListMarkUp from './shopping-list/render-markup';
-
-const shoppingList = document.querySelector('.shopping-cart__list');
-const shoppingCart = document.querySelector('.shopping-cart');
-
-let arrayBookAdd = JSON.parse(localStorage.getItem('book-add')) || [];
-
-function renderShoppingListMarkUp(books) {
+export const renderShoppingListMarkUp = books => {
   books.map(
     ({ _id, book_image, title, list_name, description, author, buy_links }) => {
       // console.log(Object.values(buy_links));
@@ -74,65 +65,4 @@ function renderShoppingListMarkUp(books) {
       );
     }
   );
-}
-isAddedBooks(arrayBookAdd);
-// createEmptyCart();
-
-function isAddedBooks(array) {
-  if (array.length > 0) {
-    renderShoppingListMarkUp(array);
-  } else {
-    createEmptyCart();
-  }
-}
-
-function createEmptyCart() {
-  shoppingCart.insertAdjacentHTML(
-    'beforeend',
-    `
-        <div class="shopping-cart__warning"><p class="shopping-cart__warning-text">This page is empty, add some books and proceed to order.</p>
-<img src = "${pathToBook}" class="shopping-cart__warning-img"></div>
-        `
-  );
-}
-// try {
-//   const deleteBtn = document.querySelector('.shopping-cart__btn-delete');
-//   console.log(deleteBtn);
-// } catch {}
-function clearMarkup() {
-  shoppingList.innerHTML = '';
-}
-// function handleDeleteSelectedItem() {
-//   console.log('text');
-
-//   clearMarkup();
-//   book.splice(1, 1);
-//   renderShoppingListMarkUp(book);
-//   console.log(book);
-// }
-
-shoppingList.addEventListener('click', handleCloseCard);
-function handleCloseCard(event) {
-  event.preventDefault();
-  let bookLocalSt = null;
-  if (event.target.closest('button')?.nodeName !== 'BUTTON') {
-    return;
-  }
-  const elToDelete =
-    event.target.closest('button').parentNode.firstElementChild.id;
-  console.log(elToDelete);
-  arrayBookAdd.map(el => {
-    if (el._id === elToDelete) {
-      bookLocalSt = el;
-    }
-  });
-  const index = arrayBookAdd.indexOf(bookLocalSt);
-  console.log(index);
-
-  if (index !== -1) {
-    arrayBookAdd.splice(index, 1);
-    clearMarkup();
-  }
-  localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
-  isAddedBooks(arrayBookAdd);
 }
