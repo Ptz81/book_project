@@ -1,4 +1,4 @@
-export default firebaseConfig = {
+const firebaseConfig = {
   apiKey: 'AIzaSyBWH6JEIbB5mRTDZGLkmd36hfg_lQdJnJc',
   authDomain: 'books-auth-6c80b.firebaseapp.com',
   projectId: 'books-auth-6c80b',
@@ -8,3 +8,5 @@ export default firebaseConfig = {
   databaseURL:
     'https://books-auth-6c80b-default-rtdb.europe-west1.firebasedatabase.app/',
 };
+
+export default firebaseConfig;
