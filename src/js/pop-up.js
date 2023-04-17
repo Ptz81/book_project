@@ -166,13 +166,13 @@ export function handleShowPop(event) {
         popBtn.innerHTML = 'remove from the shopping list';
         popTextEl.innerHTML =
           'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
-        // blocBtnEl.style.marginBottom = '6px';
+        blocBtnEl.style.marginBottom = '6px';
         // popTextEl.style.marginBottom = '12px';
       }
       if (bookLocalIs.add === 'is') {
         popBtn.innerHTML = 'Add to shopping list';
         popTextEl.innerHTML = '';
-        // blocBtnEl.style.marginBottom = '6px';
+        blocBtnEl.style.marginBottom = '6px';
         // popTextEl.style.marginBottom = '12px';
       }
 
@@ -236,7 +236,7 @@ const handleDoBtn = e => {
     popBtn.innerHTML = 'remove from the shopping list';
     popTextEl.innerHTML =
       'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
-    // blocBtnEl.style.marginBottom = '6px';
+    blocBtnEl.style.marginBottom = '6px';
     if (!arrayBookAdd.includes(bookLocalSt) && bookLocalSt.add === 'is') {
       bookLocalSt.add = 'isAdded';
       arrayBookAdd.push(bookLocalSt);
