@@ -42,12 +42,17 @@ export function getCategoryItem(categories) {
   categoriesContainer.innerHTML = '';
 
   const titleH1 = document.createElement('h1');
+  const titleSpan = document.createElement('span');
   const cardList = document.createElement('ul');
 
   titleH1.classList.add('bestsellers__category');
+  titleSpan.classList.add('bestsellers__text-part');
   cardList.classList.add("bestsellers__list");
 
-  titleH1.innerText = "Best Sellers Books"
+  titleH1.innerText = "Best Sellers ";
+  titleSpan.innerText = 'Books';
+
+  titleH1.append(titleSpan);
 
   categoriesContainer.prepend(titleH1, cardList);
       if (categories.length > 0) {
@@ -55,12 +60,12 @@ export function getCategoryItem(categories) {
 
           const listItem = document.createElement('li');
           const titleH2 = document.createElement('h2');
-          const cardsBox = document.createElement('div');
+          const cardsBox = document.createElement('ul');
           const btn = document.createElement('button');      
           
           listItem.classList.add('bestsellers__item');
           titleH2.classList.add('bestsellers__category-type');
-          cardsBox.classList.add('bestsellers__card-box');
+          cardsBox.classList.add('book__list');
           btn.classList.add('btn');
           btn.classList.add('bestsellers__btn');
           
@@ -106,16 +111,21 @@ export function createCardsByCategory(colection) {
   categoriesContainer.innerHTML = '';
 
   const titleH1 = document.createElement('h1');
+  // const titleSpan = document.createElement('span');
   const cardList = document.createElement('ul');
 
   titleH1.classList.add('bestsellers__category');
+  // titleSpan.classList.add('bestsellers__text-part');
   cardList.classList.add("bestsellers__list");
+  cardList.classList.add("single-list");
+
 
   titleH1.innerText = `${colection[0].list_name}`
 
+  // titleH1.append(titleSpan);
   categoriesContainer.prepend(titleH1, cardList);
 
-  cardList.innerHTML = createCards(colection);
+  cardList.innerHTML = markupCardsbyCaterory(colection);
 
 }
 
@@ -123,6 +133,20 @@ export function createCards(colection) {
   return colection.map(({ book_image, title, author, _id }) => {
       return `
         <li class="book__item">
+            <a href="#" class="book__link">
+              <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
+              <h3 class="book__name">${title}</h3>
+              <p class="book__author">${author}</p>
+            </a>
+          </li>`;
+    })
+    .join('');
+}
+
+export function markupCardsbyCaterory(colection) {
+  return colection.map(({ book_image, title, author, _id }) => {
+      return `
+        <li class="book__item single-category">
             <a href="#" class="book__link">
               <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
               <h3 class="book__name">${title}</h3>
