@@ -1,22 +1,42 @@
-// todo: показывать не сразу а с debounce
-
 import './_loader.scss';
 import Backdrop from '../backdrop/backdrop';
+import { isInt } from '../utils';
 
 let backdrop;
 let instance;
+let timerId;
 
 export default class Loader {
   constructor() {
     if (instance) return instance;
 
     const spinner = makeSpinnerPetals('.lds-spinner');
-    backdrop = new Backdrop({ child: spinner });
-
-    this.show = backdrop.show.bind(backdrop);
-    this.hide = backdrop.hide.bind(backdrop);
+    backdrop = new Backdrop({ child: spinner, hideOnClick: false });
 
     instance = this;
+  }
+
+  show({ zindex, delay } = {}) {
+    this.zindex = zindex;
+
+    if (isInt(delay) && delay > 0) {
+      timerId = setTimeout(() => backdrop.show(), delay);
+    } else {
+      backdrop.show();
+    }
+  }
+
+  hide() {
+    timerId = clearTimeout(timerId);
+    backdrop.hide();
+  }
+
+  get zindex() {
+    return backdrop.zindex;
+  }
+
+  set zindex(v) {
+    backdrop.zindex = v;
   }
 }
 

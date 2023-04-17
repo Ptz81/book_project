@@ -1,12 +1,14 @@
 import AuthForm from './auth-form';
 import FirebaseAuth from './firebase/auth';
 import FirebaseDB from './firebase/db';
+import Loader from '../loader/loader';
 import { showError, showSuccess } from '../notify';
 import { isFunc } from '../utils';
 
 const DEF_USERNAME = 'Anonymous';
 const SIGNUP_SUCCESS = 'Glad to welcome you';
 const SIGNIN_SUCCESS = 'Welcome back';
+const SIGNOUT_SUCCESS = 'See you soon';
 
 let instance;
 let currentUser;
@@ -16,6 +18,7 @@ let handleLogout;
 const authForm = new AuthForm();
 const auth = new FirebaseAuth();
 const db = new FirebaseDB(auth);
+const loader = new Loader();
 
 export default class UserAccount {
   constructor() {
@@ -56,12 +59,19 @@ export default class UserAccount {
 }
 
 function greet({ isNewcomer, name }) {
-  showSuccess(`${isNewcomer ? SIGNUP_SUCCESS : SIGNIN_SUCCESS}, ${name} ;-)`);
+  showSuccess(`${isNewcomer ? SIGNUP_SUCCESS : SIGNIN_SUCCESS}, ${name}`);
 }
 
+/**
+ * Вызывается при signOut пользователя из приложения
+ */
 function handleSignedOut() {
+  // чтобы не срабатывало при инициализации firebase auth
+  if (!currentUser) return;
+
+  showSuccess(`${SIGNOUT_SUCCESS}, ${currentUser.name}`);
+  handleLogout && handleLogout(currentUser);
   currentUser = null;
-  handleLogout && handleLogout();
 }
 
 /**
@@ -71,19 +81,24 @@ function handleSignedOut() {
  */
 async function handleFormSubmit(formData) {
   try {
-    authForm.mode === 'signup'
-      ? await handleSignedUp(formData, greet)
-      : await handleSignedIn(formData, greet);
+    // появится над формой
+    loader.show({ zindex: ++authForm.zindex });
+
+    await (authForm.mode === 'signup'
+      ? handleSignedUp(formData, greet)
+      : handleSignedIn(formData, greet));
 
     // корректнее было бы деоегировать auth.onSignedIn,
     // но в момент ее вызова еще не доступен currentUser
     handleLogin && handleLogin(currentUser);
-    authForm.reset();
     authForm.hide();
+    authForm.reset();
 
     // error
   } catch (err) {
     showError(err, { zindex: authForm.zindex });
+  } finally {
+    loader.hide();
   }
 }
 
@@ -94,6 +109,7 @@ async function handleFormSubmit(formData) {
  */
 async function handleSignedUp(formData, callback) {
   const { name, email } = formData;
+
   const cred = await auth.signUp(formData);
   const id = cred.user.uid;
   const userPath = `users/${id}`;
@@ -109,10 +125,11 @@ async function handleSignedUp(formData, callback) {
 /**
  *
  * Инициирует вход пользователя, подтягивая его данные из БД
- * @param {object} formData - данные пользователя из формы {email, name,...}
+ * @param {object} formData - данные пользователя из формы
  */
 async function handleSignedIn(formData, callback) {
   const { name = DEF_USERNAME, email } = formData;
+
   const cred = await auth.signIn(formData);
   const id = cred.user.uid;
   const userPath = `users/${id}`;
