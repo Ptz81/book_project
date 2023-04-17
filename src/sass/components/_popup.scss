@@ -155,6 +155,14 @@
   gap: 20px;
 }
 
+.theme-dark .amazon-link {
+  filter: invert(1);
+}
+
+.theme-dark .bookshop-link {
+  filter: invert(1);
+}
+
 .pop_shop-item {
   margin-right: 20px;
 }

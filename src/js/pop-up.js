@@ -2,16 +2,24 @@ import BookService from './book-service';
 const bookTopAPI = new BookService();
 import { showError } from './notify.js';
 
-const amazonPic = new URL('../images/shop-icons/amazon.jpg', import.meta.url);
+// const amazonPic = new URL('../images/shop-icons/amazon.jpg', import.meta.url);
+// const applebooksPic = new URL(
+//   '../images/shop-icons/applebooks.jpg',
+//   import.meta.url
+// );
+// const bookstore_shopPic = new URL(
+//   '../images/shop-icons/bookstore.jpg',
+//   import.meta.url
+// );
+const amazonPic = new URL('../images/shop-icons/amazon.png', import.meta.url);
 const applebooksPic = new URL(
-  '../images/shop-icons/applebooks.jpg',
+  '../images/shop-icons/applebooks.png',
   import.meta.url
 );
 const bookstore_shopPic = new URL(
-  '../images/shop-icons/bookstore.jpg',
+  '../images/shop-icons/bookstore.png',
   import.meta.url
 );
-
 // import applebooksPic from '../images/shop-icons/applebooks.jpg';
 // import applebooksPic from '../images/shop-icons/bookstore.jpg';
 
@@ -71,7 +79,7 @@ export function handleShowPop(event) {
             'beforeend',
             `<li class="pop_shop-item">
                   <a
-                    class="pop_shop__link link"
+                    class="pop_shop__link link amazon-link"
                     href="${el.url}"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -108,7 +116,7 @@ export function handleShowPop(event) {
             'beforeend',
             `<li class="pop_shop-item">
                   <a
-                    class="pop_shop__link link"
+                    class="pop_shop__link link bookshop-link"
                     href="${el.url}"
                     target="_blank"
                     rel="noopener noreferrer"
