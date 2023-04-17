@@ -8,6 +8,7 @@ Notify.init({
 
 export function showError(v, opts) {
   const { message } = v || '';
+  console.error(v);
   return Notify.failure(message || v, opts);
 }
 
