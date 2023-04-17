@@ -1,17 +1,21 @@
 import BookService from './book-service';
 
 const bs = new BookService();
-// const bestListEl = document.querySelector('.bestsellers__list');
 const categoriesContainer = document.querySelector('[data-name=category]');
 
-let currentRenderWidth = window.innerWidth;
-console.log(currentRenderWidth);
-
-
+let currentRenderWidth = 1280;
 
 categoriesContainer.addEventListener('click', onSeeMoreBtnClick);
-
-
+window.addEventListener('resize', event => {
+  if (
+    (window.innerWidth > 767 && currentRenderWidth < 768) ||
+    (window.innerWidth > 1279 && currentRenderWidth < 1280) ||
+    (window.innerWidth < 1280 && currentRenderWidth > 1279) ||
+    (window.innerWidth < 768 && currentRenderWidth > 767)
+  ) {
+    location.reload();
+  }
+});
 
 function onSeeMoreBtnClick(event) {
   if (event.target.nodeName !== 'BUTTON') {
@@ -49,28 +53,22 @@ export function getCategoryItem(categories) {
       if (categories.length > 0) {
         categories.forEach(category => {
 
-          
-          
           const listItem = document.createElement('li');
           const titleH2 = document.createElement('h2');
           const cardsBox = document.createElement('div');
-          const btn = document.createElement('button');
-
-          
+          const btn = document.createElement('button');      
           
           listItem.classList.add('bestsellers__item');
           titleH2.classList.add('bestsellers__category-type');
           cardsBox.classList.add('bestsellers__card-box');
           btn.classList.add('btn');
           btn.classList.add('bestsellers__btn');
-
           
           titleH2.innerText = category.list_name;
           btn.innerText = 'see more';
 
           cardsBox.setAttribute('id', `${category.list_name}`);         
           btn.setAttribute('data-name', `${category.list_name}`);
-
           
           listItem.prepend(titleH2);
           titleH2.after(cardsBox);
@@ -78,7 +76,7 @@ export function getCategoryItem(categories) {
           cardList.appendChild(listItem);
 
           let data = category.books;
-          
+          currentRenderWidth = window.innerWidth;
                 if (currentRenderWidth < 768) {
                   cardsBox.insertAdjacentHTML(
                     'afterbegin',
@@ -138,6 +136,5 @@ export function createCards(colection) {
 
 // Ola
 import { handleShowPop } from './pop-up.js';
-// function handleShowPop(event) {}
 categoriesContainer.addEventListener('click', handleShowPop);
 // Ola
