@@ -1,6 +1,10 @@
-export const renderShoppingListMarkUp = books => {
+import { pathToAmazon, pathAppleBooks, pathBookShop, pathToDump } from './paths';
+
+const shoppingList = document.querySelector('.shopping-cart__list');
+
+export function renderShoppingListMarkUp(books) {
   books.map(
-    ({ _id, book_image, title, list_name, description, author, buy_links }) => {
+    ({ _id, book_image, title, list_name, description, author, buy_links }) => { 
       // console.log(Object.values(buy_links));
       let linkToAmazon = null;
       let linkToAppleBooks = null;
