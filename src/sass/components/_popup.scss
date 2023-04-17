@@ -33,7 +33,7 @@
   height: 28px;
   background-color: transparent;
   // background-color: white;
-  border: 1px solid white;
+  border: 1px solid transparent;
   border-radius: 50%;
 
   cursor: pointer;
@@ -62,7 +62,7 @@
 .modal {
   width: 95%;
   // height: 100%;
-  // overflow: hidden;
+  // overflow: auto;
   overflow-y: scroll;
   /* width: 100%;
         height: auto; */
