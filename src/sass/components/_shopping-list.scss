@@ -1,10 +1,25 @@
+.shopping-wrapper {
+  @media screen and (min-width: $desktop) {
+    display: flex;
+  }
+  padding-left: 20px;
+  padding-right: 20px;
+  // justify-content: center;
+}
+.shopping-wrapper .nav-support {
+  @media screen and (max-width: $desktop) {
+    display: none;
+  }
+}
+
 .shopping-cart__title {
   font-weight: 700;
   font-size: 32px;
   line-height: 1.08;
   letter-spacing: -0.04em;
   color: var(--color-shop-list-text);
-
+  margin-top: 40px;
+  margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     font-size: 48px;
   }
@@ -12,8 +27,14 @@
 .shopping-cart__title--color-text {
   color: var(--color-blue);
 }
-
+.shopping-cart__list {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
 .shopping-cart__item {
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   display: grid;
   align-items: start;
@@ -23,7 +44,6 @@
   background: var(--color-shop-card-background);
   border: 2px solid rgba(79, 46, 232, 0.4);
   border-radius: 16px;
-
   @media screen and (max-width: 767px) {
     grid-column-gap: 20px;
     grid-template-columns: 98px 1fr;
@@ -35,6 +55,9 @@
   @media screen and (min-width: 768px) {
     width: 704px;
     grid-column-gap: 24px;
+    grid-template-columns: 116px 1fr;
+    grid-auto-rows: minmax(0, auto);
+    grid-auto-columns: minmax(0, auto);
   }
 
   @media screen and (min-width: 1280px) {
@@ -53,16 +76,21 @@
   }
 
   @media screen and (min-width: 767px) {
+    grid-row: 1/3;
+    grid-column: 1/2;
     width: 116px;
     height: 165px;
   }
 }
 .shopping-cart__main-info {
   //   width: 14px;
-  margin-bottom: 24px;
 
   @media screen and (max-width: 768px) {
+    margin-bottom: 24px;
     align-self: start;
+  }
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 14px;
   }
 }
 
@@ -104,19 +132,29 @@
   height: 28px;
   border-radius: 50%;
   margin-left: auto;
+  cursor: pointer;
+  @include transition(transform);
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+  color: var(--color-close-shop-card);
 }
 .delete-icon {
   width: 28px;
   height: 28px;
+  fill: currentColor;
 }
 
 .shopping-cart__book-description {
-  grid-column: 1/3;
-  grid-row: 5/5;
-  // width: 100%;
-  //   position: absolute;
-  //   bottom: 0;
-
+  @media screen and (max-width: $tablet) {
+    grid-column: 1/3;
+    grid-row: 5/5;
+  }
+  @media screen and (min-width: $tablet) {
+    grid-column: 2/3;
+    grid-row: 2/2;
+  }
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.04em;
@@ -124,9 +162,15 @@
 }
 
 .shopping-cart__book-author {
-  grid-row: 4/4;
   font-size: 12px;
   line-height: 1.17;
+  @media screen and (max-width: $tablet) {
+    grid-row: 4/4;
+  }
+  @media screen and (min-width: $tablet) {
+    grid-row: 4/4;
+    grid-column: 2/2;
+  }
   letter-spacing: -0.04em;
   color: var(--color-grey-light);
   margin-bottom: 20px;
@@ -136,12 +180,25 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  grid-row: 2/2;
-  grid-column: 2/2;
-  margin-top: -45px;
+  @media screen and (max-width: $tablet) {
+    grid-row: 2/2;
+    grid-column: 2/2;
+    margin-top: -45px;
+  }
+  @media screen and (min-width: $tablet) {
+    grid-column: 3/3;
+    grid-row: 4/4;
+  }
 }
 
 .shopping-cart__book-shop {
+  @include transition(transform, filter);
+  mix-blend-mode: luminosity;
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 3px 3px var(--color-drop-shadow-shopping-cart));
+  }
   // mix-blend-mode: luminosity;
   // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   // mix-blend-mode: luminosity;
@@ -149,7 +206,7 @@
 }
 
 .store-icon {
-  mix-blend-mode: luminosity;
+  // mix-blend-mode: luminosity;
   // background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
   // mix-blend-mode: luminosity;
 }
