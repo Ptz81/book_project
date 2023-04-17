@@ -151,5 +151,14 @@
         d="M28.444 31.111c-.711 0-1.422-.178-1.956-.711L15.999 19.733 5.51 30.222c-1.067 1.067-2.667 1.067-3.733 0s-1.067-2.667 0-3.733L12.266 16 1.599 5.511c-1.067-1.067-1.067-2.667 0-3.733s2.667-1.067 3.733 0l10.667 10.489L26.488 1.778c1.067-1.067 2.667-1.067 3.733 0s1.067 2.667 0 3.733L19.732 16l10.489 10.489c1.067 1.067 1.067 2.667 0 3.733-.356.711-1.067.889-1.778.889z"
       />
     </symbol>
+    <symbol id="icon-mobile-menu" viewBox="0 0 32 32">
+<path d="M19.8333 11.6666H3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.5 7H3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.5 16.3334H3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.8333 21H3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="icon-mobile-close" viewBox="0 0 32 32">
+<path d="M21 7L7 21M7 7L21 21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
   </defs>
 </svg>
