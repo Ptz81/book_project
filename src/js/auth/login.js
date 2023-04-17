@@ -97,7 +97,6 @@ async function handleFormSubmit(formData) {
     // error
   } catch (err) {
     showError(err, { zindex: authForm.zindex });
-    console.error(err);
   } finally {
     loader.hide();
   }
