@@ -1,0 +1,119 @@
+.backdrop-footer {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+
+  @include transition(opacity);
+}
+.backdrop-footer.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.backdrop-footer.is-hidden .modal-footer {
+  transform: translate(-50%, -50%) scale(0.5);
+}
+.modal-footer {
+  z-index: 100000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  padding: 40px;
+
+  max-width: 355px;
+  width: 100%;
+  overflow-y: scroll;
+  max-height: 600px;
+
+  background-color: var(--color-header-background);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  scrollbar-width: 8px;
+  scrollbar-color: var(--color-nav-scroll);
+
+  @include transition(transform);
+
+  @media screen and(min-width:$tablet) {
+    width: 450px;
+  }
+
+  @media screen and(min-width:$desktop) {
+    min-width: 528px;
+    min-height: 581px;
+  }
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-nav-scroll);
+    border-radius: 12px;
+  }
+}
+.modal-btn-close {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  @include alignment(center, center, row);
+  padding: 0;
+
+  width: 30px;
+  height: 30px;
+
+  color: var(--close-icon-color);
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+
+  @include transition(color);
+
+  &:hover,
+  &:focus {
+    color: var(--close-icon-color-active);
+  }
+}
+.footer__gh {
+  display: flex;
+  width: 50px;
+  height: 50px;
+}
+.footer__name {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(24 / 20);
+  letter-spacing: -0.02em;
+  color: var(--color-category);
+  cursor: pointer;
+  @media screen and (min-width: $tablet) {
+    font-size: 20px;
+    line-height: calc(30 / 20);
+  }
+}
+.footer__teamrole {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: calc(18 / 16);
+  letter-spacing: -0.02em;
+  color: var(--color-category);
+  cursor: pointer;
+  @media screen and (min-width: $tablet) {
+    font-size: 18px;
+    line-height: calc(24 / 18);
+  }
+}
+.footer__wrapper {
+  @include alignment(center, center, column);
+  gap: 20px;
+}
+.footer__item {
+  @include alignment(center, center, column);
+}
