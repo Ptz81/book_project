@@ -62,7 +62,8 @@
 .modal {
   width: 95%;
   // height: 100%;
-  overflow: hidden;
+  // overflow: hidden;
+  overflow-y: scroll;
   /* width: 100%;
         height: auto; */
   position: fixed;
@@ -180,7 +181,7 @@
   font-size: 14px;
   line-height: 1.28;
   text-transform: uppercase;
-
+  color: var(--color-modal-title);
   text-align: center;
   display: flex;
   /* flex-direction: row;
@@ -195,7 +196,8 @@
   margin-bottom: 8px;
 }
 
-.pop__btn:hover {
+.pop__btn:hover,
+ .pop__btn:focus{
   background-color: var(--color-blue);
   color: var(--color-white);
   /* border: none; */
@@ -225,13 +227,13 @@
     text-align: center;
 } */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: $pretablet) {
   .modal {
     max-width: 335px;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $tablet) {
   .modal {
     width: 579px;
     height: auto;

@@ -32,6 +32,7 @@ export default class AuthForm {
 
     this.show = function (mode) {
       setFormMode(mode || initialMode);
+      fitFormByHeight();
       passInput.type = 'password';
       backdrop.show();
     };
@@ -93,15 +94,17 @@ function setFormBaseBehavior() {
   });
 
   // если высота вьюпорта меньше высоты формы - всписываем форму
-  addEventListener('resize', () => {
-    const viewportHeight = document.documentElement.clientHeight;
-    const { height } = authForm.getBoundingClientRect();
+  addEventListener('resize', fitFormByHeight);
+}
 
-    authForm.style.cssText =
-      height >= viewportHeight
-        ? 'top: 10%; transform: translateX(-50%) scale(1);'
-        : null;
-  });
+function fitFormByHeight() {
+  const viewportHeight = document.documentElement.clientHeight;
+  const { height } = authForm.getBoundingClientRect();
+
+  authForm.style.cssText =
+    height >= viewportHeight
+      ? 'top: 10%; transform: translateX(-50%) scale(1);'
+      : null;
 }
 
 /**

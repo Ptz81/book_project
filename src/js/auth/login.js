@@ -82,7 +82,7 @@ function handleSignedOut() {
 async function handleFormSubmit(formData) {
   try {
     // появится над формой
-    loader.show({ zindex: ++authForm.zindex });
+    loader.show({ zindex: authForm.zindex + 1 });
 
     await (authForm.mode === 'signup'
       ? handleSignedUp(formData, greet)
