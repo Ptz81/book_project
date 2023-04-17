@@ -2,6 +2,8 @@ import axios from 'axios';
 import Loader from './loader/loader';
 
 const loader = new Loader();
+
+const LOADER_DELAY = 0;
 let instance;
 
 export default class BookService {
@@ -22,10 +24,11 @@ export default class BookService {
         `${BookService.BASE_URL}/${res}${p ? `/?${p}` : ''}`
       );
 
-      loader.show();
-      const resp = await axios.get(url);
+      // показываем лоадер
+      loader.show({ delay: LOADER_DELAY });
 
-      return resp.data;
+      const { data } = await axios.get(url);
+      return data;
 
       // error
     } catch (axiosError) {

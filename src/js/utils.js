@@ -15,7 +15,7 @@ export function cap(str) {
 
 export function getZindex(e) {
   const z = getComputedStyle(e).getPropertyValue('z-index');
-  return isNaN(z) ? getZindex(e.parentNode) : z;
+  return Number(isNaN(z) ? getZindex(e.parentNode) : z);
 }
 
 export const getRef = document.querySelector.bind(document);
