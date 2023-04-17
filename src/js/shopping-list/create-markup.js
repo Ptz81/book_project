@@ -2,7 +2,7 @@ import { pathToBook } from './paths';
 
 import { renderShoppingListMarkUp } from './render-markup';
 
-import { createEmptyCart} from './create-markup';
+// import { createEmptyCart} from './create-markup';
 
 const shoppingCart = document.querySelector('.shopping-cart');
 
