@@ -106,9 +106,16 @@
   margin-left: 46px;
   margin-right: 46px;
   font-size: 10px;
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
   text-align: center;
   color: var(--color-modal-info);
+
+//---------
+position: absolute;
+top: 770px;
+//---------
+
+
 }
 
 /* .description {
@@ -177,6 +184,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
+
+  //-------
+position: relative;
+  //-------
 }
 
 .pop__btn {
@@ -259,6 +270,10 @@
   .pop-info {
     display: flex;
     margin: 40px 44px 40px 40px;
+  }
+
+  .pop-text{
+    top: 440px;
   }
 
   .photo {
