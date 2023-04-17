@@ -13,9 +13,6 @@
   color: var(--color-blue);
 }
 
-//DONT FORGET ABOUT FONTS
-//!!
-
 .shopping-cart__item {
   position: relative;
   display: grid;
@@ -155,6 +152,9 @@
   mix-blend-mode: luminosity;
   // background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
   // mix-blend-mode: luminosity;
+}
+.theme-dark .amazon-link {
+  filter: invert(1);
 }
 
 .shopping-cart__warning {

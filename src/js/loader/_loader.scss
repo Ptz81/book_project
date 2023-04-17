@@ -1,35 +1,16 @@
-.js-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+//
+// Loader backdrop
+//
 
-  background-color: var(--color-backdrop);
-
-  opacity: 1;
-  visibility: visible;
-  transition: visibility var(--transition-params),
-    opacity var(--transition-params);
-
-  overflow: auto;
-
-  &--hidden {
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-  }
+[data-backdrop][data-loader] {
+  background-color: var(--color-loader-backdrop);
+  opacity: 0.4;
 }
-
-//
-// Loader
-//
 
 .js-loader {
   position: absolute;
   top: 50%;
   left: 50%;
-
   transform: translate(-50%, -50%);
 }
 
@@ -41,10 +22,8 @@
   position: relative;
   display: inline-block;
 
-  width: 80px;
-  height: 80px;
-
-  color: whitesmoke;
+  width: 60px;
+  height: 60px;
 }
 
 .lds-spinner div {
@@ -63,7 +42,7 @@
   height: 18px;
 
   border-radius: 20%;
-  background: #fff;
+  background-color: var(--color-loader-spinner);
 }
 
 @keyframes lds-spinner {

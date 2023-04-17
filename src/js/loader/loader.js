@@ -1,36 +1,66 @@
 import './_loader.scss';
+import Backdrop from '../backdrop/backdrop';
+import { isInt } from '../utils';
 
 let backdrop;
 let instance;
+let timerId;
 
 export default class Loader {
   constructor() {
     if (instance) return instance;
-    instance = this;
 
-    backdrop = document.querySelector('[data-backdrop]');
-    makeSpinnerPetals(backdrop);
+    const spinner = makeSpinnerPetals('.lds-spinner');
+    backdrop = new Backdrop({ child: spinner, hideOnClick: false });
+
+    instance = this;
   }
 
-  show() {
-    backdrop.classList.remove('js-backdrop--hidden');
+  show({ zindex, delay } = {}) {
+    this.zindex = zindex;
+
+    if (isInt(delay) && delay > 0) {
+      timerId = setTimeout(() => backdrop.show(), delay);
+    } else {
+      backdrop.show();
+    }
   }
 
   hide() {
-    backdrop.classList.add('js-backdrop--hidden');
+    timerId = clearTimeout(timerId);
+    backdrop.hide();
+  }
+
+  get zindex() {
+    return backdrop.zindex;
+  }
+
+  set zindex(v) {
+    backdrop.zindex = v;
   }
 }
 
-function makeSpinnerPetals(backdrop) {
+/**
+ *
+ * @param {string} classSelector - селектор класса спиннера
+ * @returns элемент спиннер или null
+ */
+function makeSpinnerPetals(classSelector) {
   const INITIAL_DELAY = -1.1;
 
-  const spinner = backdrop.querySelector('.lds-spinner');
+  const spinner = document.querySelector(classSelector);
+  if (!spinner) return null;
+
+  // рендерим лепестки
   spinner.insertAdjacentHTML('afterbegin', '<div></div>'.repeat(12));
 
+  // ставим стили для них
   Array.from(spinner.children).forEach(({ style }, idx) => {
     style.cssText = `
       transform: rotate(${idx * 30}deg);
       animation-delay: ${INITIAL_DELAY + idx / 10}s
     `;
   });
+
+  return spinner;
 }

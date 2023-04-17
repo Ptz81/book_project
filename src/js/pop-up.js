@@ -2,6 +2,19 @@ import BookService from './book-service';
 const bookTopAPI = new BookService();
 import { showError } from './notify.js';
 
+const amazonPic = new URL('../images/shop-icons/amazon.jpg', import.meta.url);
+const applebooksPic = new URL(
+  '../images/shop-icons/applebooks.jpg',
+  import.meta.url
+);
+const bookstore_shopPic = new URL(
+  '../images/shop-icons/bookstore.jpg',
+  import.meta.url
+);
+
+// import applebooksPic from '../images/shop-icons/applebooks.jpg';
+// import applebooksPic from '../images/shop-icons/bookstore.jpg';
+
 const modalPopEl = document.querySelector('[data-modal]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
 const modalEl = document.querySelector('.modal');
@@ -10,7 +23,11 @@ const backdropEl = document.querySelector('.backdrop is-hidden');
 const popBtn = document.querySelector('.pop__btn');
 const popTextEl = document.querySelector('.pop-text');
 const backdropBtn = document.querySelector('.backdrop');
+const blocBtnEl = document.querySelector('.btn_wrapper');
+
 let arrayBookIs = [];
+let arrayBookShopIs = [];
+let arrayBookAdd = [];
 
 export function handleShowPop(event) {
   const infoPopEl = document.querySelector('.pop-info');
@@ -24,20 +41,29 @@ export function handleShowPop(event) {
       infoPopEl.insertAdjacentHTML(
         'beforeend',
         `<img
-              class="photo"
-              src="${dataId.book_image}"
-              alt="${dataId.author}"
-              loading="lazy"
-              id="${dataId._id}"
-            />
-            
-         <h2 class="pop_name">${dataId.list_name}</h2>
-         <p class="pop_author">${dataId.author}</p>
-         <p class="pop_description">${dataId.description}</p>
-         <ul class="pop_shop list"></ul>
-            
+        class="photo"
+        src="${dataId.book_image || '/src/images/sprite.svg#icon-ukraine'}"
+        alt="${dataId.list_name || 'There is no book title'}"
+        loading="lazy"
+        id="${dataId._id}"
+      />
+      
+      <div class='pop_wrapper'>
+      <h2 class="pop_name">
+        ${dataId.list_name || 'There is no book title'}
+      </h2>
+      <p class="pop_author">${dataId.author || 'The author is unknown'}</p>
+      <p class="pop_description">
+        ${
+          dataId.description ||
+          'There is no description <br/><br/>Слава Україні!<br/>Смерть ворогам!'
+        }
+      </p>
+      <ul class="pop_shop list"></ul>
+      </div>     
           `
       );
+
       const popListEl = document.querySelector('.pop_shop');
       dataId.buy_links.map(el => {
         if (el.name === 'Amazon') {
@@ -51,7 +77,7 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="/amazon.a8e6cc93.jpg" 
+                      src="${amazonPic}" 
                       alt="amazon_shop_icon"
                     />
                   </a>
@@ -70,8 +96,8 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="/applebooks.a6bc5a52.jpg" 
-                      alt="apple_shop_icon"
+                      src="${applebooksPic}" 
+                      alt="applebooks_shop_icon"
                     />
                   </a>
                 </li>`
@@ -88,7 +114,7 @@ export function handleShowPop(event) {
                     rel="noopener noreferrer"
                     ><img
                       class="pop_list-img"
-                      src="/bookstore.4d75fc3d.jpg" 
+                      src="${bookstore_shopPic}" 
                       alt="bookstore_shop_icon"
                     />
                   </a>
@@ -99,26 +125,50 @@ export function handleShowPop(event) {
       });
       toggleModal();
 
-      if (!dataId.add) {
-        dataId.add = 'is';
-      }
-      const popBtn = document.querySelector('.pop__btn');
-      if (dataId.add === 'isAdded') {
-        popBtn.innerHTML = 'remove from the shopping list';
-        popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
-      }
-      if (dataId.add === 'is') {
-        popBtn.innerHTML = 'Add to shopping list';
-        popTextEl.innerHTML = '';
-      }
+      const bookIsID = dataId._id;
+      let bookLocalIs;
 
       arrayBookIs = JSON.parse(localStorage.getItem('book-list')) || [];
+      arrayBookShopIs = JSON.parse(localStorage.getItem('book-add')) || [];
 
-      if (!arrayBookIs.includes(dataId)) {
-        arrayBookIs.push(dataId);
+      arrayBookShopIs.map(el => {
+        if (el._id === bookIsID) {
+          bookLocalIs = el;
+        }
+      });
+      if (!bookLocalIs) {
+        arrayBookIs.map(el => {
+          if (el._id === bookIsID) {
+            bookLocalIs = el;
+          }
+        });
+      }
+
+      if (!bookLocalIs) {
+        bookLocalIs = dataId;
+        bookLocalIs.add = 'is';
+
+        arrayBookIs.push(bookLocalIs);
         localStorage.setItem('book-list', JSON.stringify(arrayBookIs));
       }
+      bookLocalIs = bookLocalIs;
+
+      const popBtn = document.querySelector('.pop__btn');
+      if (bookLocalIs.add === 'isAdded') {
+        popBtn.innerHTML = 'remove from the shopping list';
+        popTextEl.innerHTML =
+          'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+        blocBtnEl.style.marginBottom = '6px';
+      }
+      if (bookLocalIs.add === 'is') {
+        popBtn.innerHTML = 'Add to shopping list';
+        popTextEl.innerHTML = '';
+        blocBtnEl.style.marginBottom = '6px'
+      }
+
+      return;
     })
+
     .catch(error => {
       console.log(error);
       showError(error.message);
@@ -143,7 +193,9 @@ const closeIfNoModal = e => {
     e.target !== modalEl &&
     e.target.parentNode !== popEl &&
     e.target.parentNode !== backdropEl &&
-    e.target.parentNode !== modalEl
+    e.target.parentNode !== modalEl &&
+    e.target.parentNode !== blocBtnEl &&
+    e.target.parentNode.parentNode !== popEl
   ) {
     closeModal();
   }
@@ -151,19 +203,17 @@ const closeIfNoModal = e => {
 backdropBtn.addEventListener('click', closeIfNoModal);
 
 // КНОПКА
-
 const handleDoBtn = e => {
-  const sourceID = e.target.previousElementSibling.firstChild.id;
+  const sourceID = e.target.parentNode.previousElementSibling.firstChild.id;
   let bookLocalSt;
 
-  let arrayBookAdd = JSON.parse(localStorage.getItem('book-add')) || [];
+  arrayBookAdd = JSON.parse(localStorage.getItem('book-add')) || [];
 
   arrayBookAdd.map(el => {
     if (el._id === sourceID) {
       bookLocalSt = el;
     }
   });
-
   if (!bookLocalSt) {
     arrayBookIs.map(el => {
       if (el._id === sourceID) {
@@ -172,11 +222,11 @@ const handleDoBtn = e => {
       }
     });
   }
-
   if (bookLocalSt.add === 'is') {
     popBtn.innerHTML = 'remove from the shopping list';
-    popTextEl.innerHTML = 'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
-
+    popTextEl.innerHTML =
+      'Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+    blocBtnEl.style.marginBottom = '6px'
     if (!arrayBookAdd.includes(bookLocalSt) && bookLocalSt.add === 'is') {
       bookLocalSt.add = 'isAdded';
       arrayBookAdd.push(bookLocalSt);
@@ -201,6 +251,3 @@ const handleDoBtn = e => {
   }
 };
 popBtn.addEventListener('click', handleDoBtn);
-
-
-
