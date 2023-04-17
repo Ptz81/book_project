@@ -1,8 +1,10 @@
 import './scroll-off.scss';
 
-let instance;
 const root = document.documentElement;
 const body = document.body;
+
+let instance;
+let counter = 0;
 
 export default class ScrollToggler {
   constructor() {
@@ -14,9 +16,15 @@ export default class ScrollToggler {
     // запоминаем позицию скрола
     root.style.setProperty('--scroll-top', window.pageYOffset);
     body.classList.add('scroll-off');
+
+    counter++;
   }
 
   enable() {
+    // не включаем скролл, если он отключался неединожды
+    if (--counter < 0) counter = 0;
+    if (counter) return;
+
     body.classList.remove('scroll-off');
     const top = root.style.getPropertyValue('--scroll-top');
 

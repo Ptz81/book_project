@@ -9,6 +9,7 @@
   --color-scroll: #e0e0e0;
   --color-grey-light: #b4afaf;
   --color-grey-lighter: #f6f6f6;
+  --color-light-black: #202024;
 
   // Цвета для светлой темы (по умолчанию)
 
@@ -41,7 +42,22 @@
   --color-auth-form-background: var(--color-grey-lighter);
   --color-auth-form-border: var(--color-black);
 
+  --color-loader-backdrop: var(--color-white);
+  --color-loader-spinner: var(--color-black);
+
   --close-icon-color: var(--color-black);
+
+  // Модалка
+
+  --color-modal-background: var(--color-white);
+  --color-modal-border: var(--color-black);
+  --color-modal-cross: var(--color-black);
+  --color-modal-title: var(--color-black);
+  --color-modal-author: var(--color-grey-light);
+  --color-modal-description: var(--color-black);
+  --color-modal-shop: var(--color-black);
+  --color-modal-btn: var(--color-black);
+  --color-modal-info: rgba(17, 17, 17, 0.6);
 
   // Misc
 
@@ -55,5 +71,6 @@
 // breakpoints
 
 $mobile: 320px;
+$pretablet: 767px;
 $tablet: 768px;
 $desktop: 1280px;

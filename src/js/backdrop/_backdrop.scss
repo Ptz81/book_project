@@ -11,14 +11,15 @@
 
   opacity: 1;
   visibility: visible;
-  transition: visibility var(--transition-params),
-    opacity var(--transition-params);
+
+  transition: opacity var(--transition-params),
+    visibility var(--transition-params);
 
   overflow: auto;
 }
 
-[data-backdrop][hidden] {
+[data-backdrop][data-hidden] {
   opacity: 0;
-  pointer-events: none;
   visibility: hidden;
+  pointer-events: none;
 }

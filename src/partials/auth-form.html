@@ -1,5 +1,5 @@
 <!-- Auth form -->
-<div data-backdrop hidden>
+<div data-backdrop data-hidden>
   <form class="auth-form">
     <button class="auth-form__close" type="button">
       <svg>
@@ -14,6 +14,7 @@
         type="text"
         name="name"
         placeholder="name"
+        pattern="^[A-za-z][a-z]*(\s+[a-z][a-z]*)?$"
       />
     </label>
 

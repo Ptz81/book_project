@@ -13,14 +13,14 @@ const verticalSlider = function () {
 
 sliderBtn.addEventListener('click', function () {
   if (moveDown) {
-    counter -= 2;
+    counter -= 3;
     if (counter < 0) {
       counter = 0;
       moveDown = false;
       sliderBtn.querySelector('.support__icon').style.transform = '';
     }
   } else {
-    counter += 2;
+    counter += 3;
     if (counter >= imgSlides.length) {
       counter = imgSlides.length - 1;
       moveDown = true;

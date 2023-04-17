@@ -1,12 +1,8 @@
-// todo: валидация полей формы
-// required мождно отключить и js валидацию only делать
-// С выводом сообщений об ошибк/ворн
-
 import './_auth-form.scss';
 import utils from '../utils';
 import Backdrop from '../backdrop/backdrop';
 
-const { getRef, isFunc, getZindex } = utils;
+const { getRef, isFunc } = utils;
 
 const authForm = getRef('.auth-form');
 const formMode = getRef('.auth-form__mode');
@@ -21,28 +17,31 @@ const DEF_MODE = 'signin';
 let instance;
 let handleInputChange;
 let handleSubmit;
+let backdrop;
 
 export default class AuthForm {
-  constructor(initialMode) {
+  constructor(mode) {
     if (instance) return instance;
 
-    const backdrop = new Backdrop({ child: authForm, hideOnClick: true });
-    this.show = backdrop.show.bind(backdrop);
+    setFormBaseBehavior();
+    const initialMode = setFormMode(mode) || setFormMode(DEF_MODE);
+
+    backdrop = new Backdrop({ child: authForm, hideOnClick: true });
     this.hide = backdrop.hide.bind(backdrop);
     this.reset = authForm.reset.bind(authForm);
 
-    setFormBaseBehavior();
-
-    (
-      authForm.querySelector(`input[value="${initialMode}"]`) ||
-      authForm.querySelector(`input[value="${DEF_MODE}"]`)
-    ).click();
+    this.show = function (mode) {
+      setFormMode(mode || initialMode);
+      fitFormByHeight();
+      passInput.type = 'password';
+      backdrop.show();
+    };
 
     instance = this;
   }
 
   get zindex() {
-    return getZindex(authForm);
+    return backdrop.zindex;
   }
 
   get mode() {
@@ -70,6 +69,18 @@ export default class AuthForm {
   }
 }
 
+/**
+ *
+ * @param {string} mode - 'signin' | 'signout'
+ * @returns строку или null, если режим не валиден
+ */
+function setFormMode(mode) {
+  authForm.reset();
+  const ref = authForm.querySelector(`input[value="${mode}"]`);
+  ref?.click();
+  return ref && mode;
+}
+
 function setFormBaseBehavior() {
   // кнопка закрытия
   closeBtn.addEventListener('click', () => instance.hide());
@@ -81,6 +92,19 @@ function setFormBaseBehavior() {
   showPass.addEventListener('change', ({ currentTarget }) => {
     passInput.type = currentTarget.checked ? 'text' : 'password';
   });
+
+  // если высота вьюпорта меньше высоты формы - всписываем форму
+  addEventListener('resize', fitFormByHeight);
+}
+
+function fitFormByHeight() {
+  const viewportHeight = document.documentElement.clientHeight;
+  const { height } = authForm.getBoundingClientRect();
+
+  authForm.style.cssText =
+    height >= viewportHeight
+      ? 'top: 10%; transform: translateX(-50%) scale(1);'
+      : null;
 }
 
 /**
