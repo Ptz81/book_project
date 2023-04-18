@@ -247,12 +247,12 @@
 }
 
 .menu-toggle__svg {
-    fill: var(--menu-icon-color);
+    stroke: var(--menu-icon-color);
     
 }
 
 .menu-toggle:hover .menu-toggle__svg {
-    fill: var(--color-blue);
+    stroke: var(--color-blue);
 }
 
 
