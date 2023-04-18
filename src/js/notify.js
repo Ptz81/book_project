@@ -7,24 +7,24 @@ Notify.init({
 });
 
 export function showError(v, opts) {
-  const { message } = v || '';
-  console.error(v);
-  return Notify.failure(message || v, opts);
+  const msg = v?.message || v;
+  if (v instanceof Error) console.error(v);
+  return Notify.failure(msg, opts);
 }
 
 export function showInfo(v, opts) {
-  const { message } = v || '';
-  return Notify.info(message || v, opts);
+  const msg = v?.message || v;
+  return Notify.info(msg, opts);
 }
 
 export function showSuccess(v, opts) {
-  const { message } = v || '';
-  return Notify.success(message || v, opts);
+  const msg = v?.message || v;
+  return Notify.success(msg, opts);
 }
 
 export function showWarn(v, opts) {
-  const { message } = v || '';
-  return Notify.warning(message || v, opts);
+  const msg = v?.message || v;
+  return Notify.warning(msg, opts);
 }
 
 export default {

@@ -20,6 +20,9 @@ let handleSubmit;
 let backdrop;
 
 export default class AuthForm {
+  /**
+   * @param {string} mode - 'signin'|'signup'
+   */
   constructor(mode) {
     if (instance) return instance;
 
@@ -58,6 +61,10 @@ export default class AuthForm {
   //   });
   // }
 
+  /**
+   * @param {callback} handler - handler(formData, targetForm)\
+   * @param formData - данные полей формы
+   */
   onSubmit(handler) {
     handleSubmit = isFunc(handler) ? handler : null;
 
@@ -116,8 +123,10 @@ function handleModeChange({ target }) {
   if (target.nodeName !== 'INPUT') return;
   const isSignInMode = target.value === 'signin';
 
-  // скрываем/показываем поле name, отключаем input, чтобы игнорился в getData()
+  // скрываем/показываем поле name
   nameField.style.display = isSignInMode ? 'none' : 'block';
+
+  // отключаем input, чтобы игнорился в getData()
   nameField.firstElementChild.disabled = isSignInMode;
 
   // если не убрать required на скрытом поле - будет ошибка
