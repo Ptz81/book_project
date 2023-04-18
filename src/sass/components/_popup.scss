@@ -18,8 +18,10 @@
 
 .modal-btn {
   position: absolute;
-  right: 8px;
-  top: 8px;
+  // right: 8px;
+  // top: 8px;
+  right: 2px;
+  top:4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,12 +30,13 @@
   // display: flex;
   // justify-content: center;
   // align-items: center;
-
-  width: 28px;
-  height: 28px;
+width: 38px;
+  height: 38px;
+  // width: 28px;
+  // height: 28px;
   background-color: transparent;
   // background-color: white;
-  border: 1px solid white;
+  border: 1px solid transparent;
   border-radius: 50%;
 
   cursor: pointer;
@@ -62,7 +65,7 @@
 .modal {
   width: 95%;
   // height: 100%;
-  // overflow: hidden;
+  // overflow: auto;
   overflow-y: scroll;
   /* width: 100%;
         height: auto; */
@@ -94,21 +97,29 @@
 
 .photo {
   width: 100%;
-  height: auto;
+  height: 440px;
+  object-fit: cover;
   margin-bottom: 14px;
   // margin-left: auto;
   // margin-right: auto;
 }
-.btn_wrapper > p {
-  margin-bottom: 8px;
-}
+// .btn_wrapper > p {
+//   margin-bottom: 8px;
+// }
 .pop-text {
   margin-left: 46px;
   margin-right: 46px;
   font-size: 10px;
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
   text-align: center;
   color: var(--color-modal-info);
+
+//---------
+// position: absolute;
+// top: 765px;
+//---------
+
+
 }
 
 /* .description {
@@ -155,6 +166,14 @@
   gap: 20px;
 }
 
+.theme-dark .amazon-link {
+  filter: invert(1);
+}
+
+.theme-dark .bookshop-link {
+  filter: invert(1);
+}
+
 .pop_shop-item {
   margin-right: 20px;
 }
@@ -169,6 +188,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
+
+  //-------
+// position: relative;
+  //-------
 }
 
 .pop__btn {
@@ -226,17 +249,24 @@
 /* .pop_notification{
     text-align: center;
 } */
+@media screen and (max-width: $mobile) {
+.photo {
+    height: 380px;
+    object-fit: cover;
+  }
+}
 
 @media screen and (max-width: $pretablet) {
   .modal {
     max-width: 335px;
+    height: 830px;
   }
 }
 
 @media screen and (min-width: $tablet) {
   .modal {
     width: 579px;
-    height: auto;
+    height: 501px;
     margin: 0;
     padding: 0;
   }
@@ -253,9 +283,14 @@
     margin: 40px 44px 40px 40px;
   }
 
+  // .pop-text{
+  //   top: 440px;
+  // }
+
   .photo {
-    width: 192px;
-    height: auto;
+    width: auto;
+    height: 290px;
+    object-fit: cover;
     margin-bottom: 0;
     margin-right: 24px;
   }
@@ -299,4 +334,5 @@
 
 .pop_list-img {
   color: var(--color-modal-shop);
+  filter: grayscale(100%)
 }
