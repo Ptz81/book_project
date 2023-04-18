@@ -248,6 +248,11 @@ width: 38px;
 /* .pop_notification{
     text-align: center;
 } */
+@media screen and (max-width: $mobile) {
+.photo {
+    height: 380px;
+  }
+}
 
 @media screen and (max-width: $pretablet) {
   .modal {
