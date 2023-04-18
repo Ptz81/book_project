@@ -16,18 +16,12 @@
     position: relative;
     display: flex;
     align-items: center;
-    // justify-content: center;
     min-height: 64px;
-    // max-width: 375px;
-
+   
     @media screen and (min-width: 768px) {
-        height: 72px;
-        // max-width: 1440px;
+        height: 72px; 
     }
 
-    // @media screen and (min-width: 1440px) {
-    //     max-width: 1440px;
-    // }
 }
 
 .logo {
@@ -37,7 +31,7 @@
         margin-right: 32px; 
     }
 
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 1280px) {
         margin-right: 99px; 
     }
 
