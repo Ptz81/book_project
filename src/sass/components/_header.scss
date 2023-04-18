@@ -6,7 +6,7 @@
     background-color: var(--color-header-background);
     padding-bottom: 0;
     padding-top: 0;
-    z-index: 999;
+    z-index: 1000;
     border: 1.5px solid var(--color-header-border);
     border-radius: 0px 0px 8px 8px;
 }
@@ -233,12 +233,12 @@
     position: absolute;
     top: 18px;
     right: 20px;
-    bottom: 18px;
     width: 28px;
     height: 28px;
     padding: 0;
     background-color: transparent;
     border: none;
+    position: absolute;
 
     @media screen and (min-width: 768px) {
         display: none;
@@ -259,7 +259,6 @@
 
 
 .menu-container {
-    position: relative;
     position: fixed;
     top: 0;
     left: 0;
