@@ -36,6 +36,8 @@ function onSeeMoreBtnClick(event) {
       }
     })
     .catch(console.warn);
+  
+  
 }
 
 export function getCategoryItem(categories) {
