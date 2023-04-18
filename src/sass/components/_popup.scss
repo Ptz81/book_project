@@ -18,8 +18,10 @@
 
 .modal-btn {
   position: absolute;
-  right: 8px;
-  top: 8px;
+  // right: 8px;
+  // top: 8px;
+  right: 2px;
+  top:4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,9 +30,10 @@
   // display: flex;
   // justify-content: center;
   // align-items: center;
-
-  width: 28px;
-  height: 28px;
+width: 38px;
+  height: 38px;
+  // width: 28px;
+  // height: 28px;
   background-color: transparent;
   // background-color: white;
   border: 1px solid transparent;
@@ -256,7 +259,7 @@
 @media screen and (min-width: $tablet) {
   .modal {
     width: 579px;
-    height: 440px;
+    height: 501px;
     margin: 0;
     padding: 0;
   }
