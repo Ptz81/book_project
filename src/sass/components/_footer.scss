@@ -1,6 +1,7 @@
 .footer {
-  @include alignment(center, center, row);
-  height: 67px;
+  @include alignment(center, space-between, column);
+  padding: 20px 20px;
+  height: 110px;
   background: radial-gradient(
     183.6% 183.01% at 59.76% -23.42%,
     var(--color-blue) 18.03%,
@@ -8,16 +9,21 @@
   );
   font-size: 16px;
   line-height: calc(18 / 16);
-  color: var(--color-white);
+  color: var(--color-footer);
+  @media screen and (min-width: $tablet) {
+    @include alignment(center, center, row);
+  }
 }
-.footer__btn {
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  font-size: 16px;
-  line-height: calc(18 / 16);
-  text-transform: uppercase;
-  text-decoration: underline;
-  color: var(--color-white);
+.footer__text {
+  @include alignment(center, space-between, row);
+}
+.footer__logo {
+  @include alignment(center, center, row);
   cursor: pointer;
+  scale: 1;
+  @include transition(scale);
+  &:hover,
+  &:focus {
+    scale: 1.2;
+  }
 }

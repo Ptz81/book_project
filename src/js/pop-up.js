@@ -2,15 +2,9 @@ import BookService from './book-service';
 const bookTopAPI = new BookService();
 import { showError } from './notify.js';
 
-// const amazonPic = new URL('../images/shop-icons/amazon.jpg', import.meta.url);
-// const applebooksPic = new URL(
-//   '../images/shop-icons/applebooks.jpg',
-//   import.meta.url
-// );
-// const bookstore_shopPic = new URL(
-//   '../images/shop-icons/bookstore.jpg',
-//   import.meta.url
-// );
+import UserAccount from './auth/user-account';
+const userAcc = new UserAccount();
+
 const amazonPic = new URL('../images/shop-icons/amazon.png', import.meta.url);
 const applebooksPic = new URL(
   '../images/shop-icons/applebooks.png',
@@ -241,6 +235,8 @@ const handleDoBtn = e => {
       bookLocalSt.add = 'isAdded';
       arrayBookAdd.push(bookLocalSt);
       localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
+      // 
+      userAcc.shoppingList.add(bookLocalSt);
     }
 
     return;
@@ -254,8 +250,8 @@ const handleDoBtn = e => {
     }
     bookLocalSt.add = 'is';
     localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
-
-    bookLocalSt.add = 'is';
+    // 
+    userAcc.shoppingList.remove(sourceID);
 
     return;
   }

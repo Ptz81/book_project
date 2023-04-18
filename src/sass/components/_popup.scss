@@ -3,7 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
-
+padding-top: 70px;
   width: 100%;
   height: 100%;
 
@@ -66,18 +66,19 @@ width: 38px;
   width: 95%;
   // height: 100%;
   // overflow: auto;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   /* width: 100%;
         height: auto; */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // position: fixed;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
   background-color: var(--color-modal-background);
   z-index: 30;
   border-radius: 18px;
   border: 2px solid var(--color-modal-border);
-
+position: relative;
+margin: auto;
   touch-action: pan-y pinch-zoom;
 }
 
@@ -267,7 +268,7 @@ width: 38px;
   .modal {
     width: 579px;
     height: 501px;
-    margin: 0;
+    margin: auto;
     padding: 0;
   }
 
