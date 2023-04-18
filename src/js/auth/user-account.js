@@ -1,14 +1,20 @@
 import AuthForm from './auth-form';
 import FirebaseAuth from './firebase/auth';
 import FirebaseDB from './firebase/db';
+import ShoppingList from './shopping-list';
 import Loader from '../loader/loader';
 import { showError, showSuccess } from '../notify';
 import { isFunc } from '../utils';
+
+//
+// User account
+//
 
 const DEF_USERNAME = 'Anonymous';
 const SIGNUP_SUCCESS = 'Glad to welcome you';
 const SIGNIN_SUCCESS = 'Welcome back';
 const SIGNOUT_SUCCESS = 'See you soon';
+const INVALID_PASSWORD = 'Password should be at least 6 characters';
 
 let instance;
 let currentUser;
@@ -30,8 +36,7 @@ export default class UserAccount {
     this.showForm = authForm.show.bind(authForm);
     this.hideForm = authForm.hide.bind(authForm);
     this.logout = auth.signOut.bind(auth);
-
-    instance = this;
+    this.shoppingList = new ShoppingList(auth);
   }
 
   get currentUser() {
@@ -46,17 +51,16 @@ export default class UserAccount {
   }
 
   /**
-   * @param {callback} handler - handler()
+   * @param {callback} handler - handler({ email, id, name })
    */
   onLogout(handler) {
     handleLogout = isFunc(handler) ? handler : null;
   }
-
-  setShoppingList(list) {
-    const { id } = currentUser || '';
-    if (id) db.write(`users/${id}/shoppingList`, list);
-  }
 }
+
+//
+// Helpers
+//
 
 function greet({ isNewcomer, name }) {
   showSuccess(`${isNewcomer ? SIGNUP_SUCCESS : SIGNIN_SUCCESS}, ${name}`);
@@ -70,7 +74,11 @@ function handleSignedOut() {
   if (!currentUser) return;
 
   showSuccess(`${SIGNOUT_SUCCESS}, ${currentUser.name}`);
-  handleLogout && handleLogout(currentUser);
+
+  // кидаем из currentUser статичную инфу для статистики
+  // снимок shoppingList-а вероятно уже не актуален
+  const { email, id, name } = currentUser;
+  handleLogout && handleLogout({ email, id, name });
   currentUser = null;
 }
 
@@ -96,7 +104,9 @@ async function handleFormSubmit(formData) {
 
     // error
   } catch (err) {
+    if (err.code === 'auth/weak-password') err.message = INVALID_PASSWORD;
     showError(err, { zindex: authForm.zindex });
+    //
   } finally {
     loader.hide();
   }
@@ -110,6 +120,7 @@ async function handleFormSubmit(formData) {
 async function handleSignedUp(formData, callback) {
   const { name, email } = formData;
 
+  // signUp
   const cred = await auth.signUp(formData);
   const id = cred.user.uid;
   const userPath = `users/${id}`;
@@ -130,6 +141,7 @@ async function handleSignedUp(formData, callback) {
 async function handleSignedIn(formData, callback) {
   const { name = DEF_USERNAME, email } = formData;
 
+  // signIn
   const cred = await auth.signIn(formData);
   const id = cred.user.uid;
   const userPath = `users/${id}`;

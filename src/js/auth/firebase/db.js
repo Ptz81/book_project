@@ -1,6 +1,6 @@
 import firebaseConfig from './config';
 import { initializeApp } from 'firebase/app';
-import { set, child, get, ref, getDatabase } from 'firebase/database';
+import { set, child, get, ref, remove, getDatabase } from 'firebase/database';
 
 let db;
 let dbRef;
@@ -19,7 +19,6 @@ export default class FirebaseDB {
       dbRef = ref(db);
     } catch {
       console.error(ERR_INIT_FAILED);
-      return null;
     }
 
     instance = this;
@@ -41,6 +40,14 @@ export default class FirebaseDB {
     try {
       const snapshot = await get(child(dbRef, path));
       return snapshot.exists() ? snapshot.val() : null;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async remove(path) {
+    try {
+      return await remove(ref(db, path));
     } catch (err) {
       console.error(err);
     }
