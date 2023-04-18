@@ -158,6 +158,7 @@
     font-size: 14px;
     line-height: 1.28;
     letter-spacing: -0.04em;
+
 }
 
 .header-btn__circle {
@@ -247,12 +248,12 @@
 }
 
 .menu-toggle__svg {
-    fill: var(--menu-icon-color);
+    stroke: var(--menu-icon-color);
     
 }
 
 .menu-toggle:hover .menu-toggle__svg {
-    fill: var(--color-blue);
+    stroke: var(--color-blue);
 }
 
 
@@ -266,7 +267,7 @@
     height: 100vh;
     padding: 84px 20px 20px 20px;
     background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, var(--color-blue) 18.03%, var(--color-white) 100%);
-    // z-index: 996;
+    z-index: 996;
   
     transform: translateX(100%);
     transition: transform 250ms ease-in-out;
