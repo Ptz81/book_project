@@ -144,6 +144,22 @@
     }
 }
 
+.unregistered {
+    background-color: var(--color-blue);
+    border: 1.5px solid var(--color-black);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    gap: 90px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.04em;
+}
+
 .header-btn__circle {
     width: 37px;
     height: 37px;
