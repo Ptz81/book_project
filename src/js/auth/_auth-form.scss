@@ -28,9 +28,6 @@ $bgiCheckMark: "data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 16
 // auth form
 //
 
-// без поля name (с ним 384px)
-// $formMinHeightMobile: 340px;
-
 .auth-form {
   @extend %auth-form-font;
 
@@ -66,10 +63,6 @@ $bgiCheckMark: "data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 16
     gap: 28px;
     padding: 80px 40px 40px 40px;
   }
-}
-
-[data-backdrop][data-hidden] .auth-form {
-  transform: translate(-50%, -50%) scale(0.9);
 }
 
 //
@@ -318,5 +311,36 @@ $bgiCheckMark: "data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 16
       transition: color var(--transition-params);
       color: var(--color-blue);
     }
+  }
+}
+
+//
+// backdrop
+//
+
+[data-backdrop][data-hidden] .auth-form {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+[data-backdrop][data-auth-form] {
+  background-color: var(--color-blue);
+
+  .glow {
+    position: absolute;
+
+    width: 935px;
+    height: 935px;
+    left: -666px;
+    top: -638px;
+
+    @media screen and (min-width: 768px) {
+      left: -846px;
+      top: -918px;
+      width: 1421px;
+      height: 1421px;
+    }
+
+    background: rgba(204, 236, 231, 0.5);
+    filter: blur(539.791px);
   }
 }

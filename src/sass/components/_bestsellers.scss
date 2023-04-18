@@ -2,6 +2,7 @@
   /* .bestsellers__section */
 
   &__section {
+    padding-top: 40px;
     max-width: 375px;
 
     @media screen and (min-width: $tablet) {
@@ -24,7 +25,7 @@
 
     letter-spacing: -0.04em;
 
-    color: var(--color-black);
+    color: var(--color-text-primary);
   }
 
   // /* .bestsellers__text-part */
@@ -61,7 +62,7 @@
     font-size: 14px;
     line-height: calc(18 / 14);
     letter-spacing: 0.03em;
-    color: var(--color-category);
+    color: var(--color-text-secondary);
     text-transform: uppercase;
 
     @media screen and (min-width: $tablet) {
@@ -88,9 +89,12 @@
     letter-spacing: -0.01em;
     text-transform: uppercase;
 
-    color: var(--color-black);
+    color: var(--color-text-primary);
+    background-color: inherit;
     border: 2px solid var(--color-blue);
     border-radius: 40px;
+
+
   }
 
   // bestsellers__container
@@ -164,7 +168,7 @@
 
     letter-spacing: -0.04em;
     text-transform: uppercase;
-    color: var(--color-black);
+    color: var(--color-text-primary);
   }
 
   // /* .book__author */
