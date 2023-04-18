@@ -72,22 +72,4 @@ export const supportItems = [
       img1x: prytula1x,
       img2x: prytula2x,
     },
-    {
-      title: 'Save the Children',
-      url: 'https://www.savethechildren.net/what-we-do/emergencies/ukraine-crisis',
-      img1x: save1x,
-      img2x: save2x,
-    },
-    {
-      title: 'Project HOPE',
-      url: 'https://www.projecthope.org/country/ukraine/',
-      img1x: hope1x,
-      img2x: hope2x,
-    },
-    {
-      title: 'UNITED24',
-      url: 'https://u24.gov.ua/uk',
-      img1x: united1x,
-      img2x: united2x,
-    },
   ];

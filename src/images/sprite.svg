@@ -50,8 +50,6 @@
     </symbol>
     <symbol id="icon-dump" viewBox="0 0 32 32">
       <path
-        fill="#4f2ee8"
-        style="fill: var(--color2, #4f2ee8)"
         d="M32 16c0 8.837-7.163 16-16 16s-16-7.163-16-16c0-8.837 7.163-16 16-16s16 7.163 16 16z"
       ></path>
       <path

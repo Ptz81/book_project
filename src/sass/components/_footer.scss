@@ -14,9 +14,16 @@
     @include alignment(center, center, row);
   }
 }
-.footer__text{
+.footer__text {
   @include alignment(center, space-between, row);
 }
-.footer__img{
+.footer__logo {
+  @include alignment(center, center, row);
   cursor: pointer;
+  scale: 1;
+  @include transition(scale);
+  &:hover,
+  &:focus {
+    scale: 1.2;
+  }
 }

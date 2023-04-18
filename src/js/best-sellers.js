@@ -1,17 +1,21 @@
 import BookService from './book-service';
 
 const bs = new BookService();
-// const bestListEl = document.querySelector('.bestsellers__list');
 const categoriesContainer = document.querySelector('[data-name=category]');
 
-let currentRenderWidth = window.innerWidth;
-console.log(currentRenderWidth);
-
-
+let currentRenderWidth = 1280;
 
 categoriesContainer.addEventListener('click', onSeeMoreBtnClick);
-
-
+window.addEventListener('resize', event => {
+  if (
+    (window.innerWidth > 767 && currentRenderWidth < 768) ||
+    (window.innerWidth > 1279 && currentRenderWidth < 1280) ||
+    (window.innerWidth < 1280 && currentRenderWidth > 1279) ||
+    (window.innerWidth < 768 && currentRenderWidth > 767)
+  ) {
+    location.reload();
+  }
+});
 
 function onSeeMoreBtnClick(event) {
   if (event.target.nodeName !== 'BUTTON') {
@@ -38,39 +42,38 @@ export function getCategoryItem(categories) {
   categoriesContainer.innerHTML = '';
 
   const titleH1 = document.createElement('h1');
+  const titleSpan = document.createElement('span');
   const cardList = document.createElement('ul');
 
   titleH1.classList.add('bestsellers__category');
+  titleSpan.classList.add('bestsellers__text-part');
   cardList.classList.add("bestsellers__list");
 
-  titleH1.innerText = "Best Sellers Books"
+  titleH1.innerText = "Best Sellers ";
+  titleSpan.innerText = 'Books';
+
+  titleH1.append(titleSpan);
 
   categoriesContainer.prepend(titleH1, cardList);
       if (categories.length > 0) {
         categories.forEach(category => {
 
-          
-          
           const listItem = document.createElement('li');
           const titleH2 = document.createElement('h2');
-          const cardsBox = document.createElement('div');
-          const btn = document.createElement('button');
-
-          
+          const cardsBox = document.createElement('ul');
+          const btn = document.createElement('button');      
           
           listItem.classList.add('bestsellers__item');
           titleH2.classList.add('bestsellers__category-type');
-          cardsBox.classList.add('bestsellers__card-box');
+          cardsBox.classList.add('book__list');
           btn.classList.add('btn');
           btn.classList.add('bestsellers__btn');
-
           
           titleH2.innerText = category.list_name;
           btn.innerText = 'see more';
 
           cardsBox.setAttribute('id', `${category.list_name}`);         
           btn.setAttribute('data-name', `${category.list_name}`);
-
           
           listItem.prepend(titleH2);
           titleH2.after(cardsBox);
@@ -78,7 +81,7 @@ export function getCategoryItem(categories) {
           cardList.appendChild(listItem);
 
           let data = category.books;
-          
+          currentRenderWidth = window.innerWidth;
                 if (currentRenderWidth < 768) {
                   cardsBox.insertAdjacentHTML(
                     'afterbegin',
@@ -108,16 +111,21 @@ export function createCardsByCategory(colection) {
   categoriesContainer.innerHTML = '';
 
   const titleH1 = document.createElement('h1');
+  // const titleSpan = document.createElement('span');
   const cardList = document.createElement('ul');
 
   titleH1.classList.add('bestsellers__category');
+  // titleSpan.classList.add('bestsellers__text-part');
   cardList.classList.add("bestsellers__list");
+  cardList.classList.add("single-list");
+
 
   titleH1.innerText = `${colection[0].list_name}`
 
+  // titleH1.append(titleSpan);
   categoriesContainer.prepend(titleH1, cardList);
 
-  cardList.innerHTML = createCards(colection);
+  cardList.innerHTML = markupCardsbyCaterory(colection);
 
 }
 
@@ -135,9 +143,22 @@ export function createCards(colection) {
     .join('');
 }
 
+export function markupCardsbyCaterory(colection) {
+  return colection.map(({ book_image, title, author, _id }) => {
+      return `
+        <li class="book__item single-category">
+            <a href="#" class="book__link">
+              <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
+              <h3 class="book__name">${title}</h3>
+              <p class="book__author">${author}</p>
+            </a>
+          </li>`;
+    })
+    .join('');
+}
+
 
 // Ola
 import { handleShowPop } from './pop-up.js';
-// function handleShowPop(event) {}
 categoriesContainer.addEventListener('click', handleShowPop);
 // Ola

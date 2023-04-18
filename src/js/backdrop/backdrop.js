@@ -1,9 +1,10 @@
 import './_backdrop.scss';
 import ScrollToggler from './toggler';
+import { getZindex, isInt } from '../utils';
 
 const scroll = new ScrollToggler();
 
-// <div data-backdrop [hidden]>
+// <div data-backdrop [data-hidden]>
 //   {child}
 // </div>
 
@@ -16,19 +17,31 @@ export default class Backdrop {
     if (hideOnClick) {
       // закрываем при клике на сам бекдроп
       this.#backdrop.addEventListener(
-        'click',
+        'mousedown',
         e => e.target === e.currentTarget && this.hide()
       );
     }
   }
 
+  get ref() {
+    return this.#backdrop;
+  }
+
+  get zindex() {
+    return getZindex(this.#backdrop);
+  }
+
+  set zindex(v) {
+    if (isInt(v)) this.#backdrop.style.zIndex = `${v}`;
+  }
+
   show() {
     scroll.disable();
-    this.#backdrop.removeAttribute('hidden');
+    this.#backdrop.removeAttribute('data-hidden');
   }
 
   hide() {
     scroll.enable();
-    this.#backdrop.setAttribute('hidden', '');
+    this.#backdrop.setAttribute('data-hidden', '');
   }
 }

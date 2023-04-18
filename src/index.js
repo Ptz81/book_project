@@ -9,3 +9,5 @@ import './js/support-render-markup';
 import './js/pop-up';
 import './js/scroll-up';
 import './js/footer';
+// testing
+import './js/auth/auth-user';

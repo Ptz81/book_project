@@ -32,13 +32,13 @@
   overflow-y: scroll;
   max-height: 600px;
 
-  background-color: var(--color-header-background);
+  background-color: var(--color-background);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 
-  scrollbar-width: 8px;
-  scrollbar-color: var(--color-nav-scroll);
+  scrollbar-width: auto;
+  scrollbar-color: var(--color-nav-scroll) var(--color-scroll-mozila);
 
   @include transition(transform);
 
@@ -85,6 +85,12 @@
   display: flex;
   width: 50px;
   height: 50px;
+  scale: 1;
+  @include transition(scale);
+  &:hover,
+  &:focus {
+    scale: 1.5;
+  }
 }
 .footer__name {
   font-weight: 700;
