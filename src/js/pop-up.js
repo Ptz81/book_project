@@ -32,6 +32,9 @@ let arrayBookShopIs = [];
 let arrayBookAdd = [];
 
 export function handleShowPop(event) {
+  //  SerhiiS 18/04/2023
+  if (event.target.nodeName !== "IMG") { return; };
+  // SerhiiS
   const infoPopEl = document.querySelector('.pop-info');
   const popId = event.target.id;
   const bookID = new BookService();
