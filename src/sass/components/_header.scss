@@ -16,18 +16,12 @@
     position: relative;
     display: flex;
     align-items: center;
-    // justify-content: center;
     min-height: 64px;
-    // max-width: 375px;
-
+   
     @media screen and (min-width: 768px) {
-        height: 72px;
-        // max-width: 1440px;
+        height: 72px; 
     }
 
-    // @media screen and (min-width: 1440px) {
-    //     max-width: 1440px;
-    // }
 }
 
 .logo {
@@ -37,7 +31,7 @@
         margin-right: 32px; 
     }
 
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 1280px) {
         margin-right: 99px; 
     }
 
@@ -173,7 +167,7 @@
 
 .switch {
     margin-left: auto;
-    margin-right: 34px;
+    margin-right: 37px;
 
     @media screen and (min-width: 768px) {
         margin-right: 24px;
@@ -238,9 +232,11 @@
 
 .menu-toggle__svg {
     fill: var(--menu-icon-color);
-    &:hover {
-        fill: var(--color-blue);
-    }
+    
+}
+
+.menu-toggle:hover .menu-toggle__svg {
+    fill: var(--color-blue);
 }
 
 
@@ -254,7 +250,7 @@
     height: 100vh;
     padding: 84px 20px 20px 20px;
     background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, var(--color-blue) 18.03%, var(--color-white) 100%);
-    z-index: 996;
+    // z-index: 996;
   
     transform: translateX(100%);
     transition: transform 250ms ease-in-out;
