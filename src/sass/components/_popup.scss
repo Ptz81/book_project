@@ -33,7 +33,7 @@
   height: 28px;
   background-color: transparent;
   // background-color: white;
-  border: 1px solid white;
+  border: 1px solid transparent;
   border-radius: 50%;
 
   cursor: pointer;
@@ -62,7 +62,7 @@
 .modal {
   width: 95%;
   // height: 100%;
-  // overflow: hidden;
+  // overflow: auto;
   overflow-y: scroll;
   /* width: 100%;
         height: auto; */
@@ -99,9 +99,9 @@
   // margin-left: auto;
   // margin-right: auto;
 }
-.btn_wrapper > p {
-  margin-bottom: 8px;
-}
+// .btn_wrapper > p {
+//   margin-bottom: 8px;
+// }
 .pop-text {
   margin-left: 46px;
   margin-right: 46px;
@@ -109,6 +109,13 @@
   margin-bottom: 40px;
   text-align: center;
   color: var(--color-modal-info);
+
+//---------
+// position: absolute;
+// top: 765px;
+//---------
+
+
 }
 
 /* .description {
@@ -155,6 +162,14 @@
   gap: 20px;
 }
 
+.theme-dark .amazon-link {
+  filter: invert(1);
+}
+
+.theme-dark .bookshop-link {
+  filter: invert(1);
+}
+
 .pop_shop-item {
   margin-right: 20px;
 }
@@ -169,6 +184,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
+
+  //-------
+// position: relative;
+  //-------
 }
 
 .pop__btn {
@@ -252,6 +271,10 @@
     display: flex;
     margin: 40px 44px 40px 40px;
   }
+
+  // .pop-text{
+  //   top: 440px;
+  // }
 
   .photo {
     width: 192px;
