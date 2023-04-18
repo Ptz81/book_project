@@ -94,7 +94,7 @@
 
 .photo {
   width: 100%;
-  height: auto;
+  height: 440px;
   margin-bottom: 14px;
   // margin-left: auto;
   // margin-right: auto;
@@ -106,7 +106,7 @@
   margin-left: 46px;
   margin-right: 46px;
   font-size: 10px;
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
   text-align: center;
   color: var(--color-modal-info);
 
@@ -249,13 +249,14 @@
 @media screen and (max-width: $pretablet) {
   .modal {
     max-width: 335px;
+    height: 830px;
   }
 }
 
 @media screen and (min-width: $tablet) {
   .modal {
     width: 579px;
-    height: auto;
+    height: 440px;
     margin: 0;
     padding: 0;
   }
