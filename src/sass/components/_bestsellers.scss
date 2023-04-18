@@ -94,6 +94,19 @@
     border: 2px solid var(--color-blue);
     border-radius: 40px;
 
+    &:hover, &:focus {
+      @include transition(color);
+      cursor: pointer;
+      background-color: var(--color-yellow);
+    }
+
+    &--disabled {
+      color: var(--color-grey-light);
+      &:hover {
+        background-color: inherit;
+        cursor: auto;
+      }
+    }
 
   }
 
@@ -111,14 +124,18 @@
   /* .book__list */
 
   &__list {
+    
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+
   }
 
   /* .book__item */
 
   &__item {
+    margin-bottom: 8px;
+
     @media screen and (min-width: $tablet) {
       width: 218px;
       margin-bottom: 20px;
@@ -128,21 +145,38 @@
 
     @media screen and (min-width: $desktop) {
       width: 180px;
-      margin-bottom: 20px;
+      margin-bottom: 32px;
       display: flex;
       flex-wrap: wrap;
     }
+
+
   }
+
+// .book__box
+
+  &__box {
+position: relative;
+overflow: hidden;
+&:hover .book__overlay, &:focus .book__overlay {
+  transform: translateY(-120%);
+}
+  }
+
 
   // /* .book__link */
 
   &__link {
-    margin-bottom: 8px;
+    width: 100%;
+    
+    
+    
   }
 
   // /* .book__img */
 
   &__img {
+    width: 100%;
     margin-bottom: 14px;
     border-radius: 8px;
 
@@ -153,7 +187,52 @@
     @media screen and(min-width: $desktop) {
       height: 256px;
     }
+
+    
+
+  
   }
+
+  // .book__overlay
+
+  &__overlay {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 70px;
+  
+  transition-property: transform;
+  transition-duration: 250ms;
+  transition-timing-function: linear;
+  transition-delay: 0;
+  
+
+  background: var(--color-yellow);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+  }
+
+
+
+&__text-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+
+  font-family: var(--font-family-primary);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: calc(18/14);
+
+letter-spacing: -0.04em;
+text-transform: uppercase;
+ 
+  color: var(--color-black);
+}
 
   // /* .book__name */
 
@@ -208,5 +287,7 @@
     margin-bottom: 20px;
   }
 }
+
+
 // .btn {
 // }
