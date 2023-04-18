@@ -4,3 +4,14 @@
 .modal-icon {
   stroke: var(--close-icon-color);
 }
+
+
+.modal-icon-cross{
+  stroke: var(--color-modal-btn);
+}
+
+.modal-icon-cross:hover,
+.modal-icon-cross:focus {
+  stroke: var(--close-icon-color);
+  transition: stroke 300ms cubic-bezier(0.4, 0, 0.2, 1),
+}
