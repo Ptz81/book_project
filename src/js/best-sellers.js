@@ -143,7 +143,7 @@ export function createCards(colection) {
               <div class ="book__box">
               <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
               <div class="book__overlay">
-              <p class="book__text-overlay">see more</p>
+              <p class="book__text-overlay">quick view</p>
               </div>
               </div>
               <h3 class="book__name">${title}</h3>
@@ -162,7 +162,7 @@ export function markupCardsbyCaterory(colection) {
               <div class ="book__box">
               <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
               <div class="book__overlay">
-              <p class="book__text-overlay">see more</p>
+              <p class="book__text-overlay">quick view</p>
               </div>
               </div>
               <h3 class="book__name">${title}</h3>
