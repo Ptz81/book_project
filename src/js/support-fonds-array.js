@@ -31,22 +31,10 @@ export const supportItems = [
       img2x: hope2x,
     },
     {
-      title: 'UNITED24',
-      url: 'https://u24.gov.ua/uk',
-      img1x: united1x,
-      img2x: united2x,
-    },
-    {
       title: 'International Medical Corps',
       url: 'https://internationalmedicalcorps.org/country/ukraine/',
       img1x: corps1x,
       img2x: corps2x,
-    },
-    {
-      title: 'Medicins Sans Frontieres',
-      url: 'https://www.msf.org/ukraine',
-      img1x: medecins1x,
-      img2x: medecins2x,
     },
     {
       title: 'RAZOM',
@@ -61,15 +49,27 @@ export const supportItems = [
       img2x: action2x,
     },
     {
+      title: 'Serhiy Prytula Charity Foundation',
+      url: 'https://prytulafoundation.org/en',
+      img1x: prytula1x,
+      img2x: prytula2x,
+    },
+    {
+      title: 'Medicins Sans Frontieres',
+      url: 'https://www.msf.org/ukraine',
+      img1x: medecins1x,
+      img2x: medecins2x,
+    },
+    {
       title: 'World vision',
       url: 'https://www.wvi.org/emergencies/ukraine',
       img1x: world1x,
       img2x: world2x,
     },
     {
-      title: 'Serhiy Prytula Charity Foundation',
-      url: 'https://prytulafoundation.org/en',
-      img1x: prytula1x,
-      img2x: prytula2x,
+      title: 'UNITED24',
+      url: 'https://u24.gov.ua/uk',
+      img1x: united1x,
+      img2x: united2x,
     },
   ];
