@@ -13,7 +13,6 @@
     padding-right: 32px;
   }
   @media screen and (min-width: $desktop) {
-    max-width: 420px;
     @include alignment(stretch, flex-start, column);
     gap: 86px;
     padding-bottom: 0;
@@ -27,14 +26,17 @@
     max-width: 337px;
     padding: 0;
   }
+  @media screen and (min-width: $desktop) {
+    max-width: 356px;
+  }
 }
 
 .categories__container {
   max-height: 228px;
   overflow-y: scroll;
   padding-right: 20px;
-  scrollbar-width: 8px;
-  scrollbar-color: var(--color-nav-scroll);
+  scrollbar-width: auto;
+  scrollbar-color: var(--color-nav-scroll) var(--color-scroll-mozila);
   @include alignment(stretch, flex-start, column);
   gap: 24px;
 

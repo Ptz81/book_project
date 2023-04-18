@@ -27,7 +27,6 @@ export default class FirebaseAuth {
       auth = getAuth(firebaseApp);
     } catch {
       console.error(ERR_INIT_FAILED);
-      return null;
     }
 
     // note: похоже, срабатывает даже при отсутствии текущего пользователя
@@ -94,7 +93,9 @@ export default class FirebaseAuth {
 class AuthError extends Error {
   constructor(err) {
     super(parseErrorMsg(err));
+    
     this.name = 'AuthError';
+    this.code = err.code;
   }
 }
 

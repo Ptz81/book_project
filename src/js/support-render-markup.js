@@ -19,7 +19,7 @@ export const renderSupportList = items => {
                 href="${url}"
               >
                 <img
-                  src="/src/images/support-images/save@1x.png"
+                  src="${img1x}"
                   alt="${title}"
                   class="support__logo"
                   srcset="

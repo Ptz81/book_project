@@ -10,6 +10,7 @@
   --color-grey-light: #b4afaf;
   --color-grey-lighter: #f6f6f6;
   --color-light-black: #202024;
+  --scroll-mozila: transparent;
 
   // Цвета для светлой темы (по умолчанию)
 
@@ -29,8 +30,15 @@
   --color-category-active: var(--color-blue);
   // цвет скролла в блоке категории
   --color-nav-scroll: var(--color-scroll);
+  --color-scroll-mozila: var(--color-grey-lighter);
   // цвет бекдропа для модалок и лоадера
   --color-backdrop: rgba(17, 17, 17, 0.4); //rgba(79, 46, 232, 0.7);
+
+  // лого
+  --color-logo: var(--color-white);
+
+  // footer
+  --color-footer: var(--color-white);
 
   //цвет фона карточки шопинг листа
   --color-shop-card-background: var(--color-white);
@@ -41,6 +49,7 @@
 
   --color-header-border: var(--color-black);
   --menu-icon-color: var(--color-black);
+  --switcher-color: #DCDCDC;
 
   --color-auth-form-background: var(--color-grey-lighter);
   --color-auth-form-border: var(--color-black);
@@ -49,6 +58,7 @@
   --color-loader-spinner: var(--color-black);
 
   --close-icon-color: var(--color-black);
+  --close-icon-color-active: var(--color-grey-darker);
 
   // Модалка
 
