@@ -8,5 +8,4 @@ import './js/support-slider';
 import './js/support-render-markup';
 import './js/pop-up';
 import './js/scroll-up';
-// testing
-import './js/auth/auth-user';
+import './js/auth/auth-logic';
