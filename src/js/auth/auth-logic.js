@@ -48,7 +48,8 @@ function getLocalStorageValue(key) {
 }
 
 function goHome() {
-  if (document.location.pathname !== '/') {
+  const homePath = '/book_project/'; // '/'
+  if (document.location.pathname !== path) {
     document.location.href = './';
   }
 }
