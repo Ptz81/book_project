@@ -1,7 +1,7 @@
 @import '../../js/auth/header-auth';
 
 .page-header {
-  // position: fixed;
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
@@ -11,13 +11,38 @@
   z-index: 999;
   border: 1.5px solid var(--color-header-border);
   border-radius: 0px 0px 8px 8px;
+
 }
 
-.page-header__container {
+.page-header:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: var(--color-header-background);
+  border: 1.5px solid var(--color-header-border);
+  border-radius: 0px 0px 8px 8px;
+}
+
+// .page-header__container {
+//   position: relative;
+//   // display: flex;
+//   // align-items: center;
+//   min-height: 64px;
+
+//   @media screen and (min-width: 768px) {
+//     height: 72px;
+//   }
+// }
+
+.page-header__body {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 64px;
+  height: 64px;
 
   @media screen and (min-width: 768px) {
     height: 72px;
@@ -26,6 +51,9 @@
 
 .logo {
   display: flex;
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
 
   @media screen and (min-width: 768px) {
     margin-right: 32px;
@@ -54,18 +82,34 @@
   fill: var(--menu-icon-color);
 }
 
-.menu {
-  display: none;
+// .menu {
+//   display: none;
 
-  @media screen and (min-width: 768px) {
-    display: flex;
-  }
+//   @media screen and (min-width: 768px) {
+//     display: flex;
+//   }
+// }
+
+.menu {
+  position: fixed;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, var(--color-blue) 18.03%, var(--color-white) 100%);
+  transition: all 0.3s ease 0s;
+}
+
+.menu.js-open {
+  top: 0;
 }
 
 .menu__list {
   display: flex;
   align-items: center;
   gap: 24px;
+  position: relative;
+  z-index: 2;
 
   &--hidden {
     display: none;
@@ -132,7 +176,9 @@
 
 .switch {
   margin-left: auto;
-  margin-right: 37px;
+  margin-right: 14px;
+  z-index: 3;
+
 
   @media screen and (min-width: 768px) {
     margin-right: 24px;
@@ -180,20 +226,66 @@
 }
 
 .menu-toggle {
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  bottom: 18px;
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  background-color: transparent;
-  border: none;
-
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
+  display: none;
 }
+
+@media screen and (max-width:767px) {
+  body.lock {
+    overflow: hidden;
+  }
+  .menu-toggle {
+    display: block;
+    position: relative;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    width: 13px;
+    height: 17px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    transition: all 0.3s ease 0s;
+
+  }
+
+
+
+  .menu__list {
+    
+
+    @media screen and (max-width: 767px) {
+      display: inline-block;
+
+      margin-top: 210px;
+      margin-left: 30%;
+      padding: 0px;
+      align-items: center;
+
+
+    }
+  
+    &--hidden {
+      display: none;
+    }
+  }
+
+  .menu {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, var(--color-blue) 18.03%, var(--color-white) 100%);
+    transition: all 0.3s ease 0s;
+  }
+  
+  .menu.js-open {
+    top: 0;
+  }
+
+}
+
 
 .menu-toggle__svg {
     stroke: var(--menu-icon-color);
@@ -204,27 +296,26 @@
     stroke: var(--color-blue);
 }
 
-.menu-container {
-    position: relative;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    padding: 84px 20px 20px 20px;
-    background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, var(--color-blue) 18.03%, var(--color-white) 100%);
-    z-index: 996;
+// .menu-container {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100vw;
+//     height: 100vh;
+//     padding: 84px 20px 20px 20px;
+//     background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, var(--color-blue) 18.03%, var(--color-white) 100%);
+//     z-index: 996;
   
-    transform: translateX(100%);
-    transition: transform 250ms ease-in-out;
+//     transform: translateX(100%);
+//     transition: transform 250ms ease-in-out;
 
-}
+// }
 
-.menu-container.is-open {
-  transform: translateX(0);
-}
+// .menu-container.is-open {
+//   transform: translateX(0);
+// }
 
-.menu-container__image {
+.menu__image {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -269,7 +360,7 @@
   padding: 0px;
 }
 
-.mobile-menu__link {
+.menu__link {
   text-decoration: none;
   padding: 8px 16px;
   color: var(--color-white);
@@ -297,12 +388,12 @@
   }
 }
 
-.mobile-menu__link .current {
+.menu__link .current {
   background-color: var(--color-yellow);
   color: var(--color-black);
 }
 
-.mobile-menu__svg {
+.menu__svg {
   fill: var(--color-white);
 }
 
