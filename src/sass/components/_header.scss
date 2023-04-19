@@ -120,14 +120,14 @@
 }
 
 .shop-link {
-  display: flex;
-  align-items: center;
-  padding: 7px 16px;
-  gap: 4px;
+    display: flex;
+    align-items: center;
+    padding: 7px 16px;
+    gap: 4px;
 
-  @media screen and (max-width: 767px) {
-    margin-top: 16px;
-  }
+    @media screen and (max-width:767px) {
+        margin-top: 16px;
+    }
 }
 
 .switch {
@@ -196,30 +196,28 @@
 }
 
 .menu-toggle__svg {
-  fill: var(--menu-icon-color);
+    stroke: var(--menu-icon-color);
+    
 }
 
 .menu-toggle:hover .menu-toggle__svg {
-  fill: var(--color-blue);
+    stroke: var(--color-blue);
 }
 
 .menu-container {
-  position: relative;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  padding: 84px 20px 20px 20px;
-  background: radial-gradient(
-    183.6% 183.01% at 59.76% -23.42%,
-    var(--color-blue) 18.03%,
-    var(--color-white) 100%
-  );
-  // z-index: 996;
+    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 84px 20px 20px 20px;
+    background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, var(--color-blue) 18.03%, var(--color-white) 100%);
+    z-index: 996;
+  
+    transform: translateX(100%);
+    transition: transform 250ms ease-in-out;
 
-  transform: translateX(100%);
-  transition: transform 250ms ease-in-out;
 }
 
 .menu-container.is-open {

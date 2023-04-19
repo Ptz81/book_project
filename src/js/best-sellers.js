@@ -3,6 +3,7 @@ import BookService from './book-service';
 const bs = new BookService();
 const categoriesContainer = document.querySelector('[data-name=category]');
 
+
 let currentRenderWidth = 1280;
 
 categoriesContainer.addEventListener('click', onSeeMoreBtnClick);
@@ -21,7 +22,10 @@ function onSeeMoreBtnClick(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }
-
+  const btn = event.target
+  console.log(btn);
+  btn.disabled = true;
+  btn.classList.add('bestsellers__btn--disabled')
   const selectedBtn = event.target.dataset.name;
   const categoryItem = document.getElementById(`${selectedBtn}`);
   let promise = bs.getBooksByCategory(`${selectedBtn}`);
@@ -136,7 +140,12 @@ export function createCards(colection) {
       return `
         <li class="book__item">
             <a href="#" class="book__link">
+              <div class ="book__box">
               <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
+              <div class="book__overlay">
+              <p class="book__text-overlay">quick view</p>
+              </div>
+              </div>
               <h3 class="book__name">${title}</h3>
               <p class="book__author">${author}</p>
             </a>
@@ -150,7 +159,12 @@ export function markupCardsbyCaterory(colection) {
       return `
         <li class="book__item single-category">
             <a href="#" class="book__link">
+              <div class ="book__box">
               <img src="${book_image}" id="${_id}" alt="image" class="book__img" />
+              <div class="book__overlay">
+              <p class="book__text-overlay">quick view</p>
+              </div>
+              </div>
               <h3 class="book__name">${title}</h3>
               <p class="book__author">${author}</p>
             </a>
@@ -164,3 +178,5 @@ export function markupCardsbyCaterory(colection) {
 import { handleShowPop } from './pop-up.js';
 categoriesContainer.addEventListener('click', handleShowPop);
 // Ola
+
+

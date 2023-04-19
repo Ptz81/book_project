@@ -8,4 +8,6 @@ import './js/support-slider';
 import './js/support-render-markup';
 import './js/pop-up';
 import './js/scroll-up';
+import './js/footer';
+// import './js/scroll-off';
 import './js/auth/auth-logic';

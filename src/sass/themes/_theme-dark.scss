@@ -10,6 +10,7 @@
   --color-category: rgba(255, 255, 255, 0.6);
   --color-category-active: var(--color-yellow);
   --color-nav-scroll: rgba(17, 17, 17, 0.6);
+  --color-scroll-mozila: var(--color-grey-darker);
 
   --color-header-background: var(--color-black);
   --color-header-border: var(--color-white);
@@ -24,10 +25,19 @@
   --color-auth-form-background: #202024;
   --color-auth-form-border: var(--color-grey-lighter);
 
+  // --close-icon-color: var(--color-yellow);
+
+  --color-logo: var(--color-category-active);
+
+  --color-footer: var(--color-category-active);
   --color-loader-backdrop: var(--color-black);
   --color-loader-spinner: var(--color-white);
 
-  --close-icon-color: var(--color-white);
+  --close-icon-color: var(--color-yellow);
+
+  --color-logo: var(--color-category-active);
+
+  --color-footer: var(--color-category-active);
 
   // Модалка
   --color-modal-border: var(--color-white);
@@ -39,4 +49,5 @@
   --color-modal-shop: var(--color-white);
   --color-modal-btn: var(--color-white);
   --color-modal-info: rgba(255, 255, 255, 0.6);
+  
 }
