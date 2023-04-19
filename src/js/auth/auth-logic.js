@@ -6,6 +6,7 @@ const acc = new UserAccount();
 const signUpBtn = getRef('.header-btn');
 const userBtnCaption = getRef('.header-btn__caption');
 const headerMenu = getRef('.menu__list');
+const bookCardBtn = getRef('.pop__btn');
 
 const currentUser = getLocalStorageValue('current-user');
 if (currentUser) handleLogin(currentUser);
@@ -18,7 +19,9 @@ function showProfileMenu() {
   acc.logout();
 }
 
+//
 // Events
+//
 
 acc.onLogin(handleLogin);
 acc.onLogout(handleLogout);
@@ -27,13 +30,15 @@ function handleLogin(currentUser) {
   signUpBtn.classList.remove('unregistered');
   userBtnCaption.textContent = currentUser.name;
   headerMenu.classList.remove('menu__list--hidden');
-  setCurrentUser(currentUser);
+
+  applyCurrentUserSettings(currentUser);
 }
 
 function handleLogout() {
   signUpBtn.classList.add('unregistered');
   userBtnCaption.textContent = 'Sign Up';
   headerMenu.classList.add('menu__list--hidden');
+
   localStorage.clear();
   goHome();
 }
@@ -54,10 +59,10 @@ function goHome() {
   }
 }
 
-function setCurrentUser(user) {
+function applyCurrentUserSettings(user) {
   const { name, id, email, shoppingList } = user;
   localStorage.setItem('current-user', JSON.stringify({ name, email }));
-  localStorage.setItem('book-add', shoppingList || '');
+  if (shoppingList) localStorage.setItem('book-add', shoppingList);
 }
 
 function removeFromStorage(values) {
