@@ -75,7 +75,7 @@ disableBodyScroll(modalEl);
       <p class="pop_description">
         ${
           dataId.description ||
-          'There is no description <br/><br/>Слава Україні!<br/>Смерть ворогам!'
+          'There is no description <br/><br/>Слава Україні!'
         }
       </p>
       <ul class="pop_shop list"></ul>
