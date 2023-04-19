@@ -48,8 +48,8 @@ function getLocalStorageValue(key) {
 }
 
 function goHome() {
-  let homePath = '/book_project/';
-  // homePath = '/';
+  const hostname = document.location.hostname;
+  const homePath = hostname === 'localhost' ? '/' : '/book_project/';
   if (document.location.pathname !== homePath) {
     document.location.href = './';
   }
