@@ -74,7 +74,7 @@ const modalController = ({modal, btnOpen, btnClose, time = 300}) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   modalController({
-    modal: '.backdrop.is-hidden',
+    modal: '.modal',
     btnOpen: '.book__item',
     btnClose: '.modal-btn',
   });
