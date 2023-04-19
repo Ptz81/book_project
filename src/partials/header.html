@@ -11,8 +11,8 @@
       </a>
     </div>
 
-    <!-- <nav class="nav menu">
-      <ul class="menu__list">
+    <nav class="nav menu">
+      <ul class="menu__list menu__list--hidden">
         <li class="menu__item">
           <a href="./index.html" class="menu__link nav-link">Home</a>
         </li>
@@ -20,11 +20,13 @@
           <a href="./shopping-list.html" class="menu__link shop-link nav-link">
             Shopping list
             <svg width="13px" height="17px" class="menu__svg">
-              <use href="./images/sprite1.svg#uil"></use></svg
-          ></a>
+              <use href="./images/sprite1.svg#uil"></use>
+            </svg>
+          </a>
         </li>
       </ul>
-    </nav> -->
+    </nav>
+
     <div class="switch">
       <input class="switch__input" type="checkbox" id="darkmode-toggle" />
       <label class="switch__label" for="darkmode-toggle"></label>
@@ -44,14 +46,18 @@
       </svg>
     </button>
 
-    <button class="header-btn" type="button">
-      <div class="header-btn__circle">
-        <svg width="19px" height="19px" class="header-btn__img">
+    <!-- Login button -->
+    <button class="header-btn unregistered" type="button">
+      <div class="header-btn__avatar">
+        <svg class="header-btn__avatar-img" width="19px" height="19px">
           <use href="./images/sprite1.svg#user"></use>
         </svg>
       </div>
-      <span class="header-btn__span">User</span>
-      <svg width="13px" height="7px" class="header-btn__svg">
+      <span class="header-btn__caption">Sign Up</span>
+      <svg class="header-btn__login-arrow">
+        <use href="./images/sprite.svg#icon-login-arrow"></use>
+      </svg>
+      <svg class="header-btn__user-arrow">
         <use href="./images/sprite1.svg#icon-scroll"></use>
       </svg>
     </button>

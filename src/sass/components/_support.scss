@@ -1,7 +1,7 @@
 .support__wrapper {
     position: relative;
     width: 335px;
-    height: 352px; 
+    height: 352px;
     padding: 24px 40px;
     background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, var(--color-blue) 18.03%, var(--color-white) 100%);
     box-shadow: 0px 10px 10px rgba(245, 245, 247, 0.1);
@@ -31,6 +31,9 @@
 .support__icon {
     width: 20px;
     height: 32px;
+
+    //---Taras 19/04/2023---//
+    margin: auto;
 }
 .support__list {
     height: 188px;

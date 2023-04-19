@@ -1,14 +1,10 @@
 import AuthForm from './auth-form';
 import FirebaseAuth from './firebase/auth';
 import FirebaseDB from './firebase/db';
-import ShoppingList from './shopping-list';
+import ShoppingList from './shopping-db';
 import Loader from '../loader/loader';
-import { showError, showSuccess } from '../notify';
 import { isFunc } from '../utils';
-
-//
-// User account
-//
+import { showError, showSuccess } from '../notify';
 
 const DEF_USERNAME = 'Anonymous';
 const SIGNUP_SUCCESS = 'Glad to welcome you';
@@ -32,24 +28,25 @@ export default class UserAccount {
 
     authForm.onSubmit(handleFormSubmit);
     auth.onSignedOut(handleSignedOut);
+    auth.onSignedIn(handleSignedIn);
 
     this.showForm = authForm.show.bind(authForm);
     this.hideForm = authForm.hide.bind(authForm);
     this.logout = auth.signOut.bind(auth);
     this.shoppingList = new ShoppingList(auth);
+
+    instance = this;
   }
 
   get currentUser() {
     return currentUser;
   }
-
   /**
    * @param {callback} handler - handler(currentUser)
    */
   onLogin(handler) {
     handleLogin = isFunc(handler) ? handler : null;
   }
-
   /**
    * @param {callback} handler - handler({ email, id, name })
    */
@@ -66,20 +63,71 @@ function greet({ isNewcomer, name }) {
   showSuccess(`${isNewcomer ? SIGNUP_SUCCESS : SIGNIN_SUCCESS}, ${name}`);
 }
 
-/**
- * Вызывается при signOut пользователя из приложения
- */
 function handleSignedOut() {
-  // чтобы не срабатывало при инициализации firebase auth
-  if (!currentUser) return;
-
-  showSuccess(`${SIGNOUT_SUCCESS}, ${currentUser.name}`);
+  // чтобы не срабатывало при инициализации firebase app
+  if (currentUser) showSuccess(`${SIGNOUT_SUCCESS}, ${currentUser.name}`);
 
   // кидаем из currentUser статичную инфу для статистики
   // снимок shoppingList-а вероятно уже не актуален
-  const { email, id, name } = currentUser;
-  handleLogout && handleLogout({ email, id, name });
+  const { email, id, name } = currentUser || '';
+  handleLogout && handleLogout();
   currentUser = null;
+}
+
+/**
+ *
+ * @param {*} user - данные авторизованного юзера
+ */
+async function handleSignedIn(user) {
+  const { mode, data } = authForm;
+
+  // данные пришли при сабмите
+  if (data) {
+    mode === 'signin'
+      ? await _handleSignedIn(user.uid, data)
+      : await _handleSignedUp(user.uid, data);
+
+    greet(currentUser);
+
+    // данные пришли в реузльтате инициализации
+  } else {
+    await _handleSignedIn(user.uid, user);
+  }
+
+  // пользовательский обработчик
+  handleLogin && handleLogin(currentUser);
+}
+
+/**
+ *
+ * @param {*} id
+ * @param {*} data
+ */
+async function _handleSignedUp(id, data) {
+  const { name, email } = data;
+  // пишем данные нового пользователя в БД
+  await db.write(`users/${id}`, { name, email, shoppingList: {} });
+  currentUser = { name, email, id, isNewcomer: true };
+}
+
+/**
+ *
+ * @param {*} id
+ * @param {*} data
+ */
+async function _handleSignedIn(id, data) {
+  const { name = DEF_USERNAME, email } = data;
+
+  // запрашиваем данные пользователя из БД
+  // если их там не оказалось - пишем его в БД с дефолтным именем
+  const storedData = await db.read(`users/${id}`);
+  if (!storedData) {
+    await db.write(`users/${id}`, { name, email, shoppingList: {} });
+  }
+
+  // сериализованный массив списка книг
+  const shoppingList = ShoppingList.formatList(storedData?.shoppingList);
+  currentUser = { name, email, id, ...storedData, shoppingList };
 }
 
 /**
@@ -88,17 +136,17 @@ function handleSignedOut() {
  * @param {object} formData - данные полей формы {name: value,...}
  */
 async function handleFormSubmit(formData) {
+  authForm.data = formData;
+
   try {
     // появится над формой
     loader.show({ zindex: authForm.zindex + 1 });
 
-    await (authForm.mode === 'signup'
-      ? handleSignedUp(formData, greet)
-      : handleSignedIn(formData, greet));
+    authForm.mode === 'signup'
+      ? await auth.signUp(formData)
+      : await auth.signIn(formData);
 
-    // корректнее было бы деоегировать auth.onSignedIn,
-    // но в момент ее вызова еще не доступен currentUser
-    handleLogin && handleLogin(currentUser);
+    authForm.data = null;
     authForm.hide();
     authForm.reset();
 
@@ -110,51 +158,4 @@ async function handleFormSubmit(formData) {
   } finally {
     loader.hide();
   }
-}
-
-/**
- *
- * Регистрирует пользователя, записывая его данные в БД
- * @param {object} formData - данные пользователя из формы {email, name,...}
- */
-async function handleSignedUp(formData, callback) {
-  const { name, email } = formData;
-
-  // signUp
-  const cred = await auth.signUp(formData);
-  const id = cred.user.uid;
-  const userPath = `users/${id}`;
-
-  // пишем данные нового пользователя в БД
-  await db.write(userPath, { name, email, shoppingList: null });
-
-  // обновляем данные о пользователе
-  currentUser = { name, email, id, isNewcomer: true };
-  isFunc(callback) && callback(currentUser);
-}
-
-/**
- *
- * Инициирует вход пользователя, подтягивая его данные из БД
- * @param {object} formData - данные пользователя из формы
- */
-async function handleSignedIn(formData, callback) {
-  const { name = DEF_USERNAME, email } = formData;
-
-  // signIn
-  const cred = await auth.signIn(formData);
-  const id = cred.user.uid;
-  const userPath = `users/${id}`;
-
-  // запрашиваем данные пользователя из БД
-  const storedData = await db.read(userPath);
-
-  // если их там вдруг не оказалось - пишем с дефолтным именем
-  if (!storedData) {
-    await db.write(userPath, { name, email, shoppingList: null });
-  }
-
-  // обновляем данные о пользователе
-  currentUser = { name, email, id, ...storedData };
-  isFunc(callback) && callback(currentUser);
 }

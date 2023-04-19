@@ -10,68 +10,58 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 
-let auth;
-let instance;
-let firebaseApp;
-let handleSignIn;
-let handleSignOut;
-
 const ERR_INIT_FAILED = 'FirebaseApp initialization failed';
 
 export default class FirebaseAuth {
+  #auth;
+  #firebaseApp;
+  #handleSignIn;
+  #handleSignOut;
+  #instance;
+
   constructor({ app } = {}) {
-    if (instance) return instance;
+    // в рамках одного окна имеет смысл
+    if (this.#instance) return this.#instance;
 
     try {
-      firebaseApp = app || initializeApp(firebaseConfig);
-      auth = getAuth(firebaseApp);
+      const firebaseApp = app || initializeApp(firebaseConfig);
+      this.#auth = getAuth(firebaseApp);
     } catch {
       console.error(ERR_INIT_FAILED);
     }
 
-    // note: похоже, срабатывает даже при отсутствии текущего пользователя
-    onAuthStateChanged(auth, user => {
-      if (user) return handleSignIn && handleSignIn(user);
-      handleSignOut && handleSignOut();
+    // корректный способ узнать, авторизован ли юзер в текущем приложении
+    onAuthStateChanged(this.#auth, user => {
+      if (user) return this.#handleSignIn && this.#handleSignIn(user);
+      this.#handleSignOut && this.#handleSignOut();
     });
 
-    instance = this;
+    this.#instance = this;
   }
 
   get app() {
-    return firebaseApp;
-  }
-
-  get currentUser() {
-    return auth.currentUser;
+    return this.#auth.app;
   }
 
   onSignedIn(handler) {
-    handleSignIn = isFunc(handler) ? handler : null;
+    this.#handleSignIn = isFunc(handler) ? handler : null;
   }
 
   onSignedOut(handler) {
-    handleSignOut = isFunc(handler) ? handler : null;
+    this.#handleSignOut = isFunc(handler) ? handler : null;
   }
 
-  /**
-   * Добавляет пользователя в Users текущего firebase приложения
-   */
   async signUp({ email, password } = {}) {
     try {
-      return await createUserWithEmailAndPassword(auth, email, password);
+      return await createUserWithEmailAndPassword(this.#auth, email, password);
     } catch (err) {
       throw new AuthError(err);
     }
   }
 
-  /**
-   * Если пользователь существует в Users текущего приложения
-   * устанавливает его текущим для приложения
-   */
   async signIn({ email, password } = {}) {
     try {
-      return await signInWithEmailAndPassword(auth, email, password);
+      return await signInWithEmailAndPassword(this.#auth, email, password);
     } catch (err) {
       throw new AuthError(err);
     }
@@ -79,7 +69,7 @@ export default class FirebaseAuth {
 
   async signOut() {
     try {
-      return await _signOut(auth);
+      return await _signOut(this.#auth);
     } catch (err) {
       throw new AuthError(err);
     }
@@ -93,7 +83,6 @@ export default class FirebaseAuth {
 class AuthError extends Error {
   constructor(err) {
     super(parseErrorMsg(err));
-    
     this.name = 'AuthError';
     this.code = err.code;
   }
