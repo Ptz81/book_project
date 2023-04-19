@@ -34,8 +34,7 @@ function handleLogout() {
   signUpBtn.classList.add('unregistered');
   userBtnCaption.textContent = 'Sign Up';
   headerMenu.classList.add('menu__list--hidden');
-  localStorage.removeItem('current-user');
-  localStorage.removeItem('category-name');
+  localStorage.clear();
   goHome();
 }
 
@@ -57,7 +56,10 @@ function goHome() {
 
 function setCurrentUser(user) {
   const { name, id, email, shoppingList } = user;
-  localStorage.setItem('current-user', JSON.stringify({ name, id, email }));
-  localStorage.setItem('shopping-list-db-test', shoppingList);
-  // localStorage.setItem('book-add', shoppingList);
+  localStorage.setItem('current-user', JSON.stringify({ name, email }));
+  localStorage.setItem('book-add', shoppingList || '');
+}
+
+function removeFromStorage(values) {
+  Array.from(values || '').forEach(key => localStorage.removeItem(key));
 }
