@@ -17,6 +17,15 @@ const bookstore_shopPic = new URL(
 // import applebooksPic from '../images/shop-icons/applebooks.jpg';
 // import applebooksPic from '../images/shop-icons/bookstore.jpg';
 
+//Taras 20.04.2023//
+
+const bodyScrollLock = require('body-scroll-lock');
+const disableBodyScroll = bodyScrollLock.disableBodyScroll;
+const enableBodyScroll = bodyScrollLock.enableBodyScroll;
+
+
+//---end---//
+
 const modalPopEl = document.querySelector('[data-modal]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
 const modalEl = document.querySelector('.modal');
@@ -37,6 +46,11 @@ export function handleShowPop(event) {
   // SerhiiS
   const infoPopEl = document.querySelector('.pop-info');
   const popId = event.target.id;
+//Taras//
+disableBodyScroll(modalEl);
+//---end---//
+
+
   const bookID = new BookService();
   bookID
     .getBooksById(popId)
@@ -194,6 +208,9 @@ function toggleModal() {
 }
 function closeModal() {
   modalPopEl.classList.add('is-hidden');
+  //Taras//
+  enableBodyScroll(modalEl);
+  //---end---//
 }
 const closeIfNoModal = e => {
   if (
@@ -238,7 +255,7 @@ const handleDoBtn = e => {
       bookLocalSt.add = 'isAdded';
       arrayBookAdd.push(bookLocalSt);
       localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
-      // 
+      //
       userAcc.shoppingList.add(bookLocalSt);
     }
 
@@ -253,7 +270,7 @@ const handleDoBtn = e => {
     }
     bookLocalSt.add = 'is';
     localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
-    // 
+    //
     userAcc.shoppingList.remove(sourceID);
 
     return;
