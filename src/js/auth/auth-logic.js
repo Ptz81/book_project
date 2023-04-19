@@ -56,5 +56,6 @@ function goHome() {
 function setCurrentUser(user) {
   const { name, id, email, shoppingList } = user;
   localStorage.setItem('current-user', JSON.stringify({ name, id, email }));
+  localStorage.setItem('shopping-list-db-test', shoppingList);
   // localStorage.setItem('book-add', shoppingList);
 }
