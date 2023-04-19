@@ -1,5 +1,5 @@
 import './_loader.scss';
-import Backdrop from '../backdrop/backdrop';
+import Backdrop from '../utils/backdrop/backdrop';
 import { isInt } from '../utils';
 
 let backdrop;

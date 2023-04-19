@@ -1,8 +1,6 @@
 import './_auth-form.scss';
-import utils from '../utils';
-import Backdrop from '../backdrop/backdrop';
-
-const { getRef, isFunc } = utils;
+import { isFunc, getRef } from '../utils';
+import Backdrop from '../utils/backdrop/backdrop';
 
 const authForm = getRef('.auth-form');
 const formMode = getRef('.auth-form__mode');
@@ -14,64 +12,52 @@ const closeBtn = getRef('.auth-form__close');
 
 const DEF_MODE = 'signin';
 
-let instance;
-let handleInputChange;
-let handleSubmit;
-let backdrop;
-
 export default class AuthForm {
-  /**
-   * @param {string} mode - 'signin'|'signup'
-   */
-  constructor(mode) {
-    if (instance) return instance;
+  #instance;
+  #handleInputChange;
+  #handleSubmit;
+  #backdrop;
 
-    setFormBaseBehavior();
+  constructor(mode) {
+    if (this.#instance) return this.#instance;
+
+    setFormBaseBehavior(this);
+    const formRef = getRef('.auth-form');
     const initialMode = setFormMode(mode) || setFormMode(DEF_MODE);
 
-    backdrop = new Backdrop({ child: authForm, hideOnClick: true });
-    this.hide = backdrop.hide.bind(backdrop);
+    this.#backdrop = new Backdrop({ child: authForm, hideOnClick: true });
+    this.hide = this.#backdrop.hide.bind(this.#backdrop);
     this.reset = authForm.reset.bind(authForm);
 
     this.show = function (mode) {
       setFormMode(mode || initialMode);
       fitFormByHeight();
       passInput.type = 'password';
-      backdrop.show();
+      this.#backdrop.show();
     };
 
-    instance = this;
+    this.#instance = this;
   }
 
   get zindex() {
-    return backdrop.zindex;
+    return this.#backdrop.zindex;
   }
 
   get mode() {
     return authForm.formMode.value;
   }
 
-  // onChange(handler) {
-  //   handleInputChange = isFunc(handler) ? handler : null;
-
-  //   authForm.addEventListener('change', ({ target }) => {
-  //     target.nodeName === 'INPUT' &&
-  //       handleInputChange &&
-  //       handleInputChange(target);
-  //   });
-  // }
-
   /**
    * @param {callback} handler - handler(formData, targetForm)\
    * @param formData - данные полей формы
    */
   onSubmit(handler) {
-    handleSubmit = isFunc(handler) ? handler : null;
+    this.#handleSubmit = isFunc(handler) ? handler : null;
 
     authForm.addEventListener('submit', e => {
       e.preventDefault();
       const form = e.currentTarget;
-      handleSubmit && handleSubmit(getData(form), form);
+      this.#handleSubmit && this.#handleSubmit(getData(form), form);
     });
   }
 }
@@ -83,25 +69,9 @@ export default class AuthForm {
  */
 function setFormMode(mode) {
   authForm.reset();
-  const ref = authForm.querySelector(`input[value="${mode}"]`);
+  const ref = getRef(`input[value="${mode}"]`);
   ref?.click();
   return ref && mode;
-}
-
-function setFormBaseBehavior() {
-  // кнопка закрытия
-  closeBtn.addEventListener('click', () => instance.hide());
-
-  // переключение режима
-  formMode.addEventListener('change', handleModeChange);
-
-  // показать/скрыть пароль
-  showPass.addEventListener('change', ({ currentTarget }) => {
-    passInput.type = currentTarget.checked ? 'text' : 'password';
-  });
-
-  // если высота вьюпорта меньше высоты формы - всписываем форму
-  addEventListener('resize', fitFormByHeight);
 }
 
 function fitFormByHeight() {
@@ -116,25 +86,45 @@ function fitFormByHeight() {
 
 /**
  *
- * @param {*} target - formMode radio
- * @returns
+ * @param {*} authFormInstance
  */
-function handleModeChange({ target }) {
-  if (target.nodeName !== 'INPUT') return;
-  const isSignInMode = target.value === 'signin';
+function setFormBaseBehavior(authFormInstance) {
+  // кнопка закрытия
+  closeBtn.addEventListener('click', () => authFormInstance.hide());
 
-  // скрываем/показываем поле name
-  nameField.style.display = isSignInMode ? 'none' : 'block';
+  // переключение режима
+  formMode.addEventListener('change', handleModeChange);
 
-  // отключаем input, чтобы игнорился в getData()
-  nameField.firstElementChild.disabled = isSignInMode;
+  // показать/скрыть пароль
+  showPass.addEventListener('change', ({ currentTarget }) => {
+    passInput.type = currentTarget.checked ? 'text' : 'password';
+  });
 
-  // если не убрать required на скрытом поле - будет ошибка
-  const action = isSignInMode ? 'removeAttribute' : 'setAttribute';
-  nameField.firstElementChild[action]('required', '');
+  // если высота вьюпорта меньше высоты формы - всписываем форму
+  window.addEventListener('resize', fitFormByHeight);
 
-  // меянем заголовок кнопки
-  submitBtn.textContent = isSignInMode ? 'sign in' : 'sign up';
+  /**
+   *
+   * @param {*} target - formMode radio
+   * @returns
+   */
+  function handleModeChange({ target }) {
+    if (target.nodeName !== 'INPUT') return;
+    const isSignInMode = target.value === 'signin';
+
+    // скрываем/показываем поле name
+    nameField.style.display = isSignInMode ? 'none' : 'block';
+
+    // отключаем input, чтобы игнорился в getData()
+    nameField.firstElementChild.disabled = isSignInMode;
+
+    // если не убрать required на скрытом поле - будет ошибка
+    const action = isSignInMode ? 'removeAttribute' : 'setAttribute';
+    nameField.firstElementChild[action]('required', '');
+
+    // меянем заголовок кнопки
+    submitBtn.textContent = isSignInMode ? 'sign in' : 'sign up';
+  }
 }
 
 /**

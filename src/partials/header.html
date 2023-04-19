@@ -1,4 +1,4 @@
-<header class="page-header">
+<!-- <header class="page-header">
   <div class="page-header__container container">
     <div class="logo">
       <a href="./index.html" class="logo__link">
@@ -12,7 +12,7 @@
     </div>
 
     <nav class="nav menu">
-      <ul class="menu__list">
+      <ul class="menu__list menu__list--hidden">
         <li class="menu__item">
           <a href="./index.html" class="menu__link nav-link">Home</a>
         </li>
@@ -20,11 +20,13 @@
           <a href="./shopping-list.html" class="menu__link shop-link nav-link">
             Shopping list
             <svg width="13px" height="17px" class="menu__svg">
-              <use href="./images/sprite1.svg#uil"></use></svg
-          ></a>
+              <use href="./images/sprite1.svg#uil"></use>
+            </svg>
+          </a>
         </li>
       </ul>
     </nav>
+
     <div class="switch">
       <input class="switch__input" type="checkbox" id="darkmode-toggle" />
       <label class="switch__label" for="darkmode-toggle"></label>
@@ -44,22 +46,26 @@
       </svg>
     </button>
 
-    <button class="header-btn" type="button">
-      <div class="header-btn__circle">
-        <svg width="19px" height="19px" class="header-btn__img">
+    Login button -->
+    <!-- <button class="header-btn unregistered" type="button">
+      <div class="header-btn__avatar">
+        <svg class="header-btn__avatar-img" width="19px" height="19px">
           <use href="./images/sprite1.svg#user"></use>
         </svg>
       </div>
-      <span class="header-btn__span">User</span>
-      <svg width="13px" height="7px" class="header-btn__svg">
+      <span class="header-btn__caption">Sign Up</span>
+      <svg class="header-btn__login-arrow">
+        <use href="./images/sprite.svg#icon-login-arrow"></use>
+      </svg>
+      <svg class="header-btn__user-arrow">
         <use href="./images/sprite1.svg#icon-scroll"></use>
       </svg>
     </button>
-  </div>
+  </div> -->
 
   <!-- mobile menu -->
 
-  <div class="menu-container js-menu-container" id="mobile-menu">
+  <!-- <div class="menu-container js-menu-container" id="mobile-menu">
     <img
       src="./images/mobile-menu.png"
       alt="Books"
@@ -85,7 +91,7 @@
           </svg>
         </div>
         <span>User</span>
-      </button>
+      </button> -->
       <!-- <nav class="nav mobile-menu">
         <ul class="mobile-menu__list">
           <li class="mobile-menu__item">
@@ -104,12 +110,89 @@
           </li>
         </ul>
       </nav> -->
-      <button class="logout-btn" type="button">
+      <!-- <button class="logout-btn" type="button">
         Log out
         <svg class="logout-btn__svg" width="20px" height="20px">
           <use href="./images/sprite1.svg#arrow"></use>
         </svg>
       </button>
+    </div>
+  </div>
+</header> -->
+
+<header class="page-header">
+  <div class="page-header__container container">
+    <div class="page-header__body">
+      <div class="logo">
+        <a href="./index.html" class="logo__link">
+          <svg width="22px" height="22px" class="logo__icon">
+            <use href="./images/sprite1.svg#logo"></use>
+          </svg>
+          <svg width="53px" height="17px" class="logo__text">
+            <use href="./images/sprite1.svg#Book"></use>
+          </svg>
+        </a>
+      </div>
+  
+      
+  
+      <div class="switch">
+        <input class="switch__input" type="checkbox" id="darkmode-toggle" />
+        <label class="switch__label" for="darkmode-toggle"></label>
+      </div>
+      <button
+        class="menu-toggle js-open-menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg
+          class="menu-toggle__svg"
+          width="28px"
+          height="28px"
+          aria-label="Перемикач мобільного меню"
+        >
+          <use href="./images/sprite.svg#icon-mobile-menu"></use>
+        </svg>
+      </button>
+
+      <nav class="nav menu">
+        <img
+          src="./images/mobile-menu.png"
+          alt="Books"
+          class="menu__image"
+        />
+        <ul class="menu__list menu__list--hidden">
+          <li class="menu__item">
+            <a href="./index.html" class="menu__link nav-link">Home</a>
+          </li>
+          <li class="menu__item">
+            <a href="./shopping-list.html" class="menu__link shop-link nav-link">
+              Shopping list
+              <svg width="13px" height="17px" class="menu__svg">
+                <use href="./images/sprite1.svg#uil"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="header-btn unregistered" type="button">
+        <div class="header-btn__avatar">
+          <svg class="header-btn__avatar-img" width="19px" height="19px">
+            <use href="./images/sprite1.svg#user"></use>
+          </svg>
+        </div>
+        <span class="header-btn__caption">Sign Up</span>
+        <svg class="header-btn__login-arrow">
+          <use href="./images/sprite.svg#icon-login-arrow"></use>
+        </svg>
+        <svg class="header-btn__user-arrow">
+          <use href="./images/sprite1.svg#icon-scroll"></use>
+        </svg>
+      </button>
+    </div>
+
+  
     </div>
   </div>
 </header>
