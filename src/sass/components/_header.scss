@@ -263,6 +263,25 @@
 
   }
 
+  .menu-toggle__open {
+    display: inline-block;
+  }
+
+
+  .menu-toggle.js-open .menu-toggle__open {
+    display: none;
+  }
+
+  .menu-toggle__close {
+    display: none;
+  }
+
+  .menu-toggle.js-open .menu-toggle__close {
+    display: inline-block;
+  }
+
+  
+
   .menu__list {
 
     display: inline-block;
