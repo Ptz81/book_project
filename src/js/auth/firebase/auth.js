@@ -43,6 +43,10 @@ export default class FirebaseAuth {
     return this.#auth.app;
   }
 
+  get currentUser() {
+    return this.#auth.currentUser;
+  }
+
   onSignedIn(handler) {
     this.#handleSignIn = isFunc(handler) ? handler : null;
   }
