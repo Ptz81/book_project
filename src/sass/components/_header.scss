@@ -27,16 +27,6 @@
   border-radius: 0px 0px 8px 8px;
 }
 
-// .page-header__container {
-//   position: relative;
-//   // display: flex;
-//   // align-items: center;
-//   min-height: 64px;
-
-//   @media screen and (min-width: 768px) {
-//     height: 72px;
-//   }
-// }
 
 .page-header__body {
   position: relative;
@@ -82,13 +72,6 @@
   fill: var(--menu-icon-color);
 }
 
-// .menu {
-//   display: none;
-
-//   @media screen and (min-width: 768px) {
-//     display: flex;
-//   }
-// }
 
 .menu {
   position: absolute;
@@ -280,8 +263,6 @@
     display: inline-block;
   }
 
-  
-
   .menu__list {
 
     display: inline-block;
@@ -313,7 +294,6 @@
 }
 
 
-
 .menu-toggle__svg {
     stroke: var(--menu-icon-color);
     
@@ -323,24 +303,6 @@
     stroke: var(--color-blue);
 }
 
-// .menu-container {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100vw;
-//     height: 100vh;
-//     padding: 84px 20px 20px 20px;
-//     background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, var(--color-blue) 18.03%, var(--color-white) 100%);
-//     z-index: 996;
-  
-//     transform: translateX(100%);
-//     transition: transform 250ms ease-in-out;
-
-// }
-
-// .menu-container.is-open {
-//   transform: translateX(0);
-// }
 
 .menu__image {
   position: absolute;
@@ -354,42 +316,6 @@
   }
 }
 
-.mobile-user {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px;
-  gap: 9px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: var(--color-white);
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 1.32;
-  letter-spacing: -0.02em;
-}
-
-.mobile-user__circle {
-  width: 37px;
-  height: 37px;
-  border-radius: 50%;
-  background-color: #f6f6f6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.mobile-user__svg {
-  fill: var(--color-blue);
-}
-
-.mobile-menu {
-  margin-top: 126px;
-  display: flex;
-  justify-content: center;
-  padding: 0px;
-}
 
 .menu__link {
   text-decoration: none;
@@ -434,30 +360,4 @@
   }
 }
 
-.logout-btn {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  padding: 14px 24px;
-  background-color: var(--color-white);
-  border: 1.5px solid var(--color-black);
-  border-radius: 18px;
-  color: var(--color-black);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.28;
-  letter-spacing: -0.04em;
-  bottom: 0;
 
-  @media screen and (min-width: 768px) {
-    gap: 90px;
-  }
-}
-
-.mobile-container {
-  position: relative;
-  height: 100%;
-}
