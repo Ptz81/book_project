@@ -116,20 +116,29 @@ export function createCardsByCategory(colection) {
 
   categoriesContainer.innerHTML = '';
 
-  const titleH1 = document.createElement('h1');
+  const titleArray = colection[0].list_name.split(' ');
+  const firstPart = titleArray.slice(0, (titleArray.length - 1)).join(' ');
+  const lastPart = titleArray.slice(-1);
+  // const titleH1 = document.createElement('h1');
   // const titleSpan = document.createElement('span');
   const cardList = document.createElement('ul');
 
-  titleH1.classList.add('bestsellers__category');
+  // titleH1.classList.add('bestsellers__category');
   // titleSpan.classList.add('bestsellers__text-part');
   cardList.classList.add("bestsellers__list");
   cardList.classList.add("single-list");
 
 
-  titleH1.innerText = `${colection[0].list_name}`
+  // titleH1.innerText = `${colection[0].list_name}`
+  categoriesContainer.innerHTML = `
+  <h1 class="bestsellers__category">
+  ${firstPart} <span class="bestsellers__text-part"> ${lastPart} </span>
+  </h1> 
+  `
 
   // titleH1.append(titleSpan);
-  categoriesContainer.prepend(titleH1, cardList);
+
+  categoriesContainer.append(cardList);
 
   cardList.innerHTML = markupCardsbyCaterory(colection);
 

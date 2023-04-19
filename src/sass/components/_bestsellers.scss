@@ -97,6 +97,7 @@
       &:hover {
         background-color: inherit;
         cursor: auto;
+        color: var(--color-grey-light);
       }
     }
 
@@ -163,10 +164,21 @@
 // .book__box
 
   &__box {
+    margin-bottom: 14px;
+@media screen and(min-width: $tablet) {
+      height: 316px;
+    }
+
+    @media screen and(min-width: $desktop) {
+      height: 256px;
+      
+    }
+
 position: relative;
 overflow: hidden;
+border-radius: 8px;
 &:hover .book__overlay, &:focus .book__overlay {
-  transform: translateY(-120%);
+  transform: translateY(-100%);
 }
   }
 
@@ -185,16 +197,10 @@ overflow: hidden;
   &__img {
     width: 100%;
     margin-bottom: 14px;
-    border-radius: 8px;
+    
     object-fit: cover;
 
-    @media screen and(min-width: $tablet) {
-      height: 316px;
-    }
-
-    @media screen and(min-width: $desktop) {
-      height: 256px;
-    }
+    
 
     
 
@@ -206,6 +212,8 @@ overflow: hidden;
   &__overlay {
   content: "";
   position: absolute;
+  bottom: -70px;
+
   pointer-events: none;
 
   width: 100%;
@@ -214,7 +222,7 @@ overflow: hidden;
   transition-property: transform;
   transition-duration: 250ms;
   transition-timing-function: linear;
-  transition-delay: 0;
+  // transition-delay: 0;
   
 
   background: var(--color-yellow);
