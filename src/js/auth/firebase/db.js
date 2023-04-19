@@ -2,35 +2,33 @@ import firebaseConfig from './config';
 import { initializeApp } from 'firebase/app';
 import { set, child, get, ref, remove, getDatabase } from 'firebase/database';
 
-let db;
-let dbRef;
-let instance;
-let firebaseApp;
-
 const ERR_INIT_FAILED = 'FirebaseApp initialization failed';
 
 export default class FirebaseDB {
+  #db;
+  #instance;
+  #firebaseApp;
+
   constructor({ app } = {}) {
-    if (instance) return instance;
+    if (this.#instance) return this.#instance;
 
     try {
-      firebaseApp = app || initializeApp(firebaseConfig);
-      db = getDatabase(firebaseApp);
-      dbRef = ref(db);
+      this.#firebaseApp = app || initializeApp(firebaseConfig);
+      this.#db = getDatabase(this.#firebaseApp);
     } catch {
       console.error(ERR_INIT_FAILED);
     }
 
-    instance = this;
+    this.#instance = this;
   }
 
   get app() {
-    return firebaseApp;
+    return this.#firebaseApp;
   }
 
   async write(path, data) {
     try {
-      return await set(ref(db, path), data);
+      return await set(ref(this.#db, path), data);
     } catch (err) {
       console.error(err);
     }
@@ -38,7 +36,7 @@ export default class FirebaseDB {
 
   async read(path) {
     try {
-      const snapshot = await get(child(dbRef, path));
+      const snapshot = await get(child(ref(this.#db), path));
       return snapshot.exists() ? snapshot.val() : null;
     } catch (err) {
       console.error(err);
@@ -47,7 +45,7 @@ export default class FirebaseDB {
 
   async remove(path) {
     try {
-      return await remove(ref(db, path));
+      return await remove(ref(this.#db, path));
     } catch (err) {
       console.error(err);
     }

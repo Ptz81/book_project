@@ -10,6 +10,4 @@ import './js/pop-up';
 import './js/scroll-up';
 import './js/footer';
 // import './js/scroll-off';
-// testing
-import './js/auth/auth-user';
-
+import './js/auth/auth-logic';

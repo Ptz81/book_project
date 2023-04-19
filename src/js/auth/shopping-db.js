@@ -3,13 +3,17 @@ import FirebaseDB from './firebase/db';
 import { isStr } from '../utils';
 
 const ERR_ACCESS_DENIED = 'Unauthorized access attempt';
-const ERR_AUTH_EXPECTED = 'FirebaseAuth instance expected!';
+const ERR_AUTH_EXPECTED = 'FirebaseAuth instance expected';
 
 let instance;
 let _auth;
 let db;
 
 export default class ShoppingList {
+  static formatList(data) {
+    return data ? JSON.stringify(Object.values(data)) : data || '';
+  }
+
   /**
    * @param {FirebaseAuth} auth
    */
@@ -65,7 +69,7 @@ export default class ShoppingList {
    */
   async getFormattedAll() {
     const data = await getUserData(`shoppingList`);
-    return data ? JSON.stringify(Object.values(data)) : data;
+    return ShoppingList.formatList(data);
   }
 
   /**
