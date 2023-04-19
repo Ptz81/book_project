@@ -7,6 +7,9 @@
   padding-right: 20px;
   // justify-content: center;
 }
+.shopping-cart {
+  width: 100%;
+}
 .shopping-wrapper .support__section {
   margin-top: 40px;
   @media screen and (max-width: $desktop) {
@@ -35,6 +38,7 @@
   flex-direction: column;
 }
 .shopping-cart__item {
+  // width: 100%;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -63,7 +67,8 @@
   }
 
   @media screen and (min-width: 1280px) {
-    width: 996px;
+    // width: 996px;
+    width: 100%;
   }
 }
 .shopping-cart__book-img {
@@ -201,17 +206,8 @@
     transform: scale(1.1);
     filter: drop-shadow(0px 3px 3px var(--color-drop-shadow-shopping-cart));
   }
-  // mix-blend-mode: luminosity;
-  // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  // mix-blend-mode: luminosity;
-  // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.store-icon {
-  // mix-blend-mode: luminosity;
-  // background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
-  // mix-blend-mode: luminosity;
-}
 .theme-dark .amazon-link {
   filter: invert(1);
 }
