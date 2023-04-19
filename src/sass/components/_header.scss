@@ -1,7 +1,7 @@
 @import '../../js/auth/header-auth';
 
 .page-header {
-  position: fixed;
+  position: relative;
   width: 100%;
   top: 0;
   left: 0;
@@ -91,7 +91,7 @@
 // }
 
 .menu {
-  position: fixed;
+  position: absolute;
   top: -100%;
   left: 0;
   width: 100%;

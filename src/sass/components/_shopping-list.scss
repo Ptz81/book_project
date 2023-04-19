@@ -1,9 +1,8 @@
 .shopping-wrapper {
-  margin-top: 104px;
+
   @media screen and (min-width: $desktop) {
     display: flex;
     gap: 40px;
-    margin-top: 112px;
   }
   padding-left: 20px;
   padding-right: 20px;
