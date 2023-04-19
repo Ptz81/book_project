@@ -1,6 +1,9 @@
 const shoppingList = document.querySelector('.shopping-cart__list');
 
 import { isAddedBooks } from './create-markup';
+import UserAccount from '../auth/user-account';
+
+const userAcc = new UserAccount();
 
 function clearMarkup() {
   shoppingList.innerHTML = '';
@@ -28,6 +31,7 @@ export function handleCloseCard(event) {
   if (index !== -1) {
     arrayBookAdd.splice(index, 1);
     clearMarkup();
+    userAcc.shoppingList.remove(bookLocalSt);
   }
   localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
   isAddedBooks(arrayBookAdd);
