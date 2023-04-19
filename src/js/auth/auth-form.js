@@ -1,6 +1,6 @@
 import './_auth-form.scss';
 import { isFunc, getRef } from '../utils';
-import Backdrop from '../backdrop/backdrop';
+import Backdrop from '../utils/backdrop/backdrop';
 
 const authForm = getRef('.auth-form');
 const formMode = getRef('.auth-form__mode');
