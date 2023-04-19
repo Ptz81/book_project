@@ -98,6 +98,21 @@
   height: 100%;
   background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, var(--color-blue) 18.03%, var(--color-white) 100%);
   transition: all 0.3s ease 0s;
+
+  @media screen and (min-width:768px) {
+    display: flex;
+    align-items: center;
+    width: 260px;
+    height: 34px;
+    top: 20px;
+    left: 150px;
+    z-index: 2;
+    background: transparent;
+  }
+
+  @media screen and (min-width:1280px) {
+    left: 209px;
+  }
 }
 
 .menu.js-open {
@@ -248,27 +263,20 @@
 
   }
 
-
-
   .menu__list {
-    
 
-    @media screen and (max-width: 767px) {
-      display: inline-block;
+    display: inline-block;
+    margin-top: 210px;
+    margin-left: 30%;
+    padding: 0px;
+    align-items: center;
 
-      margin-top: 210px;
-      margin-left: 30%;
-      padding: 0px;
-      align-items: center;
-
-
-    }
-  
     &--hidden {
       display: none;
     }
-  }
 
+  }
+  
   .menu {
     position: fixed;
     top: -100%;
@@ -283,8 +291,8 @@
   .menu.js-open {
     top: 0;
   }
-
 }
+
 
 
 .menu-toggle__svg {
@@ -321,6 +329,10 @@
   left: 0;
   width: 100%;
   height: auto;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 }
 
 .mobile-user {
@@ -384,7 +396,9 @@
   }
 
   @media screen and (min-width: 768px) {
-    display: none;
+    display: flex;
+    z-index: 3;
+    color: var(--menu-icon-color);
   }
 }
 
@@ -395,6 +409,10 @@
 
 .menu__svg {
   fill: var(--color-white);
+
+  @media screen and (min-width:768px) {
+    fill: var(--menu-icon-color);
+  }
 }
 
 .logout-btn {
