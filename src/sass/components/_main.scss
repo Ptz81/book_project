@@ -1,6 +1,7 @@
 .main {
     display: flex;
     flex-wrap: wrap;
-    
-    
+    @media screen and (min-width: $desktop) {
+        flex-wrap: nowrap;
+      }
 }
