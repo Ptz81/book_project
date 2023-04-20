@@ -1,10 +1,15 @@
-import { pathToAmazon, pathAppleBooks, pathBookShop, pathToDump } from './paths';
+import {
+  pathToAmazon,
+  pathAppleBooks,
+  pathBookShop,
+  pathToDump,
+} from './paths';
 
 const shoppingList = document.querySelector('.shopping-cart__list');
 
 export function renderShoppingListMarkUp(books) {
   books.map(
-    ({ _id, book_image, title, list_name, description, author, buy_links }) => { 
+    ({ _id, book_image, title, list_name, description, author, buy_links }) => {
       // console.log(Object.values(buy_links));
       let linkToAmazon = null;
       let linkToAppleBooks = null;
@@ -23,19 +28,31 @@ export function renderShoppingListMarkUp(books) {
         'beforeend',
         `
         <li class="shopping-cart__item">
-            <img src="${book_image || '/src/images/sprite.svg#icon-ukraine'}" alt="${title || 'There is no book title'}" id="${_id}" class="shopping-cart__book-img">
+            <img src="${
+              book_image || '/src/images/sprite.svg#icon-ukraine'
+            }" alt="${
+          title || 'There is no book title'
+        }" id="${_id}" class="shopping-cart__book-img">
             <div class="shopping-cart__main-info">
-            <h3 class="shopping-cart__book-title">${title || 'There is no book title'}</h3>
-            <p class="shopping-cart__book-category">${list_name || 'There is no book title'}</p>
+            <h3 class="shopping-cart__book-title">${
+              title || 'There is no book title'
+            }</h3>
+            <p class="shopping-cart__book-category">${
+              list_name || 'There is no book title'
+            }</p>
             </div>
             <button class="shopping-cart__btn-delete">
                 <svg class="delete-icon" width="100%" height="100%">
                   <use href="${pathToDump}#icon-dump"></use>
                 </svg>
             </button>
-              <p class="shopping-cart__book-description">${description ||
-          'There is no description <br/><br/>Слава Україні!<br/>Смерть ворогам!'}</p>
-              <p class="shopping-cart__book-author">${author || 'The author is unknown'}</p>
+              <p class="shopping-cart__book-description">${
+                description ||
+                'There is no description <br/><br/>Слава Україні!'
+              }</p>
+              <p class="shopping-cart__book-author">${
+                author || 'The author is unknown'
+              }</p>
             <div class="shopping-cart__links">
               <a 
                   href="${linkToAmazon}"
