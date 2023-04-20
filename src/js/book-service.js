@@ -11,6 +11,9 @@ export default class BookService {
 
   constructor() {
     if (instance) return instance;
+
+    this.showLoader = true;
+
     instance = this;
   }
 
@@ -25,7 +28,7 @@ export default class BookService {
       );
 
       // показываем лоадер
-      loader.show({ delay: LOADER_DELAY });
+      if (this.showLoader) loader.show({ delay: LOADER_DELAY });
 
       const { data } = await axios.get(url);
       return data;
