@@ -1,32 +1,25 @@
 import BookService from './book-service';
 import { showError } from './notify.js';
 import UserAccount from './auth/user-account';
-// AndrewM 20-04
+import ScrollToggler from './utils/backdrop/toggler';
 import { disableElement, fitModalByHeight } from './utils/crutches';
 
+// add/remove book to database
 const userAcc = new UserAccount();
-
+const scroll = new ScrollToggler();
 const bookSrv = new BookService();
-// AndrewM 20-04 - перекрывает бекдроп модалки
-// bookSrv.showLoader = false;
 
 const amazonPic = new URL('../images/shop-icons/amazon.png', import.meta.url);
+
 const applebooksPic = new URL(
   '../images/shop-icons/applebooks.png',
   import.meta.url
 );
+
 const bookstore_shopPic = new URL(
   '../images/shop-icons/bookstore.png',
   import.meta.url
 );
-// import applebooksPic from '../images/shop-icons/applebooks.jpg';
-// import applebooksPic from '../images/shop-icons/bookstore.jpg';
-
-//Taras 20.04.2023//
-const bodyScrollLock = require('body-scroll-lock');
-const disableBodyScroll = bodyScrollLock.disableBodyScroll;
-const enableBodyScroll = bodyScrollLock.enableBodyScroll;
-//---end---//
 
 const modalPopEl = document.querySelector('[data-modal]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
@@ -48,19 +41,14 @@ let arrayBookShopIs = [];
 let arrayBookAdd = [];
 
 export function handleShowPop(event, booksCollection) {
-  // AndrewM костыль
   const getBookId = async id => await booksCollection[id];
 
-  //  SerhiiS 18/04/2023
-  if (event.target.nodeName !== 'IMG') {
-    return;
-  }
-  // SerhiiS
+  if (event.target.nodeName !== 'IMG') return;
+
   const infoPopEl = document.querySelector('.pop-info');
   const popId = event.target.id;
-  //Taras//
-  disableBodyScroll(modalEl);
-  //---end---//
+
+  scroll.disable();
 
   getBookId(popId)
     .then(dataId => {
@@ -186,13 +174,12 @@ export function handleShowPop(event, booksCollection) {
         popBtn.innerHTML = REMOVE_FROM_SHOPPINGLIST;
         popTextEl.innerHTML = NOTE_BOOK_ADDED;
         blocBtnEl.style.marginBottom = '6px';
-        // popTextEl.style.marginBottom = '12px';
       }
+
       if (bookLocalIs.add === 'is') {
         popBtn.innerHTML = ADD_TO_SHOPPINGLIST;
         popTextEl.innerHTML = '';
         blocBtnEl.style.marginBottom = '6px';
-        // popTextEl.style.marginBottom = '12px';
       }
 
       return;
@@ -213,18 +200,14 @@ const handleUseKey = event => {
 document.addEventListener('keydown', handleUseKey);
 
 function toggleModal() {
-  // AndrewM 20-04
   disableElement(!userAcc.currentUser);
   fitModalByHeight(modalEl);
-  //
   modalPopEl.classList.toggle('is-hidden');
 }
 
 function closeModal() {
   modalPopEl.classList.add('is-hidden');
-  //Taras//
-  enableBodyScroll(modalEl);
-  //---end---//
+  scroll.enable();
 }
 
 const closeIfNoModal = e => {
@@ -241,7 +224,6 @@ const closeIfNoModal = e => {
 };
 backdropBtn.addEventListener('click', closeIfNoModal);
 
-// КНОПКА
 const handleDoBtn = e => {
   const sourceID = e.target.parentNode.previousElementSibling.firstChild.id;
   let bookLocalSt;
@@ -270,7 +252,8 @@ const handleDoBtn = e => {
       bookLocalSt.add = 'isAdded';
       arrayBookAdd.push(bookLocalSt);
       localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
-      //
+
+      // add book to db
       userAcc.shoppingList.add(bookLocalSt);
     }
 
@@ -285,7 +268,8 @@ const handleDoBtn = e => {
     }
     bookLocalSt.add = 'is';
     localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
-    //
+
+    // remove book from db
     userAcc.shoppingList.remove(sourceID);
 
     return;
