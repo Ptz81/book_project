@@ -1,11 +1,17 @@
 .nav-support {
-  @include alignment(stretch, flex-start, column);
+  width: 100%; //
+  @include alignment(center, flex-start, column);
   gap: 20px;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 12px;
   padding-top: 40px;
+  @media screen and (min-width: 375px) {
+    padding-right: 20px;
+  }
+
   @media screen and (min-width: $tablet) {
     @include alignment(stretch, center, row);
+    // width: 100%;
     gap: 32px;
     padding-top: 40px;
     padding-bottom: 100px;
@@ -13,6 +19,7 @@
     padding-right: 32px;
   }
   @media screen and (min-width: $desktop) {
+    width: min-content;
     @include alignment(stretch, flex-start, column);
     gap: 86px;
     padding-bottom: 0;
@@ -32,13 +39,19 @@
 }
 
 .categories__container {
+  max-width: calc(100% - 8px);
   max-height: 228px;
   overflow-y: scroll;
-  padding-right: 20px;
+  // padding-right: 20px;
   scrollbar-width: auto;
   scrollbar-color: var(--color-nav-scroll) var(--color-scroll-mozila);
   @include alignment(stretch, flex-start, column);
   gap: 24px;
+
+  @media screen and (min-width: 375px) {
+    padding-right: 32px;
+    max-width: 100%;
+  }
 
   @media screen and (min-width: $tablet) {
     max-height: 472px;
@@ -51,6 +64,7 @@
   &::-webkit-scrollbar {
     width: 8px;
     height: 114px;
+    position: absolute;
     @media screen and (min-width: $tablet) {
       height: 167px;
     }
