@@ -1,5 +1,6 @@
 import './_auth-form.scss';
 import { isFunc, getRef } from '../utils';
+import { fitModalByHeight } from '../utils/crutches';
 import Backdrop from '../utils/backdrop/backdrop';
 
 const authForm = getRef('.auth-form');
@@ -31,7 +32,7 @@ export default class AuthForm {
 
     this.show = function (mode) {
       setFormMode(mode || initialMode);
-      fitFormByHeight();
+      fitModalByHeight(authForm);
       passInput.type = 'password';
       this.#backdrop.show();
     };
@@ -74,16 +75,6 @@ function setFormMode(mode) {
   return ref && mode;
 }
 
-function fitFormByHeight() {
-  const viewportHeight = document.documentElement.clientHeight;
-  const { height } = authForm.getBoundingClientRect();
-
-  authForm.style.cssText =
-    height >= viewportHeight
-      ? 'top: 10%; transform: translateX(-50%) scale(1);'
-      : null;
-}
-
 /**
  *
  * @param {*} authFormInstance
@@ -101,7 +92,7 @@ function setFormBaseBehavior(authFormInstance) {
   });
 
   // если высота вьюпорта меньше высоты формы - всписываем форму
-  window.addEventListener('resize', fitFormByHeight);
+  window.addEventListener('resize', () => fitModalByHeight(authForm));
 
   /**
    *
