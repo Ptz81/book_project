@@ -189,6 +189,7 @@
 
 .theme-dark .amazon-link {
   filter: invert(1);
+
 }
 
 .theme-dark .bookshop-link {
@@ -202,13 +203,18 @@
 .theme-dark .pop_shop-item:hover,
 .theme-dark .pop_shop-item:focus {
   mix-blend-mode: luminosity;
+  transform: scale(1.05);
   filter: drop-shadow(0px 3px 3px rgba(253, 253, 253, 0.15));
+  transition-property: transform, filter;
+    transition-duration: var(--transition-delay);
+    transition-timing-function: var(--transition-timing-func);
 }
 
 .pop_shop-item:hover,
 .pop_shop-item:focus {
   mix-blend-mode: luminosity;
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15));
+
 }
 
 .btn_wrapper {
