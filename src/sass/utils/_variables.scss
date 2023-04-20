@@ -1,6 +1,4 @@
 :root {
-  // Colors
-
   --color-black: #111111;
   --color-white: #ffffff;
   --color-blue: #4f2ee8; // 79, 46, 232
@@ -14,36 +12,23 @@
 
   // Цвета для светлой темы (по умолчанию)
 
-  // основной цвет фона
-  --color-background: var(--color-grey-lighter);
-  // цвет фона хедера
-  --color-header-background: var(--color-white);
-  // цвет рамки хедера
-  --color-header-border: var(--color-black);
-  // основной цвет текста
-  --color-text-primary: var(--color-black);
-  // цвет светло-серых подзаголовков
-  --color-text-secondary: var(--color-grey-light);
-  // цвет текста в блоке категории
-  --color-category: rgba(17, 17, 17, 0.6);
-  // цвет активной категории
-  --color-category-active: var(--color-blue);
-  // цвет скролла в блоке категории
-  --color-nav-scroll: var(--color-scroll);
-  --color-scroll-mozila: var(--color-grey-lighter);
-  // цвет бекдропа для модалок и лоадера
+  --color-background: var(--color-grey-lighter); // основной цвет фона
+  --color-header-background: var(--color-white); // цвет фона хедера
+  --color-header-border: var(--color-black); // цвет рамки хедера
+  --color-text-primary: var(--color-black); // основной цвет текста
+  --color-text-secondary: var(--color-grey-light); // светло-серые подзаголовки
+  --color-category: rgba(17, 17, 17, 0.6); // цвет текста в блоке категории
+  --color-category-active: var(--color-blue); // цвет активной категории
+  --color-nav-scroll: var(--color-scroll); // цвет скролла в блоке категории
+  --color-scroll-mozila: var(--color-grey-lighter); // бекдропа для лоадера
   --color-backdrop: rgba(17, 17, 17, 0.4); //rgba(79, 46, 232, 0.7);
+  --color-logo: var(--color-white); // лого
+  --color-footer: var(--color-white); // footer
 
-  // лого
-  --color-logo: var(--color-white);
-
-  // footer
-  --color-footer: var(--color-white);
-
-  //цвет фона карточки шопинг листа
-  --color-shop-card-background: var(--color-white);
-  //цвет текста шопинг листа
-  --color-shop-list-text: var(--color-black);
+  --color-shop-card-background: var(
+    --color-white
+  ); //цвет фона карточки шопинг листа
+  --color-shop-list-text: var(--color-black); //цвет текста шопинг листа
   --color-drop-shadow-shopping-cart: rgba(0, 0, 0, 0.15);
   --color-close-shop-card: #4f2ee8;
   --color-warning-text: rgba(0, 0, 0, 0.6);
@@ -76,7 +61,6 @@
   // Misc
 
   --font-family-primary: 'DM Sans', sans-serif;
-
   --transition-timing-func: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-delay: 250ms;
   --transition-params: var(--transition-timing-func) var(--transition-delay);
