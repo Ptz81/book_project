@@ -11,6 +11,9 @@ const CATEGORY_KEY = 'category-name';
 const ALL_CATEGORIES = 'all';
 
 const bookService = new BookService();
+// am
+const categoriesCache = {};
+let topCache;
 
 const onLoad = async () => {
   const categories = await bookService.getCategoryList();
@@ -24,12 +27,20 @@ const onLoad = async () => {
   let books;
 
   if (selectedCategory === ALL_CATEGORIES || !selectedCategory) {
-    books = await bookService.getTopBooks();
+    // books = await bookService.getTopBooks();
+    // am
+    books = topCache || (await bookService.getTopBooks());
+    topCache = books;
     // SerhiiS
     getCategoryItem(books);
     // SerhiiS
   } else {
-    books = await bookService.getBooksByCategory(selectedCategory);
+    // books = await bookService.getBooksByCategory(selectedCategory);
+    // am
+    books = categoriesCache[selectedCategory]
+      ? categoriesCache[selectedCategory]
+      : await bookService.getBooksByCategory(selectedCategory);
+    categoriesCache[selectedCategory] = books;
     // SerhiiS
     createCardsByCategory(books);
     // SerhiiS
@@ -49,10 +60,22 @@ const onClick = async child => {
   localStorage.setItem(CATEGORY_KEY, `${category}`);
   let books;
   if (category === ALL_CATEGORIES) {
-    books = await bookService.getTopBooks();
+    // books = await bookService.getTopBooks();
+    // am
+    books = topCache || (await bookService.getTopBooks());
+    topCache = books;
+
     getCategoryItem(books);
+    //
   } else {
-    books = await bookService.getBooksByCategory(category);
+    // books = await bookService.getBooksByCategory(category);
+
+    // am
+    books = categoriesCache[category]
+      ? categoriesCache[category]
+      : await bookService.getBooksByCategory(category);
+    categoriesCache[category] = books;
+
     createCardsByCategory(books);
   }
 };

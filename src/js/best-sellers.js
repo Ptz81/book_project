@@ -5,40 +5,52 @@ const categoriesContainer = document.querySelector('[data-name=category]');
 
 let currentRenderWidth = 1280;
 
+// am
 const currentRenderedCollection = {};
 const addBookToCollection = (obj, booksArray) => {
   for (const bookObj of booksArray) {
     obj[bookObj._id] = bookObj;
   }
 };
-//
+const categoriesCache = {};
 
 categoriesContainer.addEventListener('click', onSeeMoreBtnClick);
-window.addEventListener('resize', event => {
-  if (
-    (window.innerWidth > 767 && currentRenderWidth < 768) ||
-    (window.innerWidth > 1279 && currentRenderWidth < 1280) ||
-    (window.innerWidth < 1280 && currentRenderWidth > 1279) ||
-    (window.innerWidth < 768 && currentRenderWidth > 767)
-  ) {
-    location.reload();
-  }
-});
+
+// am
+// window.addEventListener('resize', event => {
+//   if (
+//     (window.innerWidth > 767 && currentRenderWidth < 768) ||
+//     (window.innerWidth > 1279 && currentRenderWidth < 1280) ||
+//     (window.innerWidth < 1280 && currentRenderWidth > 1279) ||
+//     (window.innerWidth < 768 && currentRenderWidth > 767)
+//   ) {
+//     location.reload();
+//   }
+// });
+
+// am
+const getByCategoryName = async name => await categoriesCache[name];
 
 function onSeeMoreBtnClick(event) {
-  if (event.target.nodeName !== 'BUTTON') {
-    return;
-  }
+  if (event.target.nodeName !== 'BUTTON') return;
+
   const btn = event.target;
-  console.log(btn);
   btn.disabled = true;
   btn.classList.add('bestsellers__btn--disabled');
+
   const selectedBtn = event.target.dataset.name;
-  const categoryItem = document.getElementById(`${selectedBtn}`);
-  let promise = bs.getBooksByCategory(`${selectedBtn}`);
+  const categoryItem = document.getElementById(selectedBtn);
+
+  // am
+  let promise = categoriesCache[selectedBtn]
+    ? getByCategoryName(selectedBtn)
+    : bs.getBooksByCategory(selectedBtn);
 
   promise
     .then(data => {
+      // am
+      categoriesCache[selectedBtn] = data;
+
       if (data.length > 0) {
         categoryItem.innerHTML = createCards(data);
       } else if (data.length === 0) {
