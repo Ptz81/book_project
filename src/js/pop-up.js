@@ -47,7 +47,10 @@ let arrayBookIs = [];
 let arrayBookShopIs = [];
 let arrayBookAdd = [];
 
-export function handleShowPop(event) {
+export function handleShowPop(event, booksCollection) {
+  // AndrewM костыль
+  const getBookId = async id => await booksCollection[id];
+
   //  SerhiiS 18/04/2023
   if (event.target.nodeName !== 'IMG') {
     return;
@@ -59,8 +62,7 @@ export function handleShowPop(event) {
   disableBodyScroll(modalEl);
   //---end---//
 
-  bookSrv
-    .getBooksById(popId)
+  getBookId(popId)
     .then(dataId => {
       const popBook = dataId;
       infoPopEl.innerHTML = '';
