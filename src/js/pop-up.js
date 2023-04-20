@@ -40,9 +40,10 @@ let arrayBookIs = [];
 let arrayBookShopIs = [];
 let arrayBookAdd = [];
 
-export function handleShowPop(event, booksCollection) {
-  const getBookId = async id => await booksCollection[id];
+// am
+const getBookId = async id => await booksCollection[id];
 
+export function handleShowPop(event, booksCollection) {
   if (event.target.nodeName !== 'IMG') return;
 
   const infoPopEl = document.querySelector('.pop-info');
