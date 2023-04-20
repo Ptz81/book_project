@@ -1,26 +1,17 @@
-/* Модальне вікно */
 .backdrop {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  // padding-top: 140px;
   width: 100%;
   height: 100%;
 
+  opacity: 1;
   overflow: scroll;
   background-color: var(--color-backdrop);
+  transition: opacity var(--transition-params),
+    visibility var(--transition-params);
 }
-
-// .modal.is-hidden {
-//   display: none;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   background-color: rgba(0, 0, 0, 0.5);
-// }
 
 .backdrop.is-hidden {
   opacity: 0;
@@ -28,48 +19,6 @@
   pointer-events: none;
 }
 
-.modal-btn {
-  position: absolute;
-  // right: 8px;
-  // top: 8px;
-  right: 2px;
-  top: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // padding: 0;
-  // display: inline-flex;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  width: 38px;
-  height: 38px;
-  // width: 28px;
-  // height: 28px;
-  background-color: transparent;
-  // background-color: white;
-  border: 1px solid transparent;
-  border-radius: 50%;
-
-  cursor: pointer;
-}
-
-.modal-icon {
-  width: 24px;
-  height: 24px;
-  top: 12px;
-  right: 12px;
-  stroke: var(--color-modal-cross);
-  transition: stroke var(--transition-params);
-
-  &:hover,
-  &:focus-visible {
-    stroke: var(--color-blue);
-    filter: brightness(1.1);
-  }
-}
-
-// AndrewM
 .modal {
   position: absolute;
   top: 50%;
@@ -91,28 +40,40 @@
 
 .backdrop.is-hidden .modal {
   opacity: 0;
-  transform: translateX(-50%, -50%) scale(0.8);
+  transform: translate(-50%, -50%) scale(0.9);
 }
 
-// .modal {
-//   width: 95%;
-//   // height: 100%;
-//   // overflow: auto;
-//   // overflow-y: scroll;
-//   /* width: 100%;
-//         height: auto; */
-//   // position: fixed;
-//   // top: 50%;
-//   // left: 50%;
-//   // transform: translate(-50%, -50%);
-//   background-color: var(--color-modal-background);
-//   // z-index: 30;
-//   border-radius: 18px;
-//   border: 2px solid var(--color-modal-border);
-//   position: relative;
-//   margin: auto;
-//   touch-action: pan-y pinch-zoom;
-// }
+.modal-btn {
+  position: absolute;
+  right: 2px;
+  top: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modal-icon {
+  width: 100%;
+  height: 100%;
+
+  stroke: var(--color-modal-cross);
+  transition: stroke var(--transition-params);
+
+  &:hover,
+  &:focus-visible {
+    stroke: var(--color-blue);
+    filter: brightness(1.1);
+  }
+}
 
 .modal-form-title {
   color: black;
@@ -128,24 +89,16 @@
   height: 408px;
   object-fit: cover;
   margin-bottom: 14px;
-  // margin-left: auto;
-  // margin-right: auto;
 }
-// .btn_wrapper > p {
-//   margin-bottom: 8px;
-// }
+
 .pop-text {
   margin-left: 46px;
   margin-right: 46px;
   font-size: 10px;
-  // margin-bottom: 40px;
   text-align: center;
   color: var(--color-modal-info);
 }
 
-/* .description {
-
-} */
 .pop-info {
   margin: 40px 24px;
 }
@@ -189,7 +142,6 @@
 
 .theme-dark .amazon-link {
   filter: invert(1);
-
 }
 
 .theme-dark .bookshop-link {
@@ -206,30 +158,23 @@
   transform: scale(1.05);
   filter: drop-shadow(0px 3px 3px rgba(253, 253, 253, 0.15));
   transition-property: transform, filter;
-    transition-duration: var(--transition-delay);
-    transition-timing-function: var(--transition-timing-func);
+  transition-duration: var(--transition-delay);
+  transition-timing-function: var(--transition-timing-func);
 }
 
 .pop_shop-item:hover,
 .pop_shop-item:focus {
   mix-blend-mode: luminosity;
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15));
-
 }
 
 .btn_wrapper {
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
-
-  //-------
-  // position: relative;
-  //-------
 }
 
 .pop__btn {
-  // margin-left: auto;
-  // margin-right: auto;
   border: var(--color-blue) 2px solid;
   border-radius: 40px;
   padding: 14px 28px;
@@ -240,9 +185,6 @@
   color: var(--color-modal-title);
   text-align: center;
   display: flex;
-  /* flex-direction: row;
-    align-items: flex-start; */
-  // width: 82%;
   background-color: transparent;
   letter-spacing: -0.01em;
 }
@@ -256,14 +198,11 @@
 .pop__btn:focus {
   background-color: var(--color-blue);
   color: var(--color-white);
-  /* border: none; */
   transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pop_btn-info {
-  /* display: flex;
-    flex-wrap: nowrap; */
   font-weight: 400;
   font-size: 10px;
   line-height: 1.2px;
@@ -279,9 +218,6 @@
   margin-bottom: 40px;
 }
 
-/* .pop_notification{
-    text-align: center;
-} */
 @media screen and (max-width: $mobile) {
   .photo {
     height: 380px;
@@ -315,10 +251,6 @@
     display: flex;
     margin: 40px 44px 40px 40px;
   }
-
-  // .pop-text{
-  //   top: 440px;
-  // }
 
   .photo {
     max-width: 192px;
@@ -356,7 +288,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    // padding: 20px 100px;
     gap: 10px;
     color: var(--color-modal-btn);
     font-size: 18px;

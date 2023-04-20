@@ -5,7 +5,6 @@ const categoriesContainer = document.querySelector('[data-name=category]');
 
 let currentRenderWidth = 1280;
 
-// AndrewM костыль
 const currentRenderedCollection = {};
 const addBookToCollection = (obj, booksArray) => {
   for (const bookObj of booksArray) {
@@ -139,14 +138,11 @@ export function createCardsByCategory(colection) {
   `;
 
   // titleH1.append(titleSpan);
-
   categoriesContainer.append(cardList);
-
   cardList.innerHTML = markupCardsbyCaterory(colection);
 }
 
 export function createCards(colection) {
-  // AndrewM ксотыль
   addBookToCollection(currentRenderedCollection, colection);
 
   return colection
@@ -169,7 +165,6 @@ export function createCards(colection) {
 }
 
 export function markupCardsbyCaterory(colection) {
-  // AndrewM ксотыль
   addBookToCollection(currentRenderedCollection, colection);
 
   return colection
@@ -191,9 +186,7 @@ export function markupCardsbyCaterory(colection) {
     .join('');
 }
 
-// Ola
 import { handleShowPop } from './pop-up.js';
 categoriesContainer.addEventListener('click', e => {
   handleShowPop(e, currentRenderedCollection);
 });
-// Ola
