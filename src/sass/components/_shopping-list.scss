@@ -1,5 +1,4 @@
 .shopping-wrapper {
-
   @media screen and (min-width: $desktop) {
     display: flex;
     gap: 40px;
@@ -209,7 +208,6 @@
   }
 }
 
-
 // .store-icon {
 //   // mix-blend-mode: luminosity;
 //   // background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
@@ -233,7 +231,7 @@
   line-height: 1.29;
   letter-spacing: -0.02em;
   // цвет добавить в переменную
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--color-warning-text);
   margin-bottom: 14px;
   max-width: 244px;
 }
