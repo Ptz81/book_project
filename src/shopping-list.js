@@ -6,4 +6,5 @@ import './js/scroll-up';
 import './js/support-render-markup';
 import './js/support-slider';
 import './js/auth/auth-logic';
+import './js/utils/stuff';
 // import './js/shopping-list/pagination-shopping-list';
