@@ -158,21 +158,26 @@
 @media screen and (max-width: 767px) {
   .header-btn.show.unregistered {
     position: absolute;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 4px;
+
     padding: 14px 24px;
-    background-color: var(--color-blue);
-    border: 1.5px solid var(--color-black);
-    border-radius: 18px;
-    color: var(--color-white);
+
     font-weight: 500;
     font-size: 14px;
     line-height: 1.28;
     letter-spacing: -0.04em;
     bottom: -77px;
+
+    color: var(--color-white);
+    background-color: var(--color-blue);
+
+    border: 1.5px solid var(--color-black);
+    border-radius: 18px;
   }
 }
 

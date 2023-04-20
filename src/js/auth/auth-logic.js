@@ -18,14 +18,6 @@ signUpBtn.addEventListener('click', () => {
   acc.currentUser ? acc.logout() : acc.showForm();
 });
 
-// signUpBtn.addEventListener('mouseenter', () => {
-//   userBtnCaption.textContent = 'Logout';
-// });
-
-// signUpBtn.addEventListener('mouseleave', () => {
-//   userBtnCaption.textContent = acc.currentUser.name;
-// });
-
 // function showProfileMenu() {
 //   const markup = `
 //     <span>${acc.currentUser.email}</span>
@@ -47,6 +39,7 @@ function handleLogin(currentUser) {
   signUpBtn.classList.remove('unregistered');
   userBtnCaption.textContent = currentUser.name;
   headerMenu.classList.remove('menu__list--hidden');
+
   disableElement(bookCardBtn, false);
   applyCurrentUserSettings(currentUser);
 }
@@ -56,7 +49,11 @@ function handleLogout() {
   userBtnCaption.textContent = 'Sign In';
   headerMenu.classList.add('menu__list--hidden');
   disableElement(bookCardBtn, true);
+
+  const theme = localStorage.getItem('theme');
   localStorage.clear();
+  localStorage.setItem('theme', theme);
+
   goHome();
 }
 
@@ -80,8 +77,4 @@ function applyCurrentUserSettings(user) {
   const { name, id, email, shoppingList } = user;
   localStorage.setItem('current-user', JSON.stringify({ name, email }));
   if (shoppingList) localStorage.setItem('book-add', shoppingList);
-}
-
-function removeFromStorage(values) {
-  Array.from(values || '').forEach(key => localStorage.removeItem(key));
 }
