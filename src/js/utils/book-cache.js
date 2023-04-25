@@ -7,7 +7,7 @@ import {
 
 const LS_CACHE_KEY = 'book-service-cache';
 
-// todo: можно сохранять top-books и тп объектом, а отдавать массивом(?)
+// todo: можно сохранять top-books и тп объектом, а отдавать массивом
 const CACHE_INITIAL = {
   ['category-list']: null,
   ['top-books']: null,
@@ -56,7 +56,7 @@ export default class BookCache {
     return getProp(this.#cache, path);
   }
 
-  // todo: может лучше строить общий кеш книг по id
+  // todo: можно строить общий кеш книг {id: bookObj }
   getBook(bookId) {
     let found;
     const finder = book => book._id === bookId;
