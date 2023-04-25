@@ -1,6 +1,5 @@
 import './_auth-form.scss';
-import { isFunc, getRef } from '../utils/utils';
-import { fitModalByHeight } from '../utils/crutches';
+import { isFunc, getRef, fitModalByHeight } from '../utils/utils';
 import Backdrop from '../utils/backdrop/backdrop';
 
 const authForm = getRef('.auth-form');
