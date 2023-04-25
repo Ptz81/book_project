@@ -3,8 +3,8 @@ import FirebaseAuth from './firebase/auth';
 import FirebaseDB from './firebase/db';
 import ShoppingList from './shopping-db';
 import Loader from '../loader/loader';
-import { isFunc } from '../utils';
-import { showError, showSuccess } from '../notify';
+import { isFunc } from '../utils/utils';
+import { showError, showSuccess } from '../utils/notify';
 
 const DEF_USERNAME = 'Anonymous';
 const SIGNUP_SUCCESS = 'Glad to welcome you';

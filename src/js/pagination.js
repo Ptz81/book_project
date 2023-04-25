@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import BookService from './book-service';
+import BookService from './utils/book-service';
 
 const bookService = new BookService();
 
@@ -10,7 +10,7 @@ const pagination = new Pagination('tui-pagination-container', {
   page: 1,
 });
 
-pagination.on('afterMove', async (e) => {
+pagination.on('afterMove', async e => {
   const page = e.page;
   const books = await bookService.getBooksByCategory(category, page);
   renderBooks(books);

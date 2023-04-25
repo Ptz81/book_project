@@ -1,6 +1,5 @@
 import { Notify } from 'notiflix';
 
-// опции Notify
 Notify.init({
   position: 'right-top',
   timeout: 1500,
