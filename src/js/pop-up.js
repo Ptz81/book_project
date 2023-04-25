@@ -1,7 +1,7 @@
-import BookService from './book-service';
-import { showError } from './notify.js';
+import BookService from './utils/book-service';
+import { showError } from './utils/notify';
 import UserAccount from './auth/user-account';
-import ScrollToggler from './utils/backdrop/toggler';
+import ScrollToggler from './utils/backdrop/scroll-toggler';
 import { disableElement, fitModalByHeight } from './utils/crutches';
 
 // add/remove book to database
@@ -40,18 +40,16 @@ let arrayBookIs = [];
 let arrayBookShopIs = [];
 let arrayBookAdd = [];
 
-export function handleShowPop(event, booksCollection) {
+export function handleShowPop(event) {
   if (event.target.nodeName !== 'IMG') return;
-
-  // am
-  const getBookId = async id => await booksCollection[id];
 
   const infoPopEl = document.querySelector('.pop-info');
   const popId = event.target.id;
 
   scroll.disable();
 
-  getBookId(popId)
+  bookSrv
+    .getBooksById(popId)
     .then(dataId => {
       const popBook = dataId;
       infoPopEl.innerHTML = '';
@@ -255,7 +253,7 @@ const handleDoBtn = e => {
       localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
 
       // add book to db
-      userAcc.shoppingList.add(bookLocalSt);
+      userAcc.shoppingList?.add(bookLocalSt);
     }
 
     return;
@@ -271,7 +269,7 @@ const handleDoBtn = e => {
     localStorage.setItem('book-add', JSON.stringify(arrayBookAdd));
 
     // remove book from db
-    userAcc.shoppingList.remove(sourceID);
+    userAcc.shoppingList?.remove(sourceID);
 
     return;
   }

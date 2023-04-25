@@ -13,6 +13,12 @@ export default class ScrollToggler {
   }
 
   disable() {
+    // note: Нет смысла вызывать повторно
+    // Иначе, если дважды подряд вызывается disable() - pageYOffset == 0
+    // (например, модалка запрашивает с бекенда и отображается лоадер)
+    // Чтобы проверить: getBooksById({useCache: false}) при открытии модалки
+    if (counter) return;
+
     // запоминаем позицию скрола
     root.style.setProperty('--scroll-top', window.pageYOffset);
     body.classList.add('scroll-off');

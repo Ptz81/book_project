@@ -1,5 +1,5 @@
 import './_auth-form.scss';
-import { isFunc, getRef } from '../utils';
+import { isFunc, getRef } from '../utils/utils';
 import { fitModalByHeight } from '../utils/crutches';
 import Backdrop from '../utils/backdrop/backdrop';
 

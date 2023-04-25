@@ -1,6 +1,6 @@
 import './_backdrop.scss';
-import ScrollToggler from './toggler';
-import { getZindex, isInt } from '../../utils';
+import ScrollToggler from './scroll-toggler';
+import { getZindex, isInt } from '../utils';
 
 const scroll = new ScrollToggler();
 

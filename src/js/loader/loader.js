@@ -1,6 +1,8 @@
+// todo: если для модалки показать лоадер - скролит на самый топ
+
 import './_loader.scss';
 import Backdrop from '../utils/backdrop/backdrop';
-import { isInt } from '../utils';
+import { isInt } from '../utils/utils';
 
 let backdrop;
 let instance;

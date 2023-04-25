@@ -1,6 +1,6 @@
 import firebaseConfig from './config';
 import { initializeApp } from 'firebase/app';
-import { isFunc, cap } from '../../utils';
+import { isFunc, cap } from '../../utils/utils';
 
 import {
   getAuth,

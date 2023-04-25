@@ -1,6 +1,11 @@
 import UserAccount from './user-account';
-import { getRef } from '../utils';
 import { disableElement } from '../utils/crutches';
+
+import {
+  getRef,
+  getLocalStorageValue,
+  clearLocalStorage,
+} from '../utils/utils';
 
 const acc = new UserAccount();
 
@@ -42,12 +47,9 @@ function handleLogout() {
   signUpBtn.dataset.auth = '';
   userBtnCaption.textContent = 'Sign In';
   headerMenu.classList.add('menu__list--hidden');
+
   disableElement(bookCardBtn, true);
-
-  const theme = localStorage.getItem('theme');
-  localStorage.clear();
-  localStorage.setItem('theme', theme);
-
+  clearLocalStorage({ except: 'theme, book-service-cache' });
   goHome();
 }
 
@@ -55,25 +57,15 @@ function handleLogout() {
 // Helpers
 //
 
-function getLocalStorageValue(key) {
-  try {
-    return JSON.parse(localStorage.getItem(key));
-  } catch {
-    return null;
-  }
-}
-
 function goHome() {
-  const homePath =
-    document.location.hostname === 'localhost' ? '/' : '/book_project/';
-  if (document.location.pathname !== homePath) {
-    document.location.href = './';
-  }
+  const { location } = document;
+  const homePath = location.hostname === 'localhost' ? '/' : '/book_project/';
+  if (location.pathname !== homePath) location.href = './';
 }
 
 function applyCurrentUserSettings(user) {
   const { name, id, email, shoppingList } = user;
-  // avatar
+
   userPic.textContent = user.name[0].toUpperCase();
   localStorage.setItem('current-user', JSON.stringify({ name, email }));
   if (shoppingList) localStorage.setItem('book-add', shoppingList);

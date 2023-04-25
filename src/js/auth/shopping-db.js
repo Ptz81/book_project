@@ -1,6 +1,6 @@
 import FirebaseAuth from './firebase/auth';
 import FirebaseDB from './firebase/db';
-import { isStr } from '../utils';
+import { isStr } from '../utils/utils';
 
 const ERR_ACCESS_DENIED = 'Unauthorized access attempt';
 const ERR_AUTH_EXPECTED = 'FirebaseAuth instance expected';

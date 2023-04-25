@@ -1,4 +1,4 @@
-import BookService from './book-service';
+import BookService from './utils/book-service';
 import { renderCategoriesList } from './render-categories';
 
 // SerhiiS
@@ -11,9 +11,6 @@ const CATEGORY_KEY = 'category-name';
 const ALL_CATEGORIES = 'all';
 
 const bookService = new BookService();
-// am
-const categoriesCache = {};
-let topCache;
 
 const onLoad = async () => {
   const categories = await bookService.getCategoryList();
@@ -27,23 +24,14 @@ const onLoad = async () => {
   let books;
 
   if (selectedCategory === ALL_CATEGORIES || !selectedCategory) {
-    // books = await bookService.getTopBooks();
-    // am
-    books = topCache || (await bookService.getTopBooks());
-    topCache = books;
+    books = await bookService.getTopBooks();
     // SerhiiS
     getCategoryItem(books);
-    // SerhiiS
+    //
   } else {
-    // books = await bookService.getBooksByCategory(selectedCategory);
-    // am
-    books = categoriesCache[selectedCategory]
-      ? categoriesCache[selectedCategory]
-      : await bookService.getBooksByCategory(selectedCategory);
-    categoriesCache[selectedCategory] = books;
+    books = await bookService.getBooksByCategory(selectedCategory);
     // SerhiiS
     createCardsByCategory(books);
-    // SerhiiS
   }
 };
 document.addEventListener('DOMContentLoaded', onLoad);
@@ -51,31 +39,21 @@ document.addEventListener('DOMContentLoaded', onLoad);
 const onClick = async child => {
   const category = child?.dataset.category;
   let selectedCategory = localStorage.getItem(CATEGORY_KEY);
-  if (category === selectedCategory) {
-    return;
-  }
+  if (category === selectedCategory) return;
 
   [...categoriesList.children].map(elem => elem.classList.remove('is-active'));
   child.classList.add('is-active');
   localStorage.setItem(CATEGORY_KEY, `${category}`);
+
   let books;
   if (category === ALL_CATEGORIES) {
-    // books = await bookService.getTopBooks();
-    // am
-    books = topCache || (await bookService.getTopBooks());
-    topCache = books;
-
+    books = await bookService.getTopBooks();
+    // SerhiiS
     getCategoryItem(books);
     //
   } else {
-    // books = await bookService.getBooksByCategory(category);
-
-    // am
-    books = categoriesCache[category]
-      ? categoriesCache[category]
-      : await bookService.getBooksByCategory(category);
-    categoriesCache[category] = books;
-
+    books = await bookService.getBooksByCategory(category);
+    // SerhiiS
     createCardsByCategory(books);
   }
 };

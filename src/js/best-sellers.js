@@ -1,18 +1,8 @@
-import BookService from './book-service';
+import BookService from './utils/book-service';
 
 const bs = new BookService();
 const categoriesContainer = document.querySelector('[data-name=category]');
-
 let currentRenderWidth = 1280;
-
-// am
-const currentRenderedCollection = {};
-const addBookToCollection = (obj, booksArray) => {
-  for (const bookObj of booksArray) {
-    obj[bookObj._id] = bookObj;
-  }
-};
-const categoriesCache = {};
 
 categoriesContainer.addEventListener('click', onSeeMoreBtnClick);
 
@@ -27,9 +17,6 @@ window.addEventListener('resize', event => {
   }
 });
 
-// am
-const getByCategoryName = async name => await categoriesCache[name];
-
 function onSeeMoreBtnClick(event) {
   if (event.target.nodeName !== 'BUTTON') return;
 
@@ -40,16 +27,10 @@ function onSeeMoreBtnClick(event) {
   const selectedBtn = event.target.dataset.name;
   const categoryItem = document.getElementById(selectedBtn);
 
-  // am
-  let promise = categoriesCache[selectedBtn]
-    ? getByCategoryName(selectedBtn)
-    : bs.getBooksByCategory(selectedBtn);
+  let promise = bs.getBooksByCategory(selectedBtn);
 
   promise
     .then(data => {
-      // am
-      categoriesCache[selectedBtn] = data;
-
       if (data.length > 0) {
         categoryItem.innerHTML = createCards(data);
       } else if (data.length === 0) {
@@ -154,8 +135,6 @@ export function createCardsByCategory(colection) {
 }
 
 export function createCards(colection) {
-  addBookToCollection(currentRenderedCollection, colection);
-
   return colection
     .map(({ book_image, title, author, _id }) => {
       return `
@@ -176,8 +155,6 @@ export function createCards(colection) {
 }
 
 export function markupCardsbyCaterory(colection) {
-  addBookToCollection(currentRenderedCollection, colection);
-
   return colection
     .map(({ book_image, title, author, _id }) => {
       return `
@@ -198,6 +175,4 @@ export function markupCardsbyCaterory(colection) {
 }
 
 import { handleShowPop } from './pop-up.js';
-categoriesContainer.addEventListener('click', e => {
-  handleShowPop(e, currentRenderedCollection);
-});
+categoriesContainer.addEventListener('click', handleShowPop);
