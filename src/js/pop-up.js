@@ -2,7 +2,7 @@ import BookService from './utils/book-service';
 import { showError } from './utils/notify';
 import UserAccount from './auth/user-account';
 import ScrollToggler from './utils/backdrop/scroll-toggler';
-import { disableElement, fitModalByHeight } from './utils/crutches';
+import { disableElement, fitModalByHeight } from './utils/utils';
 
 // add/remove book to database
 const userAcc = new UserAccount();

@@ -1,10 +1,10 @@
 import UserAccount from './user-account';
-import { disableElement } from '../utils/crutches';
 
 import {
   getRef,
   getLocalStorageValue,
   clearLocalStorage,
+  disableElement,
 } from '../utils/utils';
 
 const acc = new UserAccount();
