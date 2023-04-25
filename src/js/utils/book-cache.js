@@ -56,7 +56,7 @@ export default class BookCache {
     return getProp(this.#cache, path);
   }
 
-  // todo: может лучше таки строить общий кеш книг по id
+  // todo: может лучше строить общий кеш книг по id
   getBook(bookId) {
     let found;
     const finder = book => book._id === bookId;
